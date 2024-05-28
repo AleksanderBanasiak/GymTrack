@@ -1,0 +1,222 @@
+.mainContainer2{
+  background-color: #24252A;
+  width: 50%;
+  margin: auto;
+  height: 80vh;
+  margin-top: 50px;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  transition: all .5s ease;
+}
+.mainBlur{
+  background-color: #24252A;
+  width: 50%;
+  margin: auto;
+  height: 80vh;
+  margin-top: 50px;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  filter: blur(10px);
+  transition: all .5s ease;
+}
+
+.headContent{
+
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  position: relative;
+  height: 10%;
+  margin-top: 1rem;
+  align-items: center;
+}
+.addTraining{
+  position: absolute;
+  right: 3%;
+  top: 3%;
+  border: 3px solid #f11f1f;
+  padding: .1rem .8rem;
+  text-decoration: none;
+  background: #f11f1f;
+  color: #24252A;
+  font-size: 2rem;
+  border-radius: 1rem;
+  transition: .5s ease-in-out;
+}
+.addTraining:hover{
+  background: #24252A;
+  color: #f11f1f;
+}
+.userTraining{
+  font-size: 3rem;
+  font-weight: 600;
+  transition: .5s ease-in-out;
+}
+.userTraining:hover{
+  color: #f11f1f;
+}
+.messageBox{
+  margin: .5rem;
+  display: flex;
+  justify-content: center;
+}
+.message{
+  padding: .1rem 1rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  color: #24252A;
+  background-color: #f11f1f;
+}
+.createTraining{
+  border: 3px solid #f11f1f;
+  border-radius: 1rem;
+  background-color: #525561;
+  height: 60vh;
+  width: 70%;
+  margin: auto;
+  position: relative;
+}
+.inputGroup {
+  position: relative;
+  width: 300px;
+}
+
+.inputGroup label {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #f11f1f;
+  padding: 0 5px;
+  pointer-events: none;
+  transition: 0.5s;
+  font-weight: 500;
+  background-color: transparent;
+}
+
+.inputGroup input {
+  width: 100%;
+  height: 50px;
+  font-size: 18px;
+  color: #f11f1f;
+  background: transparent;
+  border: 3px solid #f11f1f;
+  outline: none;
+  border-radius: 8px;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+.inputGroup input:focus ~ label, .inputGroup input:valid ~ label {
+  top: 4px;
+  font-size: 14px;
+  background-color: #24252a;
+  padding: 0 5px;
+}
+.exercisePanel{
+  border: 1px solid blue;
+}
+.selectForm{
+  border: 1px solid #f11f1f;
+  border-top: 3px solid #f11f1f;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  background-color: #24252A;
+  border-bottom-left-radius: .6rem;
+  border-bottom-right-radius: .6rem;
+}
+
+.selectedExercise{
+  width: 80%;
+}
+.selectedExerciseOption{
+  background-color: #24252A;
+  color: #edf0f1;
+  text-wrap: revert;
+  white-space: normal;
+  word-wrap: break-word;
+
+}
+.selectedExerciseOption:hover{
+  background-color: #f11f1f;
+}
+.selectedType{
+  background-color: #24252A;
+  color: #f11f1f;
+  border: 2px solid #f11f1f;
+  padding: .5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  border-radius: 1rem;
+  text-align: center;
+  /*appearance: none;*/
+  /*-webkit-appearance: none;*/
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+.selectedTypeOption {
+  background-color: #24252A;
+  color: #edf0f1;
+  font-weight: 600;
+  font-size: 1rem;
+}
+.selectAll{
+
+  width: 80%;
+  height: 14vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.selectCreate{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 2%;
+  bottom: 50%;
+  transform: translateY(50%);
+  height: 14vh;
+  justify-content: space-evenly;
+
+}
+.buttonCreate{
+  background-color: #24252A;
+  color: #f11f1f;
+  border: 2px solid #f11f1f;
+  padding: .5rem;
+  border-radius: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: .5s ease-in-out;
+}
+.buttonCreate:hover {
+  color: #24252A;
+  background-color: #f11f1f;
+}
+
+.createExercisePanel{
+  position: absolute;
+  width: 40%;
+  transform: translate(-50%, -50%);
+  height: 50vh;
+  top: 50%;
+  margin: auto;
+  left: 50%;
+  background-color: #24252A;
+  border-radius: 1rem;
+  border: 3px solid #f11f1f;
+  transition: all .5s ease;
+
+}
+.createExercisePanelNo{
+  opacity: 0;
+  transition: all .5s ease;
+}

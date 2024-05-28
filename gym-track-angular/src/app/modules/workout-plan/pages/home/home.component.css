@@ -1,0 +1,176 @@
+
+.containerData{
+
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  height: 95%;
+  margin: auto;
+  align-items: center;
+  justify-content: space-between;
+}
+.hello{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 2rem;
+  width: 100%;
+}
+.helloUser{
+  transition: .5s ease-in-out;
+}
+.helloUser:hover{
+  color: #f11f1f;
+}
+.helloDate{
+  border: 3px solid #f11f1f;
+  background-color: #24252A;
+  padding: .2rem;
+  border-radius: 1rem;
+  color: #f11f1f;
+  transition: .5s ease-in-out;
+}
+.helloDate:hover{
+  color: #24252A;
+  background-color: #f11f1f;
+}
+
+.mainContentInContainer{
+  width: 100%;
+  height: 80%;
+  display: inline-grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+
+}
+.contentInside{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.infoTraining{
+  border: 3px solid #f11f1f;
+  width: 95%;
+  height: 95%;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  position: relative;
+}
+.infoAbout{
+  border: 3px solid #f11f1f;
+  border-radius: 1rem;
+  width: 30%;
+  height: 74%;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  margin-top: 3.1rem;
+}
+.infoDescription{
+  border-bottom-right-radius: .4rem;
+  border-bottom-left-radius: .4rem;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 102%;
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(-50%);
+  background-color: #f11f1f;
+  color: #24252A;
+  font-size: 1.6rem;
+  font-weight: 700;
+  transition: .5s ease-in-out;
+}
+.infoDescription:hover{
+  color: #edf0f1;
+}
+.digitInside{
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-wrap: revert;
+  font-weight: 700;
+  font-size: 2.4rem;
+  color: #edf0f1;
+  white-space: pre-wrap;
+  max-width: 100%;
+  transition: .5s ease-in-out;
+}
+.digitInside:hover{
+  color: #f11f1f;
+}
+
+.descriptionInside{
+  position: absolute;
+  top: 0;
+  border: 1px solid red;
+  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 18%;
+  font-size: 1.7rem;
+  font-weight: 700;
+  border-top-left-radius: 0.4rem;
+  border-top-right-radius: 0.4rem;
+  background: #f11f1f;
+  color: #24252A;
+  transition: .5s ease-in-out;
+}
+.descriptionInside:hover{
+  color: #edf0f1;
+}
+.kg{
+  position: absolute;
+  right: 5%;
+  top:41%;
+  font-weight: 600;
+  font-size: 1rem;
+}
+.digitData{
+  transition: .5s ease-in-out;
+}
+.digitData:hover{
+  color: #f11f1f;
+}
+
+
+
+.progressInOneExercise{
+  border: 1px solid red;
+  width: 95%;
+  height: 95%;
+}
+.lastTraining{
+  border: 1px solid yellow;
+  width: 95%;
+  height: 95%;
+}
+.threeExercisesRecords{
+  border: 1px solid pink;
+  width: 95%;
+  height: 95%;
+}
+.startTraining{
+  border: 3px solid #f11f1f;
+  padding: .2rem 1rem .2rem 1rem;
+  align-items: center;
+  border-radius: 1rem;
+  color: #24252A;
+  background-color: #f11f1f;
+  font-weight: 600;
+  font-size: 1.7rem;
+  transition: .5s ease-in-out;
+}
+.startTraining:hover{
+  background-color: #24252A;
+  color: #f11f1f;
+}

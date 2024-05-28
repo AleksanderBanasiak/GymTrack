@@ -1,0 +1,31 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+.login-container{
+  width: 800px;
+
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}
+
+.site{
+  background-color: #525561;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+}
+.mainContainer{
+  background-color: #24252A;
+  width: 50%;
+  margin: auto;
+  height: 80vh;
+  margin-top: 50px;
+  border-radius: 30px;
+  align-items: center;
+  display: flex;
+}
