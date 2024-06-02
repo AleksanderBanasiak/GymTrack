@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {ActivateAccountComponent} from "./pages/activate-account/activate-account.component";
 import {RegisterComponent} from "./pages/register/register.component";
 import {LoginComponent} from "./pages/login/login.component";
+import {authGuard} from "./services/guard/auth.guard";
 
 const routes: Routes = [
   {
@@ -17,7 +18,8 @@ const routes: Routes = [
   },
   {
     path: '',
-    loadChildren: () => import('./modules/workout-plan/workout-plan.module').then(m => m.WorkoutPlanModule)
+    loadChildren: () => import('./modules/workout-plan/workout-plan.module').then(m => m.WorkoutPlanModule),
+    canActivate: [authGuard]
   }
 ];
 

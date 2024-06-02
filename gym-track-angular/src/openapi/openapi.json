@@ -79,6 +79,48 @@
         }
       }
     },
+    "/plan-exercise/workout/{id}": {
+      "post": {
+        "tags": [
+          "plan-exercise-controller"
+        ],
+        "operationId": "savePlanExerciseForSpecificWorkout",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlanExerciseRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/exercise": {
       "post": {
         "tags": [
@@ -224,6 +266,37 @@
       }
     },
     "/plan/{plan_id}": {
+      "get": {
+        "tags": [
+          "plan-controller"
+        ],
+        "operationId": "findPlanById",
+        "parameters": [
+          {
+            "name": "plan_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlanResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/plan/{plan_id}/exercises": {
       "get": {
         "tags": [
           "plan-controller"

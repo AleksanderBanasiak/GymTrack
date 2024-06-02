@@ -11,7 +11,7 @@
 
 .mainContainer2{
   background-color: #1B1B1B;
-  width: 800px;
+  width: max(800px, 50%);
   margin: auto;
   height: 95vh;
 
@@ -416,7 +416,7 @@
 .addExercise{
   position: absolute;
   background-color: #3d3838;
-  height: 8%;
+  height: 7%;
   top: 0;
   width: 100%;
   -webkit-animation: .3s ease 0s normal forwards 1 fadein;
@@ -424,7 +424,8 @@
 }
 .addExercise input{
   background-color: #3d3838;
-  bottom: .5vh;
+  bottom: 50%;
+  transform: translateY(50%);
   position: absolute;
   left: 1vh;
   border: 2px solid #1B1B1B;
@@ -432,6 +433,7 @@
   padding-left: 2vh;
   width: 70%;
   color: #edf0f1;
+  height: 80%;
 }
 .back{
   position: absolute;

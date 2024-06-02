@@ -3,14 +3,13 @@ package com.example.gymTrack.planExercise;
 
 import com.example.gymTrack.plan.Plan;
 import com.example.gymTrack.plan.PlanRepo;
-import com.example.gymTrack.plan.PlanService;
 import com.example.gymTrack.user.User;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -51,5 +50,13 @@ public class PlanExerciseService {
 
         planExerciseRepo.saveAll(planExercises);
 
+    }
+
+    public Long saveForWorkout(PlanExerciseRequest request, Long workoutId, Authentication authUser) {
+        User user = (User) authUser.getPrincipal();
+        PlanExercise planExercise = planExerciseMapper.mapPlanExerciseRequestToPlanExercise(request);
+        planExercise.setUser(user);
+        planExercise.setWorkoutPlan(planRepo.findById(workoutId).orElseThrow(() -> new EntityNotFoundException("Workout not found")));
+        return planExerciseRepo.save(planExercise).getId();
     }
 }

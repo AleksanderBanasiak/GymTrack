@@ -24,7 +24,7 @@ export class TrainingPlansComponent implements OnInit{
   }
 
   addTraining() {
-    this.router.navigate(['add-training']);
+    this.router.navigate(['training']);
   }
 
   ngOnInit(): void {
@@ -55,5 +55,11 @@ export class TrainingPlansComponent implements OnInit{
       })
     }
 
+  }
+
+  editTraining(id: number | undefined) {
+    if(id){
+      this.router.navigate(['training', id]);
+    }
   }
 }

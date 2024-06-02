@@ -6,7 +6,7 @@ import {PlanExerciseRequest} from "../../../../services/models/plan-exercise-req
 import {PlanExerciseResponse} from "../../../../services/models/plan-exercise-response";
 import {PlanControllerService} from "../../../../services/services/plan-controller.service";
 import {PlanRequest} from "../../../../services/models/plan-request";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ExerciseRequest} from "../../../../services/models/exercise-request";
 import {ChangeDetection} from "@angular/cli/lib/config/workspace-schema";
 
@@ -36,8 +36,7 @@ export class AddTrainingComponent implements OnInit{
 
   trainingName: string | undefined;
 
-  selectedSets: number[] = [];
-  isSelectFormVisible=false;
+  selectedSet: number = 0;
 
   selectedCreatedExercise = false;
   newExerciseName: string | undefined;
@@ -48,33 +47,44 @@ export class AddTrainingComponent implements OnInit{
     private exerciseService: ExerciseControllerService,
     private planExerciseService: PlanExerciseControllerService,
     private planService: PlanControllerService,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {
   }
 
-  createTraining() {
-    if(this.unsavedExercises?.length == 0) {
-      this.message = "Add exercises first";
-    }
-    else if(this.trainingName && this.unsavedExercises){
-      const planRequest: PlanRequest = {
-        name: this.trainingName,
-        planExerciseResponses: this.unsavedExercises
-      }
-      this.planService.save({
-        body: planRequest
-      }).subscribe({
-        next: (response) => {
-          this.setWorkout();
-        }
-      })
-    }else if(this.trainingName == null) {
-      this.message = "Name cannot be empty";
+  ngOnInit(): void {
+    const trainingId = this.activatedRoute.snapshot.params['trainingId'];
+    if(trainingId){
+      this.editTraining(trainingId);
+    }else {
+      this.findAllExercises();
+      this.findAllAddedExercises();
     }
   }
 
-
-
+  createTraining() {
+    if (!this.activatedRoute.snapshot.params['trainingId']) {
+      if (this.unsavedExercises?.length) {
+        this.message = "Add exercises first";
+      } else if (this.trainingName && this.unsavedExercises) {
+        const planRequest: PlanRequest = {
+          name: this.trainingName,
+          planExerciseResponses: this.unsavedExercises
+        };
+        this.planService.save({
+          body: planRequest
+        }).subscribe({
+          next: () => {
+            this.setWorkout();
+          }
+        });
+      } else{
+        this.message = "Name cannot be empty";
+      }
+    }else {
+      this.router.navigate(['training-plans']);
+    }
+  }
 
   setWorkout(){
     this.planExerciseService.setWorkoutPlan().subscribe({
@@ -84,17 +94,26 @@ export class AddTrainingComponent implements OnInit{
     })
   }
 
-
   onExerciseClick(exercise: ExerciseResponse) {
     this.selectedExercise = exercise;
   }
 
+  editTraining(id: number){
+    this.planService.findPlanById({
+      plan_id: id
+    }).subscribe({
+      next: (training) => {
+        this.trainingName = training.name;
 
-
-  ngOnInit(): void {
-    this.findAllExercises();
-    this.selectedSets = [0];
-    this.findAllAddedExercises();
+        this.planService.findAllExercisesByTrainingId({
+          plan_id: id
+        }).subscribe({
+          next: ( exerciseResponse) => {
+            this.unsavedExercises = exerciseResponse;
+          }
+        })
+      }
+    })
   }
 
    findAllExercises(): void {
@@ -122,19 +141,28 @@ export class AddTrainingComponent implements OnInit{
         next: (exercises: ExerciseResponse[]) => {
           this.userExerciseResponse = exercises;
         }
-
       });
     }
   }
 
 
-
   addExercise() {
-    if( this.selectedExercise && this.selectedSets){
+    if( this.selectedExercise && this.selectedSet > 0 ){
       const planExerciseRequest: PlanExerciseRequest = {
         exercise: this.selectedExercise,
-        sets: this.selectedSets[0]
+        sets: this.selectedSet
       };
+      const trainingId = this.activatedRoute.snapshot.params['trainingId'];
+      if(trainingId){
+        this.planExerciseService.savePlanExerciseForSpecificWorkout({
+          body: planExerciseRequest,
+          id: trainingId
+        }).subscribe({
+          next: () => {
+            this.editTraining(trainingId);
+          }
+        })
+      }else {
         this.planExerciseService.savePlanExercise({
           body: planExerciseRequest
         }).subscribe({
@@ -144,13 +172,9 @@ export class AddTrainingComponent implements OnInit{
             this.message = undefined;
           }
         })
+      }
       }else {
-      if(this.selectedSets[0] == 0){
-        this.message = "Sets cannot be 0";
-      }
-      else if(this.selectedExercise == null){
-        this.message = "First choose your exercise";
-      }
+        this.message = this.selectedSet === 0 ? "Sets cannot be 0" : "First choose your exercise";
     }
   }
 
@@ -164,64 +188,56 @@ export class AddTrainingComponent implements OnInit{
     })
   }
 
-
-  toggleSelectForm() {
-    this.isSelectFormVisible = !this.isSelectFormVisible;
-  }
-
   createExercise() {
     this.selectedCreatedExercise = !this.selectedCreatedExercise;
   }
 
-
-
   deletePlanExercise(id: number | undefined) {
-    if(id){
       this.planExerciseService.deletePlanExercise({
-        id: id
+        id: id as number
       }).subscribe(
         () => {
-          this.findAllAddedExercises();
+          const trainingId = this.activatedRoute.snapshot.params['trainingId'];
+          if(trainingId){
+            this.editTraining(trainingId);
+          }else {
+            this.findAllAddedExercises();
+          }
         }
       )
-    }
-
   }
 
   createNewExercise() {
-
     if(this.newExerciseName == null){
       this.message = "Name cannot be empty";
+      return;
     }
-    else if(this.newExerciseName && this.selectedType){
+    if(this.newExerciseName && this.selectedType){
       const exerciseRequest: ExerciseRequest ={
         name: this.newExerciseName,
         type: this.selectedType
-      }
-
+      };
       this.exerciseService.saveExercise({
         body: exerciseRequest
       }).subscribe({
         next: () => {
           window.location.reload();
         }
-      })
+      });
     }
-
   }
 
   deleteExercise(id: number | undefined) {
-    if(id){
       this.exerciseService.deletePlanExercise1({
-        id: id
+        id: id as number
       }).subscribe({
         next: () => {
-          this.findAllExercises();
+            this.findAllExercises();
         },
         error: (err) => {
           this.message = "This exercise is in plan";
         }
       })
     }
-  }
+
 }

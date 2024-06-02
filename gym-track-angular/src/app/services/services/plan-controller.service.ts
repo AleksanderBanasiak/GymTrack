@@ -13,6 +13,8 @@ import { findAllExercisesByTrainingId } from '../fn/plan-controller/find-all-exe
 import { FindAllExercisesByTrainingId$Params } from '../fn/plan-controller/find-all-exercises-by-training-id';
 import { findAllUserPlans } from '../fn/plan-controller/find-all-user-plans';
 import { FindAllUserPlans$Params } from '../fn/plan-controller/find-all-user-plans';
+import { findPlanById } from '../fn/plan-controller/find-plan-by-id';
+import { FindPlanById$Params } from '../fn/plan-controller/find-plan-by-id';
 import { PlanExerciseResponse } from '../models/plan-exercise-response';
 import { PlanResponse } from '../models/plan-response';
 import { save } from '../fn/plan-controller/save';
@@ -49,8 +51,33 @@ export class PlanControllerService extends BaseService {
     );
   }
 
+  /** Path part for operation `findPlanById()` */
+  static readonly FindPlanByIdPath = '/plan/{plan_id}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `findPlanById()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findPlanById$Response(params: FindPlanById$Params, context?: HttpContext): Observable<StrictHttpResponse<PlanResponse>> {
+    return findPlanById(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `findPlanById$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findPlanById(params: FindPlanById$Params, context?: HttpContext): Observable<PlanResponse> {
+    return this.findPlanById$Response(params, context).pipe(
+      map((r: StrictHttpResponse<PlanResponse>): PlanResponse => r.body)
+    );
+  }
+
   /** Path part for operation `findAllExercisesByTrainingId()` */
-  static readonly FindAllExercisesByTrainingIdPath = '/plan/{plan_id}';
+  static readonly FindAllExercisesByTrainingIdPath = '/plan/{plan_id}/exercises';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.

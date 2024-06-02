@@ -36,8 +36,7 @@
   width: 40%;
 }
 .section2{
-  max-width: 300px;
-  min-width: 300px;
+  width: max(300px, 20%);
   position: relative;
 }
 .user{
@@ -76,17 +75,12 @@
 .startTraining{
   width: 90%;
   position: relative;
-
-
-
 }
 .divText{
   position: absolute;
   width: 40%;
   font-weight: 500;
   margin: 1vh 0 0 2vh;
-
-
 }
 .startTraining button{
   position: absolute;

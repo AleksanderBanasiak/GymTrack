@@ -23,6 +23,12 @@ public class PlanExerciseController {
         return ResponseEntity.ok(planExerciseService.save(request, authUser));
     }
 
+    @PostMapping("/workout/{id}")
+    public ResponseEntity<Long> savePlanExerciseForSpecificWorkout(@RequestBody @Valid PlanExerciseRequest request,@PathVariable("id") Long workoutId, Authentication authUser){
+        return ResponseEntity.ok(planExerciseService.saveForWorkout(request,workoutId, authUser));
+    }
+
+
     @GetMapping("/unsaved")
     public ResponseEntity<List<PlanExerciseResponse>> getAllPlanExerciseWithoutPlan(Authentication authUser){
         return  ResponseEntity.ok(planExerciseService.getAllPlanExerciseWithoutPlan(authUser));

@@ -28,8 +28,16 @@ public class PlanController {
         return ResponseEntity.ok(planService.findAllUserPlans(authUser));
     }
 
-    @GetMapping("/{plan_id}")
+    @GetMapping("/{plan_id}/exercises")
     public ResponseEntity<List<PlanExerciseResponse>> findAllExercisesByTrainingId(@PathVariable("plan_id") Long id){
         return ResponseEntity.ok(planService.findAllExercisesByTrainingId(id));
     }
+
+    @GetMapping("/{plan_id}")
+    public ResponseEntity<PlanResponse> findPlanById(@PathVariable("plan_id") Long id){
+        return ResponseEntity.ok(planService.findPlanById(id));
+    }
+
+
+
 }

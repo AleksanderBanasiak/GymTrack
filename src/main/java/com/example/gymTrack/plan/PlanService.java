@@ -5,6 +5,7 @@ import com.example.gymTrack.planExercise.PlanExerciseMapper;
 import com.example.gymTrack.planExercise.PlanExerciseRepo;
 import com.example.gymTrack.planExercise.PlanExerciseResponse;
 import com.example.gymTrack.user.User;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
@@ -52,5 +53,11 @@ public class PlanService {
         return planExercises.stream()
                 .map(planExerciseMapper::mapPlanExerciseToPlanExerciseResponse)
                 .toList();
+    }
+
+    public PlanResponse findPlanById(Long id) {
+        return planRepo.findById(id)
+                .map(planMapper::mapPlanToPlanResponse)
+                .orElseThrow(() -> new EntityNotFoundException("Plan not found"));
     }
 }

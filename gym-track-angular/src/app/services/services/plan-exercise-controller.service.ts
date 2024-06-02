@@ -16,6 +16,8 @@ import { GetAllPlanExerciseWithoutPlan$Params } from '../fn/plan-exercise-contro
 import { PlanExerciseResponse } from '../models/plan-exercise-response';
 import { savePlanExercise } from '../fn/plan-exercise-controller/save-plan-exercise';
 import { SavePlanExercise$Params } from '../fn/plan-exercise-controller/save-plan-exercise';
+import { savePlanExerciseForSpecificWorkout } from '../fn/plan-exercise-controller/save-plan-exercise-for-specific-workout';
+import { SavePlanExerciseForSpecificWorkout$Params } from '../fn/plan-exercise-controller/save-plan-exercise-for-specific-workout';
 import { setWorkoutPlan } from '../fn/plan-exercise-controller/set-workout-plan';
 import { SetWorkoutPlan$Params } from '../fn/plan-exercise-controller/set-workout-plan';
 
@@ -46,6 +48,31 @@ export class PlanExerciseControllerService extends BaseService {
    */
   savePlanExercise(params: SavePlanExercise$Params, context?: HttpContext): Observable<number> {
     return this.savePlanExercise$Response(params, context).pipe(
+      map((r: StrictHttpResponse<number>): number => r.body)
+    );
+  }
+
+  /** Path part for operation `savePlanExerciseForSpecificWorkout()` */
+  static readonly SavePlanExerciseForSpecificWorkoutPath = '/plan-exercise/workout/{id}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `savePlanExerciseForSpecificWorkout()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  savePlanExerciseForSpecificWorkout$Response(params: SavePlanExerciseForSpecificWorkout$Params, context?: HttpContext): Observable<StrictHttpResponse<number>> {
+    return savePlanExerciseForSpecificWorkout(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `savePlanExerciseForSpecificWorkout$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  savePlanExerciseForSpecificWorkout(params: SavePlanExerciseForSpecificWorkout$Params, context?: HttpContext): Observable<number> {
+    return this.savePlanExerciseForSpecificWorkout$Response(params, context).pipe(
       map((r: StrictHttpResponse<number>): number => r.body)
     );
   }

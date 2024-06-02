@@ -13,7 +13,7 @@
         </div>
         <div class="trainingGroup">Muscle groups: {{training.muscleGroups ? training.muscleGroups.join(', ').toLowerCase() : ''}}
         </div>
-        <a class="editTraining"><i class="fa-solid fa-pen-to-square"></i></a>
+        <a class="editTraining" (click)="editTraining(training.id)"><i class="fa-solid fa-pen-to-square"></i></a>
       </div>
 
 
