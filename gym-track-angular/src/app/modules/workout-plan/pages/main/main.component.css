@@ -1,5 +1,15 @@
-.mainContent{
-  background-color: #525561;
-  color: #edf0f1;
+.allContent{
+  width: 100%;
   height: 100vh;
+  background-color: #525561;
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  padding: 0;
+  justify-content: start;
+}
+.home{
+  height: 100vh;
+  width: 100%;
+  z-index: 1;
 }

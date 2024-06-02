@@ -1,69 +1,81 @@
-<div  [ngClass]="{ 'mainContainer2': !selectedCreatedExercise, 'mainBlur': selectedCreatedExercise}">
+<div class="containerData">
+  <div class="mainContainer2">
+    <div class="trainingsSection">
+      <div class="trainingText">
 
-  <div class="headContent">
-    <div class ="inputGroup">
-      <input type="text" autocomplete="off" required>
-      <label>Training name</label>
-    </div>
-    <a class="addTraining" ><i class="fa-solid fa-check"></i></a>
-  </div>
-
-
-  <div class="messageBox">
-    <div class="message">Some error</div>
-  </div>
-
-  <div class="createTraining">
-    <div class="createName">
-
-<!--      <button (click)="createTraining()">XD</button>-->
-    </div>
-
-
-
-    <div class="exercisePanel">
-      xd
-    </div>
-
-
-    <div class="selectForm" >
-      <div class="selectAll">
-      <div class="topSelected">
-      <select [(ngModel)]="selectedExercise" class="selectedType selectedExercise">
-        <option *ngFor="let exercise of exerciseResponse"  [ngValue]="exercise" class="selectedExerciseOption">
-          {{ exercise.name }} </option>
-      </select>
-      </div>
-      <div class="botSelected">
-      <select [(ngModel)]="selectedType" (change)="findAllExercises()" class="selectedType">
-      <option *ngFor="let type of exerciseTypes" [ngValue]="type" class="selectedTypeOption">{{ type }}</option>
-    </select>
-      <select [(ngModel)]="selectedSets" class="selectedType">
-        <option *ngFor="let sets of [0,1,2,3,4,5,6,7,8,9,10]" class="selectedTypeOption">
-          {{ sets }}</option>
-      </select>
-        <button (click)="createExercise()" class="buttonCreate">Create exercise</button>
+      <div class="form__group field">
+        <input [(ngModel)]="trainingName" maxlength="14" type="text" class="form__field" placeholder="Workout plan name" id='name' autocomplete="off" required />
+        <label for="name" class="form__label" >Workout plan name</label>
       </div>
       </div>
-    <div class="selectCreate">
-      <button (click)="addExercise()" class="buttonCreate">
-        <br>Add to plan
-        <br>&nbsp;
-      </button>
+      <button class="newTraining" (click)="createTraining()">Create</button>
+      <div class="message" *ngIf="message">{{message}}</div>
+      <div class="trainingContent">
+
+      <div class="headContent">
+
+          <select [(ngModel)]="selectedType" (change)="findAllExercises()" class="selectedType">
+            <option *ngFor="let type of exerciseTypes" [ngValue]="type" class="selectedTypeOption">{{ type }}</option>
+          </select>
+          <select [(ngModel)]="selectedSets" class="selectedType">
+            <option *ngFor="let sets of [0,1,2,3,4,5,6,7,8,9,10]" class="selectedTypeOption">
+              {{ sets }}</option>
+          </select>
+
+
+          <button (click)="addExercise()" class="buttonCreate">
+            Add to plan
+          </button>
+
+      </div>
+        <div class="sectionOfExercises">
+        <div class="exerciseInTraining">
+          <div class="textInExercise" (click)="createExercise()">Create exercise</div>
+          <div class="addExercise" *ngIf="selectedCreatedExercise" >
+            <input type="text" [(ngModel)]="newExerciseName">
+            <button class="exerciseButton" (click)="createNewExercise()" >Create</button>
+            <button (click)="createExercise()" class="back"><i class="fa-solid fa-x"></i></button>
+          </div>
+        </div>
+        <div class="exerciseInTraining" *ngFor="let exercise of exerciseResponse"
+             [ngClass]="{'exerciseInTraining': exercise !== this.selectedExercise,
+         'clicked':  exercise === this.selectedExercise,
+         }"
+             (click)="onExerciseClick(exercise)">
+          <div class="textInExercise">
+            {{ exercise.name }}
+            <div *ngIf="exercise.id === getMatchingUserExercise(exercise.id)?.id" class="userExercise" (click)="deleteExercise(exercise.id)"><i class="fa-solid fa-x"></i> </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
     </div>
+    <div class="exerciseSection">
+      <div class="exerciseText">Exercises in your plan</div>
+      <div class="trainingContent2">
+
+        <div class="exercise" *ngFor="let exercise of unsavedExercises; let i = index">
+          <div class="indexExercise">{{i +1}}</div>
+          <div class="exerciseName">
+            {{exercise.exerciseName}}
+          </div>
+          <div class="exerciseGroup">
+            Group: {{exercise.type}}
+          </div>
+          <div class="exerciseSets">
+            Sets: {{exercise.sets}}
+          </div>
+          <i class="fa-solid fa-x" (click)="deletePlanExercise(exercise.id)"></i>
+        </div>
+
+
+
+      </div>
+
+
     </div>
+
 
   </div>
-
-
-
-
-
-
 </div>
-
-
-  <div class="createExercisePanel" [ngClass]="{ 'createExercisePanelNo': !selectedCreatedExercise, 'createExercisePanel': selectedCreatedExercise}">
-
-
-  </div>

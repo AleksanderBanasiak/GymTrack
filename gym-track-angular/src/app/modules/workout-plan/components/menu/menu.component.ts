@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Injectable, OnInit} from '@angular/core';
 
 
 @Component({
@@ -6,8 +6,25 @@ import {Component, OnInit} from '@angular/core';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
+@Injectable({
+  providedIn: 'root'
+})
 export class MenuComponent implements OnInit{
 
+
+
+  isMenuClosed: boolean = false;
+
+
+
+  isSidebarClosed: boolean = true  ;
+
+  toggleSidebar() {
+    this.isSidebarClosed = !this.isSidebarClosed;
+  }
+  toggleMenu() {
+    this.isMenuClosed = !this.isMenuClosed;
+  }
 
 
   logout(){
@@ -29,4 +46,5 @@ export class MenuComponent implements OnInit{
     });
   }
 
+  //9:09:54
 }

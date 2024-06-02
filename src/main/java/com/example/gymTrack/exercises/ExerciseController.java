@@ -24,10 +24,10 @@ public class ExerciseController {
        return ResponseEntity.ok(exerciseService.saveExercise(request, authUser));
     }
 
-//    @GetMapping("{exercise_id}")
-//    public ResponseEntity<ExerciseResponse> findExerciseById(@PathVariable("exercise_id") Long id){
-//        return  ResponseEntity.ok(exerciseService.findById(id));
-//    }
+    @GetMapping("/{exercise_id}")
+    public ResponseEntity<ExerciseResponse> findExerciseById(@PathVariable("exercise_id") Long id){
+        return  ResponseEntity.ok(exerciseService.findById(id));
+    }
 
 
     @GetMapping("/my-exercises")
@@ -41,9 +41,15 @@ public class ExerciseController {
     }
 
 
-    @GetMapping("/{type}")
+    @GetMapping("/type/{type}")
     public ResponseEntity<List<ExerciseResponse>> findAllExercisesByType(@PathVariable("type") ExerciseType type, Authentication authUser){
         return ResponseEntity.ok(exerciseService.findAllExercisesByType(type, authUser));
+    }
+
+
+    @DeleteMapping("/{id}")
+    public void deletePlanExercise(@PathVariable Long id) {
+        exerciseService.deleteExercise(id);
     }
 
 

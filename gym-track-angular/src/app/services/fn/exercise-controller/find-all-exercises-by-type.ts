@@ -28,4 +28,4 @@ export function findAllExercisesByType(http: HttpClient, rootUrl: string, params
   );
 }
 
-findAllExercisesByType.PATH = '/exercise/{type}';
+findAllExercisesByType.PATH = '/exercise/type/{type}';

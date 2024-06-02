@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 
 import { WorkoutPlanRoutingModule } from './workout-plan-routing.module';
 import { MainComponent } from './pages/main/main.component';
@@ -18,10 +18,11 @@ import {FormsModule} from "@angular/forms";
     TrainingPlansComponent,
     AddTrainingComponent
   ],
-    imports: [
-        CommonModule,
-        WorkoutPlanRoutingModule,
-        FormsModule
-    ]
+  imports: [
+    CommonModule,
+    WorkoutPlanRoutingModule,
+    FormsModule,
+    NgOptimizedImage
+  ]
 })
 export class WorkoutPlanModule { }

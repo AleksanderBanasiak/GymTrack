@@ -28,16 +28,19 @@ export class UserControllerService extends BaseService {
    * This method doesn't expect any request body.
    */
   getUserName$Response(params?: GetUserName$Params, context?: HttpContext): Observable<StrictHttpResponse<string>> {
-    console.log('Sending request to /user endpoint'); // Log przed wysłaniem żądania
     return getUserName(this.http, this.rootUrl, params, context);
   }
 
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `getUserName$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
   getUserName(params?: GetUserName$Params, context?: HttpContext): Observable<string> {
     return this.getUserName$Response(params, context).pipe(
-      map((r: StrictHttpResponse<string>): string => {
-        console.log('Received response from /user endpoint', r); // Log po otrzymaniu odpowiedzi
-        return r.body;
-      })
+      map((r: StrictHttpResponse<string>): string => r.body)
     );
   }
+
 }

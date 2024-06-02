@@ -1,19 +1,18 @@
 package com.example.gymTrack.planExercise;
 
 import com.example.gymTrack.exercises.Exercise;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
+import com.example.gymTrack.exercises.ExerciseRequest;
+import com.example.gymTrack.exercises.ExerciseResponse;
+import jakarta.validation.constraints.*;
 
 public record PlanExerciseRequest(
 
-        @NotEmpty(message = "Sets are mandatory")
-        @NotBlank(message = "Sets are mandatory")
-        @NotNull(message = "Sets are mandatory")
+        @Min(value = 1, message = "Sets value must be greater than 0")
+        @Max(value = 10, message = "Sets value must be less than 10")
         Integer sets,
 
         @NotNull(message = "Exercise is mandatory")
-        Exercise exercise
+        ExerciseResponse exercise
 
 ) {
 }

@@ -1,176 +1,186 @@
-
 .containerData{
-
-  display: flex;
-  flex-direction: column;
-  width: 95%;
-  height: 95%;
-  margin: auto;
-  align-items: center;
-  justify-content: space-between;
-}
-.hello{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  font-weight: 600;
-  font-size: 2rem;
   width: 100%;
+  height: 100%;
+  margin: auto;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  background-color: #464646;
+}
+.userSection{
+  width: 100%;
+  margin-bottom: -30px;
+}
+.box{
+  width: 40%;
+  height: 20%;
+  background-color: #1B1B1B;
+  margin: 15px;
+  border-radius: 10px;
+  color: #edf0f1;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+  transform: scale(0.97);
+  animation-delay: 0.1s;
+  animation: grow 1s forwards;
+}
+.allSection{
+  width: 100%;
+  height: 84%;
+  display: flex;
+  flex-direction: row;
+
+}
+.section1{
+  height: 84vh;
+  width: 40%;
+}
+.section2{
+  max-width: 300px;
+  min-width: 300px;
+  position: relative;
+}
+.user{
+  width: 98%;
+  height: 10vh;
+  transition: .3s ease-in-out;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+.logs{
+  width: 97%;
+  height: 50%;
+}
+.logs2{
+  width: 97%;
+  height: 36vh;
+}
+.records{
+  position: relative;
+  width: 97%;
+  height: 23vh;
+}
+.rest{
+  width: 97%;
+  height: 23vh;
+}
+.rest2{
+  width: 97%;
+  height: 30vh;
+}
+.lastTraining{
+  width: 90%;
+  height: 61vh;
+}
+.startTraining{
+  width: 90%;
+  position: relative;
+
+
+
+}
+.divText{
+  position: absolute;
+  width: 40%;
+  font-weight: 500;
+  margin: 1vh 0 0 2vh;
+
+
+}
+.startTraining button{
+  position: absolute;
+  top: 40%;
+  border: 3px solid #f11f1f;
+  color: #f11f1f;
+  height: 8vh;
+  left: 50%;
+  font-size: 1.5rem;
+  font-weight: 500;
+  transform: translateX(-50%);
+  width: 80%;
+  background-color: #1B1B1B;
+  border-radius: 10px;
+  transition: .4s ease-in-out;
+}
+.startTraining button:hover{
+  background-color: #f11f1f;
+  color: #1B1B1B;
 }
 .helloUser{
-  transition: .5s ease-in-out;
+  color: #f11f1f;
+  height: 100%;
+  font-size: 2em;
+  font-weight: 600;
+  margin-left: 2vw;
+  margin-top: 1vh;
 }
-.helloUser:hover{
+@keyframes grow {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translate(-10px, -10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+.userProfile{
+  position: absolute;
+  right: 2%;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 10px;
+  font-weight: 600;
+  padding: 1vh 2vh 1vh 2vh;
+  border: #f11f1f 3px solid;
+  transition: .4s ease-in-out;
+  font-size: 1.1rem;
+  background-color: #1B1B1B;
   color: #f11f1f;
 }
-.helloDate{
-  border: 3px solid #f11f1f;
-  background-color: #24252A;
-  padding: .2rem;
-  border-radius: 1rem;
-  color: #f11f1f;
-  transition: .5s ease-in-out;
-}
-.helloDate:hover{
-  color: #24252A;
+.userProfile:hover{
   background-color: #f11f1f;
+  color: #1B1B1B;
 }
+.userProfile i{
+  margin-right: 10px;
+}
+.contentSection{
+  position: absolute;
 
-.mainContentInContainer{
   width: 100%;
   height: 80%;
-  display: inline-grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-
-}
-.contentInside{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.infoTraining{
-  border: 3px solid #f11f1f;
-  width: 95%;
-  height: 95%;
-  border-radius: 1rem;
+  margin-top: 8%;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  align-items: center;
-  position: relative;
 }
-.infoAbout{
+.recordContent{
+
+  width: 90px;
+  text-align: center;
+}
+.recordBox{
   border: 3px solid #f11f1f;
-  border-radius: 1rem;
-  width: 30%;
-  height: 74%;
-  justify-content: center;
-  flex-direction: column;
-  position: relative;
-  margin-top: 3.1rem;
-}
-.infoDescription{
-  border-bottom-right-radius: .4rem;
-  border-bottom-left-radius: .4rem;
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 102%;
-  height: 30%;
+  color: #1B1B1B;
+  border-radius: 10px;
+  height: 65%;
+  align-items: center;
+  text-align: center;
   display: flex;
   justify-content: center;
-  align-items: center;
-  transform: translateX(-50%);
-  background-color: #f11f1f;
-  color: #24252A;
-  font-size: 1.6rem;
-  font-weight: 700;
-  transition: .5s ease-in-out;
-}
-.infoDescription:hover{
-  color: #edf0f1;
-}
-.digitInside{
-  position: absolute;
-  bottom: 50%;
-  left: 50%;
-  transform: translateX(-50%);
-  text-wrap: revert;
-  font-weight: 700;
-  font-size: 2.4rem;
-  color: #edf0f1;
-  white-space: pre-wrap;
-  max-width: 100%;
-  transition: .5s ease-in-out;
-}
-.digitInside:hover{
-  color: #f11f1f;
-}
-
-.descriptionInside{
-  position: absolute;
-  top: 0;
-  border: 1px solid red;
-  width: 100%;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  height: 18%;
   font-size: 1.7rem;
-  font-weight: 700;
-  border-top-left-radius: 0.4rem;
-  border-top-right-radius: 0.4rem;
-  background: #f11f1f;
-  color: #24252A;
-  transition: .5s ease-in-out;
-}
-.descriptionInside:hover{
-  color: #edf0f1;
-}
-.kg{
-  position: absolute;
-  right: 5%;
-  top:41%;
   font-weight: 600;
-  font-size: 1rem;
-}
-.digitData{
-  transition: .5s ease-in-out;
-}
-.digitData:hover{
-  color: #f11f1f;
-}
-
-
-
-.progressInOneExercise{
-  border: 1px solid red;
-  width: 95%;
-  height: 95%;
-}
-.lastTraining{
-  border: 1px solid yellow;
-  width: 95%;
-  height: 95%;
-}
-.threeExercisesRecords{
-  border: 1px solid pink;
-  width: 95%;
-  height: 95%;
-}
-.startTraining{
-  border: 3px solid #f11f1f;
-  padding: .2rem 1rem .2rem 1rem;
-  align-items: center;
-  border-radius: 1rem;
-  color: #24252A;
   background-color: #f11f1f;
-  font-weight: 600;
-  font-size: 1.7rem;
-  transition: .5s ease-in-out;
 }
-.startTraining:hover{
-  background-color: #24252A;
-  color: #f11f1f;
+.recordText{
+  font-size: 1.2rem;
+}
+.recordBox img{
+  position: absolute;
+
+  width: 15%;
+  height: 70%;
+
 }

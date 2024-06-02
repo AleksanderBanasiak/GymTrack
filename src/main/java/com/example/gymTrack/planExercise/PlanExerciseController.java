@@ -5,15 +5,13 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("plan-exercise")
 public class PlanExerciseController {
 
 
@@ -25,8 +23,19 @@ public class PlanExerciseController {
         return ResponseEntity.ok(planExerciseService.save(request, authUser));
     }
 
-    @GetMapping("/all")
+    @GetMapping("/unsaved")
     public ResponseEntity<List<PlanExerciseResponse>> getAllPlanExerciseWithoutPlan(Authentication authUser){
         return  ResponseEntity.ok(planExerciseService.getAllPlanExerciseWithoutPlan(authUser));
     }
+
+    @DeleteMapping("/{id}")
+    public void deletePlanExercise(@PathVariable Long id, Authentication authUser) {
+        planExerciseService.deletePlanExercise(id);
+    }
+
+    @PatchMapping("set-plan")
+    public void setWorkoutPlan(Authentication authUser){
+        planExerciseService.setWorkoutPlan(planExerciseService.getAllPlanExerciseWithoutPlan(authUser));
+    }
+
 }

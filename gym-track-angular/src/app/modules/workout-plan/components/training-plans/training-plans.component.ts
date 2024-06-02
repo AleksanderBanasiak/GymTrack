@@ -1,19 +1,59 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
+import {PlanControllerService} from "../../../../services/services/plan-controller.service";
+import {PlanResponse} from "../../../../services/models/plan-response";
+import {PlanExerciseResponse} from "../../../../services/models/plan-exercise-response";
 
 @Component({
   selector: 'app-training-plans',
   templateUrl: './training-plans.component.html',
   styleUrls: ['./training-plans.component.css']
 })
-export class TrainingPlansComponent {
+export class TrainingPlansComponent implements OnInit{
+
+  planResponse: PlanResponse[] | undefined;
+
+  planExerciseResponse: PlanExerciseResponse[] | undefined;
+
+  planName: string | undefined;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private planService: PlanControllerService
   ) {
   }
 
   addTraining() {
     this.router.navigate(['add-training']);
+  }
+
+  ngOnInit(): void {
+    this.displayTrainings();
+  }
+
+
+  private displayTrainings() {
+    this.planService.findAllUserPlans().subscribe({
+      next: (planRes) => {
+        this.planResponse = planRes.reverse();
+        if(this.planResponse != null){
+          this.displayAllExercises(this.planResponse[0].id);
+        }
+      }
+    })
+  }
+
+
+  displayAllExercises(id: number | undefined){
+    if(id){
+      this.planService.findAllExercisesByTrainingId({
+        plan_id: id
+      }).subscribe({
+        next: (res) => {
+          this.planExerciseResponse = res;
+        }
+      })
+    }
+
   }
 }

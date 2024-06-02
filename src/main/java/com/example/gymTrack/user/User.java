@@ -2,6 +2,7 @@ package com.example.gymTrack.user;
 
 
 import com.example.gymTrack.plan.Plan;
+import com.example.gymTrack.planExercise.PlanExercise;
 import com.example.gymTrack.role.Role;
 import com.example.gymTrack.exercises.Exercise;
 import com.example.gymTrack.workoutSession.WorkoutSession;
@@ -56,8 +57,8 @@ public class User implements UserDetails, Principal {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<WorkoutSession> workoutSessions;
 
-
-
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<PlanExercise> planExercises;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)

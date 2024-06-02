@@ -54,4 +54,8 @@ public class ExerciseService {
                 .map(exerciseMapper::mapExerciseToExerciseResponse)
                 .toList();
     }
+
+    public void deleteExercise(Long id) {
+        exerciseRepo.deleteById(id);
+    }
 }

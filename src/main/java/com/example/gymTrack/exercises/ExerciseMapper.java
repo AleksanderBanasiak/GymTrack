@@ -20,4 +20,12 @@ public class ExerciseMapper {
                 .type(exercise.getExerciseType())
                 .build();
     }
+
+    public Exercise mapExerciseResponseToExercise(ExerciseResponse exercise) {
+        return Exercise.builder()
+                .id(exercise.getId())
+                .name(exercise.getName())
+                .exerciseType(exercise.getType())
+                .build();
+    }
 }

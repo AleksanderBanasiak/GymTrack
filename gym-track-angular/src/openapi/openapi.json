@@ -17,6 +17,68 @@
     }
   ],
   "paths": {
+    "/plan": {
+      "post": {
+        "tags": [
+          "plan-controller"
+        ],
+        "operationId": "save",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlanRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/plan-exercise": {
+      "post": {
+        "tags": [
+          "plan-exercise-controller"
+        ],
+        "operationId": "savePlanExercise",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlanExerciseRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/exercise": {
       "post": {
         "tags": [
@@ -108,6 +170,19 @@
         }
       }
     },
+    "/plan-exercise/set-plan": {
+      "patch": {
+        "tags": [
+          "plan-exercise-controller"
+        ],
+        "operationId": "setWorkoutPlan",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/xd": {
       "get": {
         "tags": [
@@ -148,7 +223,118 @@
         }
       }
     },
-    "/exercise/{type}": {
+    "/plan/{plan_id}": {
+      "get": {
+        "tags": [
+          "plan-controller"
+        ],
+        "operationId": "findAllExercisesByTrainingId",
+        "parameters": [
+          {
+            "name": "plan_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlanExerciseResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/plan/all": {
+      "get": {
+        "tags": [
+          "plan-controller"
+        ],
+        "operationId": "findAllUserPlans",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlanResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/plan-exercise/unsaved": {
+      "get": {
+        "tags": [
+          "plan-exercise-controller"
+        ],
+        "operationId": "getAllPlanExerciseWithoutPlan",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlanExerciseResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/exercise/{exercise_id}": {
+      "get": {
+        "tags": [
+          "exercise-controller"
+        ],
+        "operationId": "findExerciseById",
+        "parameters": [
+          {
+            "name": "exercise_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExerciseResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/exercise/type/{type}": {
       "get": {
         "tags": [
           "exercise-controller"
@@ -285,10 +471,153 @@
           }
         }
       }
+    },
+    "/plan-exercise/{id}": {
+      "delete": {
+        "tags": [
+          "plan-exercise-controller"
+        ],
+        "operationId": "deletePlanExercise",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/exercise/{id}": {
+      "delete": {
+        "tags": [
+          "exercise-controller"
+        ],
+        "operationId": "deletePlanExercise_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
+      "PlanExerciseResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "exerciseName": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "CHEST",
+              "BACK",
+              "BICEPS",
+              "SHOULDERS",
+              "TRICEPS",
+              "FOREARM",
+              "ABS",
+              "GLUTES",
+              "CALF",
+              "THIGH",
+              "HAMSTRINGS"
+            ]
+          },
+          "sets": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "PlanRequest": {
+        "required": [
+          "name",
+          "planExerciseResponses"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "planExerciseResponses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlanExerciseResponse"
+            }
+          }
+        }
+      },
+      "ExerciseResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "CHEST",
+              "BACK",
+              "BICEPS",
+              "SHOULDERS",
+              "TRICEPS",
+              "FOREARM",
+              "ABS",
+              "GLUTES",
+              "CALF",
+              "THIGH",
+              "HAMSTRINGS"
+            ]
+          }
+        }
+      },
+      "PlanExerciseRequest": {
+        "required": [
+          "exercise"
+        ],
+        "type": "object",
+        "properties": {
+          "sets": {
+            "maximum": 10,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "exercise": {
+            "$ref": "#/components/schemas/ExerciseResponse"
+          }
+        }
+      },
       "ExerciseRequest": {
         "required": [
           "name",
@@ -361,7 +690,7 @@
           }
         }
       },
-      "ExerciseResponse": {
+      "PlanResponse": {
         "type": "object",
         "properties": {
           "id": {
@@ -371,21 +700,33 @@
           "name": {
             "type": "string"
           },
-          "type": {
-            "type": "string",
-            "enum": [
-              "CHEST",
-              "BACK",
-              "BICEPS",
-              "SHOULDERS",
-              "TRICEPS",
-              "FOREARM",
-              "ABS",
-              "GLUTES",
-              "CALF",
-              "THIGH",
-              "HAMSTRINGS"
-            ]
+          "exercises": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sets": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "muscleGroups": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "CHEST",
+                "BACK",
+                "BICEPS",
+                "SHOULDERS",
+                "TRICEPS",
+                "FOREARM",
+                "ABS",
+                "GLUTES",
+                "CALF",
+                "THIGH",
+                "HAMSTRINGS"
+              ]
+            }
           }
         }
       }
