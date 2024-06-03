@@ -1,37 +1,8 @@
-.containerData{
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 100%;
-  margin: auto;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  background-color: #464646;
-}
 
-.mainContainer2{
-  background-color: #1B1B1B;
-  width: max(800px, 50%);
-  margin: auto;
-  height: 95vh;
 
-  border-radius: 10px;
-  display: flex;
-  flex-direction: row;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
-  animation-delay: 0.8s;
-  animation: grow 1s forwards;
 
-}
-.trainingsSection{
 
-  height: 95vh;
-  width: 60%;
-  transform: scale(0.97);
-  animation-delay: 0.1s;
-  animation: grow 1s forwards;
 
-}
 .exerciseSection{
   background-color: #2a2929;
   border-radius: 10px;
@@ -41,7 +12,6 @@
   animation-delay: 0.8s;
   animation: grow 1s forwards;
 }
-
 .newTraining{
   position: absolute;
   right: 2vh;
@@ -56,12 +26,8 @@
   text-align: center;
   transition: .4s ease-in-out;
 }
-.newTraining:hover{
-  background-color: #f11f1f;
-  color: #1B1B1B;
-}
+
 .trainingContent{
-  /*border: 2px solid blue;*/
   border-radius: 10px;
   background-color: #2a2929;
   width: 90%;
@@ -72,7 +38,6 @@
   top: 17vh;
 }
 .trainingContent2{
-  /*border: 2px solid pink;*/
   width: 96%;
   height: 74vh;
   left: 50%;
@@ -81,46 +46,6 @@
   top: 17vh;
   overflow: auto;
 }
-
-@keyframes grow {
-  from {
-    opacity: 0;
-    transform: scale(0.97) translate(-10px, -10px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
-.firstGroup{
-  display: flex;
-  flex-direction: row;
-  height: 70%;
-  align-items: center;
-
-}
-.training{
-  margin-bottom: 1vh;
-  background-color: #3d3838;
-  border-radius: 10px;
-  width: 99%;
-  height: 6rem;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  color: #edf0f1;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
-}
-.trainingName{
-  color: #f11f1f;
-  font-weight: 600;
-  font-size: 1.6rem;
-  margin-left: .8rem;
-  transition: .5s ease-in-out;
-}
-
 .form__group {
   position: absolute;
   margin-top: 10px;
@@ -183,71 +108,6 @@
   width: 100%;
 }
 
-.trainingName:hover{
-  color: #edf0f1;
-}
-.trainingExercises{
-  margin-top: .3rem;
-  margin-left: 1rem;
-  font-weight: 500;
-  font-size: 1rem;
-}
-.trainingGroup{
-  margin-left: 1rem;
-  height: 30%;
-  font-weight: 500;
-  font-size: .8rem;
-}
-.editTraining{
-  border: 2px solid red;
-  position: absolute;
-  top: 50%;
-  right: 2%;
-  transform: translateY(-50%);
-  color: #f11f1f;
-  background-color: #3d3838;
-  border-radius: 10px;
-  padding: .3rem .6rem;
-  font-size: 1rem;
-  transition: .5s ease-in-out;
-}
-.editTraining:hover{
-  background-color: #f11f1f;
-  color: #3d3838;
-}
-::-webkit-scrollbar {
-  width: 12px;
-}
-::-webkit-scrollbar-track {
-  background: #3d3838;
-  border-radius: 5px;
-}
-
-
-::-webkit-scrollbar-thumb {
-  background: #f11f1f;
-  border-radius: 10px;
-}
-.exerciseText{
-  position: absolute;
-  color: #edf0f1;
-  font-size: 1.5rem;
-  font-weight: 600;
-  left: 5%;
-  top: 3%;
-  width: 87%;
-  height: 15vh;
-  flex-wrap: wrap;
-}
-.exercise{
-  background-color: #3d3838;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
-  border-radius: 10px;
-  width: 98%;
-  height: 11.9%;
-  margin-bottom: 2vh;
-  position: relative;
-}
 .exerciseGroup{
   color: #edf0f1;
   position: absolute;
@@ -260,34 +120,6 @@
   bottom: .4vh;
   right: 5.5vh;
   color: #edf0f1;
-}
-.edit{
-  position: absolute;
-  right: 2vh;
-  top: 2vh;
-  color: #1B1B1B;
-  font-size: 1.6rem;
-  transition: .4s ease-in-out;
-}
-.edit:hover{
-  color: #edf0f1;
-
-}
-.indexExercise{
-  color: #edf0f1;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  font-size: 2rem;
-  position: absolute;
-  background-color: #f11f1f;
-  left: 0;
-  width: 7vh;
-  font-weight: 600;
-  height: 100%;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.35);
 }
 .exerciseName{
   margin-left: 8vh;
@@ -355,8 +187,6 @@
 
 }
 .sectionOfExercises{
-
-
   width: 100%;
   height: 65.5vh;
   left: 50%;
@@ -377,7 +207,6 @@
 .textInExercise {
   cursor: pointer;
 }
-
 .clicked{
   color: #edf0f1;
   padding: 1vh 0;
@@ -408,7 +237,6 @@
     opacity: 1;
   }
 }
-
 .message:hover{
   background-color: #1B1B1B;
   color: #f11f1f;
