@@ -105,7 +105,7 @@ header .image-text .profession {
   border-radius: 6px;
 }
 
-.sidebar header .toggle {
+.sidebar header .toggle2 {
   position: absolute;
   top: 50%;
   right: -25px;
@@ -123,7 +123,7 @@ header .image-text .profession {
   transition: all 0.3s ease;
 }
 
-.sidebar.close .toggle {
+.sidebar.close .toggle2 {
   transform: translateY(-50%) rotate(0deg);
 }
 
@@ -173,4 +173,9 @@ header .image-text .profession {
     padding-right: 60px;
     color: #24252A;
   }
+}
+
+.xd{
+  border: 2px solid blue;
+  padding: 20px;
 }

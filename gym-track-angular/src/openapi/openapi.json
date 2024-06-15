@@ -17,6 +17,69 @@
     }
   ],
   "paths": {
+    "/workout-session": {
+      "post": {
+        "tags": [
+          "workout-session-controller"
+        ],
+        "operationId": "saveWorkoutSession",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/weight": {
+      "post": {
+        "tags": [
+          "weight-controller"
+        ],
+        "operationId": "saveWeight",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WeightRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/plan": {
       "post": {
         "tags": [
@@ -225,19 +288,109 @@
         }
       }
     },
-    "/xd": {
+    "/workout-session/unsaved": {
       "get": {
         "tags": [
-          "xd"
+          "workout-session-controller"
         ],
-        "operationId": "xd",
+        "operationId": "findLastUnsavedWorkoutSessionByUserId",
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/WorkoutSessionResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/weight/months": {
+      "get": {
+        "tags": [
+          "weight-controller"
+        ],
+        "operationId": "getUserMonths",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "format": "date"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/weight/monthly": {
+      "get": {
+        "tags": [
+          "weight-controller"
+        ],
+        "operationId": "getUserWeightMonthly",
+        "parameters": [
+          {
+            "name": "year",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "month",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeightResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/weight/all": {
+      "get": {
+        "tags": [
+          "weight-controller"
+        ],
+        "operationId": "getAllUserWeight",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeightResponse"
+                  }
                 }
               }
             }
@@ -545,6 +698,30 @@
         }
       }
     },
+    "/workout-session/{id}": {
+      "delete": {
+        "tags": [
+          "workout-session-controller"
+        ],
+        "operationId": "deleteWorkoutSession",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/plan-exercise/{id}": {
       "delete": {
         "tags": [
@@ -596,6 +773,27 @@
   },
   "components": {
     "schemas": {
+      "WeightRequest": {
+        "required": [
+          "date",
+          "weight"
+        ],
+        "type": "object",
+        "properties": {
+          "weight": {
+            "maximum": 250,
+            "exclusiveMaximum": false,
+            "minimum": 20,
+            "exclusiveMinimum": false,
+            "type": "number",
+            "format": "double"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
       "PlanExerciseResponse": {
         "type": "object",
         "properties": {
@@ -760,6 +958,39 @@
         "properties": {
           "token": {
             "type": "string"
+          }
+        }
+      },
+      "WorkoutSessionResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "planName": {
+            "type": "string"
+          },
+          "sessionDate": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
+      "WeightResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "weight": {
+            "type": "number",
+            "format": "double"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
           }
         }
       },

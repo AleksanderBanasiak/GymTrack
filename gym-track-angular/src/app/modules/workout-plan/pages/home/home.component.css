@@ -7,10 +7,23 @@
   justify-content: space-evenly;
   flex-wrap: wrap;
   background-color: #464646;
+  transition: .2s ease-in-out;
 }
+.all{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.blur{
+  filter: blur(5px);
+}
+.maxblur{
+  filter: blur(7px);
+}
+
 .userSection{
   width: 100%;
-  margin-bottom: -30px;
+  /*margin-bottom: -30px;*/
 }
 .box{
   width: 40%;
@@ -26,17 +39,17 @@
 }
 .allSection{
   width: 100%;
-  height: 84%;
+  height: 86%;
   display: flex;
   flex-direction: row;
-
 }
 .section1{
-  height: 84vh;
-  width: 40%;
+  height: 100%;
+  width: 60%;
+
 }
 .section2{
-  width: max(300px, 20%);
+  width: max(300px, 22%);
   position: relative;
 }
 .user{
@@ -53,32 +66,33 @@
 }
 .logs2{
   width: 97%;
-  height: 36vh;
+  height: 45%;
 }
 .records{
   position: relative;
   width: 97%;
-  height: 23vh;
+  height: 28%;
 }
 .rest{
   width: 97%;
-  height: 23vh;
+  height: 28%;
 }
 .rest2{
   width: 97%;
-  height: 30vh;
+  height: 37%;
 }
 .lastTraining{
   width: 90%;
-  height: 61vh;
+  height: 75%;
 }
 .startTraining{
   width: 90%;
   position: relative;
+  height: 20%;
 }
 .divText{
   position: absolute;
-  width: 40%;
+  width: 80%;
   font-weight: 500;
   margin: 1vh 0 0 2vh;
 }
@@ -173,8 +187,113 @@
 }
 .recordBox img{
   position: absolute;
-
   width: 15%;
   height: 70%;
+}
+.startTrainingSection{
+  height: 85%;
+  width: max(200px, 15%);
+  position: absolute;
+  top: 14%;
+  right: 1vh;
+  overflow: hidden;
+}
+.borderBox{
+  border: 1px solid #f11f1f;
+}
+.startTrainingContent{
+  width: 100%;
+  height: 55.5vh;
+  margin-top: 5vh;
+  overflow: auto;
+}
+.trainingContent{
+  padding: 2vh 0 2vh 2vh;
+  border-bottom: 1px solid #525561;
+  font-size: 1.3rem;
+  transition: .5s ease;
+  font-weight: 600;
+  cursor: pointer;
+}
+.trainingContent:hover{
+  background-color: #f11f1f;
 
+}
+
+.exerciseInTraining:hover{
+  background-color: #383737;
+}
+
+.clicked{
+  background-color: #f11f1f;
+}
+.backToLastTraining{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #1B1B1B;
+  border: 2px solid #f11f1f;
+  border-radius: 10px;
+  width: 25%;
+  height: 30vh;
+  color: #edf0f1;
+}
+.trainingButton{
+  border: 3px solid #f11f1f;
+  color: #f11f1f;
+  height: 40%;
+  font-size: 1.3rem;
+  font-weight: 600;
+  padding: 0 2vh;
+  background-color: #1B1B1B;
+  border-radius: 10px;
+  transition: .4s ease-in-out;
+  margin: 2vh;
+}
+.trainingButton:hover{
+  background-color: #f11f1f;
+  color: #1B1B1B;
+}
+.buttonContainer{
+  position: absolute;
+  top: 55%;
+  width: 100%;
+  height: 15vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+.lastTrainingName{
+  position: absolute;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 40%;
+  font-size: 2rem;
+  color: #f11f1f;
+  font-weight: 600;
+}
+.lastTrainingText{
+  width: 90%;
+}
+.suppText{
+  width: 100%;
+  position: absolute;
+  top: 18%;
+  font-size: 1.2rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+.weightContentInHome{
+  width: 90%;
+  position: absolute;
+  top: 22%;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 75%;
 }

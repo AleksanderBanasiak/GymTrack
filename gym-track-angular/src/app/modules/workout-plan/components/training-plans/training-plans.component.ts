@@ -17,6 +17,7 @@ export class TrainingPlansComponent implements OnInit{
 
   planName: string | undefined;
 
+
   constructor(
     private router: Router,
     private planService: PlanControllerService
@@ -38,10 +39,13 @@ export class TrainingPlansComponent implements OnInit{
         this.planResponse = planRes.reverse();
         if(this.planResponse != null){
           this.displayAllExercises(this.planResponse[0].id);
+
         }
       }
     })
   }
+
+  // TODO: dodać usuwanie treningu
 
 
   displayAllExercises(id: number | undefined){
@@ -51,15 +55,30 @@ export class TrainingPlansComponent implements OnInit{
       }).subscribe({
         next: (res) => {
           this.planExerciseResponse = res;
+          this.findPlanById(id);
         }
       })
     }
 
   }
 
+  findPlanById(id: number | undefined){
+    this.planService.findPlanById({
+      plan_id: id as number
+    }).subscribe({
+      next: (res) => {
+        this.planName = res.name;
+        console.log(this.planName);
+      }
+    })
+  }
+
+
   editTraining(id: number | undefined) {
     if(id){
       this.router.navigate(['training', id]);
     }
   }
+
+
 }

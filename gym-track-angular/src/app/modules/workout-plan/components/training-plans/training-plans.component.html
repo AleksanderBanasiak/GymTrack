@@ -21,8 +21,8 @@
     </div>
   </div>
   <div class="exerciseSection">
-    <div class="edit"><i class="fas fa-ellipsis-v"></i></div>
-    <div class="exerciseText">Workout exercises</div>
+    <div class="edit"><i class="fas fa-ellipsis-v" ></i></div>
+    <div class="exerciseText">{{planName}} exercises</div>
     <div class="trainingContent" >
       <div class="exercise" *ngFor="let exercise of planExerciseResponse; let i = index">
         <div class="indexExercise">{{i+1}}</div>
@@ -36,10 +36,8 @@
           Sets: {{exercise.sets}}
         </div>
       </div>
-
-
-
     </div>
+
   </div>
 
 

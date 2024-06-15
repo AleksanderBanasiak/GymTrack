@@ -45,6 +45,4 @@ export class MenuComponent implements OnInit{
       })
     });
   }
-
-  //9:09:54
 }

@@ -8,6 +8,10 @@ import { HomeComponent } from './pages/home/home.component';
 import { TrainingPlansComponent } from './components/training-plans/training-plans.component';
 import { AddTrainingComponent } from './components/add-training/add-training.component';
 import {FormsModule} from "@angular/forms";
+import { WorkoutSessionComponent } from './components/workout-session/workout-session.component';
+import { LinechartComponent } from './components/linechart/linechart.component';
+import {HighchartsChartModule} from "highcharts-angular";
+import { WeightComponent } from './components/weight/weight.component';
 
 
 @NgModule({
@@ -16,13 +20,17 @@ import {FormsModule} from "@angular/forms";
     MenuComponent,
     HomeComponent,
     TrainingPlansComponent,
-    AddTrainingComponent
+    AddTrainingComponent,
+    WorkoutSessionComponent,
+    LinechartComponent,
+    WeightComponent
   ],
-  imports: [
-    CommonModule,
-    WorkoutPlanRoutingModule,
-    FormsModule,
-    NgOptimizedImage
-  ]
+    imports: [
+        CommonModule,
+        WorkoutPlanRoutingModule,
+        FormsModule,
+        NgOptimizedImage,
+        HighchartsChartModule
+    ]
 })
 export class WorkoutPlanModule { }

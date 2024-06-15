@@ -4,11 +4,12 @@ import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core
 import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
+import { WorkoutSessionControllerService } from './services/workout-session-controller.service';
+import { WeightControllerService } from './services/weight-controller.service';
 import { PlanControllerService } from './services/plan-controller.service';
 import { PlanExerciseControllerService } from './services/plan-exercise-controller.service';
 import { ExerciseControllerService } from './services/exercise-controller.service';
 import { AuthenticationControllerService } from './services/authentication-controller.service';
-import { XdService } from './services/xd.service';
 import { UserControllerService } from './services/user-controller.service';
 
 /**
@@ -19,11 +20,12 @@ import { UserControllerService } from './services/user-controller.service';
   exports: [],
   declarations: [],
   providers: [
+    WorkoutSessionControllerService,
+    WeightControllerService,
     PlanControllerService,
     PlanExerciseControllerService,
     ExerciseControllerService,
     AuthenticationControllerService,
-    XdService,
     UserControllerService,
     ApiConfiguration
   ],

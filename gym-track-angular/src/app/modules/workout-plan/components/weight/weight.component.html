@@ -1,0 +1,44 @@
+<div class="containerData">
+  <div class="mainContainer3">
+    <div class="section1">
+      <div class="weightText">Your weight in {{month}}</div>
+
+
+
+      <div class="weightContent">
+        <div class="chartWeight">
+          <app-linechart [weightResponse]="weighResponseForMonth" [chartStyle]="chartStyle"></app-linechart>
+        </div>
+      </div>
+
+
+        <select [(ngModel)]="chosenDate" class="selectedType" (ngModelChange)="onChosenDateChange($event)" >
+          <option *ngFor="let date of userMonths" [ngValue]="date"  >{{ date.month}}/{{ date.year }}</option>
+        </select>
+
+
+    </div>
+  <div class="section2">
+    <div class="weightText">Your weight overall</div>
+
+    <div class="addWeight" *ngIf="!isCliked">
+    <button class="createWeight" (click)="createWeight()">Add</button>
+    </div>
+
+    <div class="addWeight" *ngIf="isCliked">
+      <button class="createWeight" (click)="addWeight()">Add</button>
+      <div class="addWeightContent">
+      <input type="date">
+      </div>
+
+    </div>
+      <div class="weightContent">
+        <div class="chartWeight">
+        <app-linechart [weightResponse]="weightResponse" [chartStyle]="chartStyle2"></app-linechart>
+        </div>
+      </div>
+</div>
+
+</div>
+</div>
+

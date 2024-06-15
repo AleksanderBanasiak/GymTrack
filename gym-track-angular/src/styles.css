@@ -1,6 +1,7 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
 @import "@fortawesome/fontawesome-free/css/all.min.css";
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import "https://code.highcharts.com/dashboards/css/dashboards.css";
 .todo{
   color: #cb1e1e;
   font-size: 70px;
@@ -46,13 +47,13 @@
 }
 .container button.hidden{
   background-color: transparent;
-  border-color: #24252A;
-  color: #24252A;
+  border-color: #1B1B1B;
+  color: #1B1B1B;
   transition: 1.2s;
 }
 .container button.hidden:hover{
-  background-color: #24252A;
-  border-color: #24252A;
+  background-color: #1B1B1B;
+  border-color: #1B1B1B;
   color: #f11f1f;
 }
 .signIn{
@@ -120,7 +121,7 @@
 .inputGroup input:focus ~ label, .inputGroup input:valid ~ label {
   top: 9px;
   font-size: 14px;
-  background-color: #24252a;
+  background-color: #1B1B1B;
   padding: 0 5px;
 }
 .toggle{
@@ -246,6 +247,7 @@
   justify-content: space-evenly;
   flex-wrap: wrap;
   background-color: #464646;
+
 }
 .mainContainer2{
   background-color: #1B1B1B;
@@ -292,7 +294,7 @@
   background-color: #3d3838;
   border-radius: 10px;
   width: 99%;
-  height: 6rem;
+  height: 11.4vh;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -303,9 +305,10 @@
 .trainingName{
   color: #f11f1f;
   font-weight: 600;
-  font-size: 1.6rem;
+  font-size: 3vh;
   margin-left: .8rem;
   transition: .5s ease-in-out;
+  max-width: 45%;
 }
 .trainingName:hover{
   color: #edf0f1;
@@ -314,13 +317,13 @@
   margin-top: .3rem;
   margin-left: 1rem;
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 2vh;
 }
 .trainingGroup{
   margin-left: 1rem;
   height: 30%;
   font-weight: 500;
-  font-size: .8rem;
+  font-size: 1.5vh;
 }
 .editTraining{
   border: 2px solid red;

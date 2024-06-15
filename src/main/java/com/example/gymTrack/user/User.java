@@ -5,6 +5,7 @@ import com.example.gymTrack.plan.Plan;
 import com.example.gymTrack.planExercise.PlanExercise;
 import com.example.gymTrack.role.Role;
 import com.example.gymTrack.exercises.Exercise;
+import com.example.gymTrack.weight.Weight;
 import com.example.gymTrack.workoutSession.WorkoutSession;
 import jakarta.persistence.*;
 import lombok.*;
@@ -59,6 +60,9 @@ public class User implements UserDetails, Principal {
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<PlanExercise> planExercises;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Weight> weights;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)

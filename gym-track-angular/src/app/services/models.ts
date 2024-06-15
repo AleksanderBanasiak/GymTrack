@@ -9,3 +9,6 @@ export { PlanExerciseResponse } from './models/plan-exercise-response';
 export { PlanRequest } from './models/plan-request';
 export { PlanResponse } from './models/plan-response';
 export { RegistrationRequest } from './models/registration-request';
+export { WeightRequest } from './models/weight-request';
+export { WeightResponse } from './models/weight-response';
+export { WorkoutSessionResponse } from './models/workout-session-response';

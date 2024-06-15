@@ -5,6 +5,8 @@ import {HomeComponent} from "./pages/home/home.component";
 import {TrainingPlansComponent} from "./components/training-plans/training-plans.component";
 import {AddTrainingComponent} from "./components/add-training/add-training.component";
 import {authGuard} from "../../services/guard/auth.guard";
+import {WorkoutSessionComponent} from "./components/workout-session/workout-session.component";
+import {WeightComponent} from "./components/weight/weight.component";
 
 const routes: Routes = [
   {
@@ -30,6 +32,16 @@ const routes: Routes = [
       {
         path: 'training/:trainingId',
         component: AddTrainingComponent,
+        canActivate: [authGuard]
+      },
+      {
+        path: 'workout-session/:trainingId',
+        component: WorkoutSessionComponent,
+        canActivate: [authGuard]
+      },
+      {
+        path: 'weight',
+        component: WeightComponent,
         canActivate: [authGuard]
       }
     ]

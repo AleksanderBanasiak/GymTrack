@@ -3,6 +3,7 @@ package com.example.gymTrack.workoutLogs;
 
 import com.example.gymTrack.common.BaseEntity;
 import com.example.gymTrack.plan.Plan;
+import com.example.gymTrack.planExercise.PlanExercise;
 import com.example.gymTrack.workoutSession.WorkoutSession;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -24,7 +25,17 @@ import lombok.experimental.SuperBuilder;
 public class WorkoutLogs extends BaseEntity {
 
 
+    private Integer setNumber;
+    private Double weight;
+    private Integer reps;
+    private Double summaryWeight;
+
     @ManyToOne
     @JoinColumn(name = "workoutSession_id", nullable = false)
     private WorkoutSession workoutSession;
+
+
+    @ManyToOne
+    @JoinColumn(name = "plan_exercise_id", nullable = false)
+    private PlanExercise planExercise;
 }

@@ -1,9 +1,5 @@
-
-
-<!-- <div *ngFor="let ex of exerciseResponse" class="noej">-->
-<!--    {{ex.type}}-->
-<!-- </div>-->
-  <div class="containerData">
+<div class="all">
+<div class="containerData"  [ngClass]="{ 'blur': setTraining && !isUnsaved, 'maxblur': maxBlur }" (click)="onContainerClick()">
   <div class="userSection">
     <div class="box user">
       <div class="helloUser"> Hello, user</div>
@@ -80,20 +76,73 @@
       </div>
       <div class="box rest2">
         <div class="divText">your weight</div>
+
+        <div class="weightContentInHome">
+          <app-linechart></app-linechart>
+        </div>
       </div>
     </div>
     <div class="section2">
       <div class="box lastTraining"><div class="divText">last training</div></div>
       <div class="box startTraining">
         <div class="divText">next training</div>
-        <button>Start training</button>
+        <button (click)="chooseTraining($event)" >Start training</button>
+
+
+
+
       </div>
     </div>
 
 
-  </div>
-
-
 
 
   </div>
+
+
+
+
+
+
+
+  </div>
+
+  <div class="startTrainingSection " *ngIf="setTraining && !isUnsaved" >
+    <div class="box lastTraining borderBox"><div class="divText">choose training</div>
+      <div class="startTrainingContent">
+        <div class="trainingContent"
+
+             [ngClass]="{'exerciseInTraining': res !== this.selectedTraining,
+         'clicked':  res === this.selectedTraining,
+         }"
+
+             *ngFor="let res of planResponse" (click)="chosenPlan(res)">{{res.name}}</div>
+      </div>
+    </div>
+    <div class="box startTraining borderBox">
+      <div class="divText">start training</div>
+      <button (click)="startTraining(planId)">Start training</button>
+
+
+    </div>
+  </div>
+
+  <div class="backToLastTraining" *ngIf="isUnsaved">
+    <div class="divText">unsaved training</div>
+    <div class="suppText">
+    <div class="lastTrainingText">Your last training session&nbsp; <strong style="color: #f11f1f"> {{workoutSessionResponse?.sessionDate}}</strong>
+     &nbsp;has not been saved</div>
+    </div>
+    <div class="lastTrainingName">{{workoutSessionResponse?.planName}}</div>
+    <div class="buttonContainer">
+    <button class="trainingButton" (click)="deleteWorkout()">Delete</button>
+    <button class="trainingButton" (click)="backToLastWorkout()">Back to workout</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+

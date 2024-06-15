@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Setter
@@ -23,10 +25,14 @@ import java.util.List;
 @Table(name = "workout_session")
 public class WorkoutSession extends BaseEntity {
 
+    private boolean ended;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    @Temporal(TemporalType.DATE)
+    private LocalDate sessionDate;
 
     @ManyToOne
     @JoinColumn(name = "workout_plan_id", nullable = false)

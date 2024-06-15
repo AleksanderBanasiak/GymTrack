@@ -64,7 +64,7 @@ export class AddTrainingComponent implements OnInit{
 
   createTraining() {
     if (!this.activatedRoute.snapshot.params['trainingId']) {
-      if (this.unsavedExercises?.length) {
+      if (this.unsavedExercises?.length == 0) {
         this.message = "Add exercises first";
       } else if (this.trainingName && this.unsavedExercises) {
         const planRequest: PlanRequest = {

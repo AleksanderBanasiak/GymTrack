@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import {HighchartsChartModule} from "highcharts-angular";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
@@ -25,7 +25,8 @@ import {HttpTokenInterceptor} from "./services/interceptor/http-token.intercepto
     AppRoutingModule,
     HttpClientModule,
     CodeInputModule,
-    FormsModule
+    FormsModule,
+    HighchartsChartModule
   ],
   providers: [
     HttpClient,

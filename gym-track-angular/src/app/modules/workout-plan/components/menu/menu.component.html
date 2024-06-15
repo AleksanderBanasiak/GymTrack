@@ -1,23 +1,18 @@
 <div class="allContent">
   <nav class="sidebar" [ngClass]="{ 'close': isSidebarClosed }"  >
-
     <header>
       <div class="image-text">
       <span class="image">
         <i class="fa-solid fa-dumbbell iconLogo" ></i>
       </span>
-
         <div class="text logo-text">
           <span class="name">GymTracker</span>
         </div>
       </div>
-
-      <i style="color: #f11f1f" (click)="toggleSidebar()" class="bx bx-chevron-left toggle"></i>
+      <i style="color: #f11f1f" (click)="toggleSidebar()" class="bx bx-chevron-left toggle2"></i>
     </header>
     <div class="menu-bar">
       <div class="menu">
-
-
         <ul class="menu-links">
           <li class="nav-link">
             <a routerLink="" class="navv">
@@ -25,61 +20,46 @@
               <span class="text nav-text">Home</span>
             </a>
           </li>
-
           <li class="nav-link" >
             <a  class="navv" href="#">
               <i class="fa-solid fa-chart-simple icon"></i>
               <span class="text nav-text">Training logs</span>
             </a>
           </li>
-
           <li class="nav-link">
-            <a  class="navv" href="#">
+            <a  class="navv" routerLink="weight">
               <i class="fa-solid fa-weight-hanging icon"></i>
               <span class="text nav-text">Weight</span>
             </a>
           </li>
-
           <li class="nav-link">
             <a href="#">
               <i class="fa-solid fa-ranking-star icon"></i>
               <span class="text nav-text">Records</span>
             </a>
           </li>
-
           <li class="nav-link">
             <a routerLink="/training-plans" class="navv">
               <i class="fa-solid fa-bars-staggered icon"></i>
               <span class="text nav-text">Trainings</span>
             </a>
           </li>
-
           <li class="nav-link">
             <a href="#">
               <i class="fa-solid fa-chart-line icon"></i>
               <span class="text nav-text">Charts</span>
             </a>
           </li>
-
         </ul>
       </div>
-
       <div class="bottom-content">
         <li class="logout">
-          <a href="#" >
+          <a (click)="logout()">
             <i class='bx bx-log-out icon' ></i>
-            <span class="text nav-text">Logout</span>
+            <span class="text nav-text" >Logout</span>
           </a>
         </li>
       </div>
-
     </div>
-
-
   </nav>
-
-<!--  <section class="home" >-->
-    <!--  <div class="text">Dashboard Sidebar</div>-->
-<!--    <router-outlet></router-outlet>-->
-<!--  </section>-->
 </div>
