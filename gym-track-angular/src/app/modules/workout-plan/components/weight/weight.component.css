@@ -1,11 +1,13 @@
 .weightContent{
   width: 100%;
-  height: 50%;
+  height: 70%;
   align-items: center;
   display: flex;
   justify-content: center;
   position: absolute;
-  top: 31%;
+  top: 25%;
+
+
 }
 
 .weightText{
@@ -17,6 +19,7 @@
 }
 .chartWeight{
   width: 90%;
+  height: 100%;
 }
 .section1{
   height: 100%;
@@ -38,7 +41,7 @@
   background-color: #1B1B1B;
   width: max(1200px, 70%);
   margin: auto;
-  height: 80%;
+  height: 85%;
   border-radius: 10px;
   display: flex;
   flex-direction: row;
@@ -67,7 +70,7 @@ input[type="date"]{
   position: absolute;
   transform: translate(-50%,-50%);
   top: 50%;
-  left: 64%;
+  left: 74%;
   color: #f11f1f;
   font-size: 1rem;
   font-weight: 500;
@@ -87,23 +90,25 @@ input[type="date"]{
   position: relative;
   height: 10vh;
   top: 3%;
-  border: 2px solid yellow;
 }
 
 .addWeightContent{
-  width: 95%;
+  width: 87%;
   margin: auto;
   height: 100%;
   border-radius: 10px;
   background-color: #1B1B1B;
+
 }
+
+
 .createWeight{
   position: absolute;
-  right: 3vh;
+  right: 7vh;
   top: 50%;
   transform: translateY(-50%);
   color: #f11f1f;
-  background-color: #1B1B1B;
+  background-color: #2a2929;
   border: 3px solid #f11f1f;
   border-radius: 10px;
   padding: .4vh 1.2vh;
@@ -111,4 +116,54 @@ input[type="date"]{
   font-weight: 600;
   text-align: center;
   transition: .4s ease-in-out;
+
+
+}
+
+.weightKg{
+  height: 100%;
+  width: 60%;
+  position: absolute;
+  left: 20%;
+}
+
+
+.inputGroup3 {
+  position: relative;
+  height: 100%;
+  left: 0;
+}
+.inputGroup3 label {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #f11f1f;
+  padding: 0 5px;
+  pointer-events: none;
+  transition: 0.5s;
+  font-weight: 500;
+  background-color: transparent;
+}
+.inputGroup3 input {
+  position: relative;
+  width: 45%;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 48px;
+  font-size: 18px;
+  color: #f11f1f;
+  background: transparent;
+  border: 3px solid #f11f1f;
+  outline: none;
+  border-radius: 8px;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+.inputGroup3 input:focus ~ label, .inputGroup3 input:valid ~ label {
+  top: 9px;
+  font-size: 14px;
+  background-color: #1B1B1B;
+  padding: 0 5px;
 }

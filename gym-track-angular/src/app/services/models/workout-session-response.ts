@@ -2,6 +2,6 @@
 /* eslint-disable */
 export interface WorkoutSessionResponse {
   id?: number;
-  planName?: string;
+  planId?: number;
   sessionDate?: string;
 }

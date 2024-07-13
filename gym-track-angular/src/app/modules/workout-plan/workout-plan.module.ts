@@ -7,11 +7,12 @@ import { MenuComponent } from './components/menu/menu.component';
 import { HomeComponent } from './pages/home/home.component';
 import { TrainingPlansComponent } from './components/training-plans/training-plans.component';
 import { AddTrainingComponent } from './components/add-training/add-training.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { WorkoutSessionComponent } from './components/workout-session/workout-session.component';
 import { LinechartComponent } from './components/linechart/linechart.component';
 import {HighchartsChartModule} from "highcharts-angular";
 import { WeightComponent } from './components/weight/weight.component';
+import { ExerciseInSessionComponent } from './components/exercise-in-session/exercise-in-session.component';
 
 
 @NgModule({
@@ -23,14 +24,16 @@ import { WeightComponent } from './components/weight/weight.component';
     AddTrainingComponent,
     WorkoutSessionComponent,
     LinechartComponent,
-    WeightComponent
+    WeightComponent,
+    ExerciseInSessionComponent
   ],
     imports: [
         CommonModule,
         WorkoutPlanRoutingModule,
         FormsModule,
         NgOptimizedImage,
-        HighchartsChartModule
+        HighchartsChartModule,
+        ReactiveFormsModule
     ]
 })
 export class WorkoutPlanModule { }

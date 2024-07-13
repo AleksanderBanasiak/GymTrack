@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ExerciseResponse} from "../../../../services/models/exercise-response";
 import {ExerciseControllerService} from "../../../../services/services/exercise-controller.service";
 import {PlanExerciseControllerService} from "../../../../services/services/plan-exercise-controller.service";
@@ -8,7 +8,6 @@ import {PlanControllerService} from "../../../../services/services/plan-controll
 import {PlanRequest} from "../../../../services/models/plan-request";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ExerciseRequest} from "../../../../services/models/exercise-request";
-import {ChangeDetection} from "@angular/cli/lib/config/workspace-schema";
 
 
 @Component({
@@ -67,15 +66,19 @@ export class AddTrainingComponent implements OnInit{
       if (this.unsavedExercises?.length == 0) {
         this.message = "Add exercises first";
       } else if (this.trainingName && this.unsavedExercises) {
+
         const planRequest: PlanRequest = {
           name: this.trainingName,
-          planExerciseResponses: this.unsavedExercises
+          planExerciseIds: this.unsavedExercises
+            .map(exercise => exercise.id)
+            .filter(id => id !== undefined) as number[]
         };
-        this.planService.save({
+        this.planService.save1({
           body: planRequest
         }).subscribe({
           next: () => {
-            this.setWorkout();
+            // this.setWorkout();
+            this.router.navigate(['training-plans']);
           }
         });
       } else{
@@ -86,13 +89,13 @@ export class AddTrainingComponent implements OnInit{
     }
   }
 
-  setWorkout(){
-    this.planExerciseService.setWorkoutPlan().subscribe({
-      next: () => {
-        this.router.navigate(['training-plans']);
-      }
-    })
-  }
+  // setWorkout(){
+  //   this.planExerciseService.setWorkoutPlan().subscribe({
+  //     next: () => {
+  //       this.router.navigate(['training-plans']);
+  //     }
+  //   })
+  // }
 
   onExerciseClick(exercise: ExerciseResponse) {
     this.selectedExercise = exercise;
@@ -147,9 +150,9 @@ export class AddTrainingComponent implements OnInit{
 
 
   addExercise() {
-    if( this.selectedExercise && this.selectedSet > 0 ){
+    if( this.selectedExercise && this.selectedSet > 0 && this.selectedExercise.id ){
       const planExerciseRequest: PlanExerciseRequest = {
-        exercise: this.selectedExercise,
+        exerciseId: this.selectedExercise.id,
         sets: this.selectedSet
       };
       const trainingId = this.activatedRoute.snapshot.params['trainingId'];
@@ -215,7 +218,7 @@ export class AddTrainingComponent implements OnInit{
     if(this.newExerciseName && this.selectedType){
       const exerciseRequest: ExerciseRequest ={
         name: this.newExerciseName,
-        type: this.selectedType
+        exerciseType: this.selectedType
       };
       this.exerciseService.saveExercise({
         body: exerciseRequest

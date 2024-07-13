@@ -68,7 +68,6 @@ export class TrainingPlansComponent implements OnInit{
     }).subscribe({
       next: (res) => {
         this.planName = res.name;
-        console.log(this.planName);
       }
     })
   }

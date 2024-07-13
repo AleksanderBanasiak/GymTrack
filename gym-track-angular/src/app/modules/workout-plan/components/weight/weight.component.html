@@ -7,7 +7,7 @@
 
       <div class="weightContent">
         <div class="chartWeight">
-          <app-linechart [weightResponse]="weighResponseForMonth" [chartStyle]="chartStyle"></app-linechart>
+          <app-linechart [weightResponse]="weighResponseForMonth"  ></app-linechart>
         </div>
       </div>
 
@@ -28,13 +28,25 @@
     <div class="addWeight" *ngIf="isCliked">
       <button class="createWeight" (click)="addWeight()">Add</button>
       <div class="addWeightContent">
+
+        <div class="weightKg">
       <input type="date">
+      <div class="weightKg">
+        <div class ="inputGroup3">
+          <input type="text" autocomplete="off" required>
+          <label>Kg</label>
+        </div>
+      </div>
+
+        </div>
+
+
       </div>
 
     </div>
       <div class="weightContent">
         <div class="chartWeight">
-        <app-linechart [weightResponse]="weightResponse" [chartStyle]="chartStyle2"></app-linechart>
+        <app-linechart [weightResponse]="weightResponse" [chartStyle]="chartStyle2" ></app-linechart>
         </div>
       </div>
 </div>

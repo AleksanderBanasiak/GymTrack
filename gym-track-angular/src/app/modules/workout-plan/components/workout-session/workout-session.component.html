@@ -2,13 +2,20 @@
 
 <div class="containerData">
 
-  <div class="userSection">
-    <div class="box user">
-      <div class="helloUser"> Hello, user</div>
-      <button class="userProfile"> <i class="fa-solid fa-user"></i>Profile</button>
+  <div class="allExercisesSection">
+    <div class="exerciseContent" *ngFor="let exercise of trainingExercises" (click)="selectedExercise(exercise)">
+      {{exercise.exerciseName}}
+
     </div>
+
   </div>
 
-  <p>workout-session works!</p>
+
+
+  <div class="sessionContent">
+
+  <app-exercise-in-session [planExercise]="chosenPlanExercise" [sessionId]="sessionId"></app-exercise-in-session>
+
+  </div>
 
 </div>

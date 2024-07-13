@@ -244,11 +244,13 @@
 .addExercise{
   position: absolute;
   background-color: #3d3838;
-  height: 7%;
+  height: 8%;
   top: 0;
   width: 100%;
   -webkit-animation: .3s ease 0s normal forwards 1 fadein;
   animation: .3s ease 0s normal forwards 1 fadein;
+
+  /*border: 2px solid pink;*/
 }
 .addExercise input{
   background-color: #3d3838;

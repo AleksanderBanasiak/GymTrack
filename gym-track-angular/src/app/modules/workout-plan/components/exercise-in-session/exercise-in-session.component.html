@@ -1,0 +1,96 @@
+
+
+
+<div class="trainingContent">
+
+  <div class="trainingSection1">
+    <div class="trainingInfo box">
+      <div class="divText">Training</div>
+      <div class="workoutName">{{planResponse?.name}}</div>
+      <div class="moreInfo">
+        <div class="contentInfo">Exercises: {{planResponse?.exercises}}</div>
+        <div class="contentInfo">Sets: {{planResponse?.sets}}</div>
+      </div>
+
+    </div>
+
+    <div class="progress box">
+      <div class="divText">Previous sets</div>
+      <div class="chartSection">
+        <div class="chartArea"  *ngIf="chartLogs.length > 0">
+          <app-linechart [exercise]="chartLogs" ></app-linechart>
+        </div>
+      </div>
+    </div>
+
+    <div class="progress box">
+      <div class="divText">One rep max</div>
+      <div class="chartSection">
+        <div class="chartArea"  *ngIf="chartLogs.length > 0">
+         <app-linechart [exerciseMax]="chartMaxLogs" ></app-linechart>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="trainingSection2">
+    <div class="mainBox box" *ngIf="planExercise">
+    <div class="exerciseName">
+      {{planExercise.exerciseName}}
+    </div>
+      <div class="valBox">
+        <div *ngFor="let setForm of setsForm; let i = index" [formGroup]="setForm" class="setForm" [ngClass]="{'clicked': setForm.get('clicked')?.value}">
+          <span class="indexExercise2">{{ i + 1 }}.</span>
+          <div class="inputBlock firstInput">
+            <input type="number" formControlName="reps" (input)="calculateTotal(setForm)" >
+            <label>Reps</label>
+          </div>
+          <span>x</span>
+          <div class="inputBlock">
+            <label >Weight</label>
+          <input type="number" formControlName="weight" (input)="calculateTotal(setForm)">
+          </div>
+          <span>=</span>
+          <div class="inputBlock">
+            <label>Total</label>
+            <input type="number" formControlName="total" [attr.disabled]="setForm.get('clicked')?.value ? true : null">
+          </div>
+
+          <button type="button" (click)="onSubmit(setForm, i)"><i class="fa-solid fa-check"></i></button>
+        </div>
+      </div>
+
+
+    </div>
+
+    <div class="history box">
+      <div class="divText">History</div>
+      <div class="historyMainContent" *ngIf="history.length > 0">
+        <div class="historyMainBox" *ngFor="let sessionHistory of history; let i = index">
+
+          <div class="historyContent">
+            <p>{{sessionHistory[0].sessionDate}}</p>
+            <div *ngFor="let log of sessionHistory">
+
+              {{ log.setNumber }}. {{ log.reps }} x {{ log.weight }} = {{ log.summaryWeight }} kg
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="trainingSection3">
+    <div class="notes box">
+      <div class="divText">Notes</div>
+
+    </div>
+
+    <div class="endTraining box">
+      <div class="divText">End Training</div>
+      <button (click)="endTraining()">Finish training</button>
+    </div>
+
+  </div>
+</div>

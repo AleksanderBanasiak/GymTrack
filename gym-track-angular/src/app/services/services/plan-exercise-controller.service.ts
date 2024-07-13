@@ -18,8 +18,6 @@ import { savePlanExercise } from '../fn/plan-exercise-controller/save-plan-exerc
 import { SavePlanExercise$Params } from '../fn/plan-exercise-controller/save-plan-exercise';
 import { savePlanExerciseForSpecificWorkout } from '../fn/plan-exercise-controller/save-plan-exercise-for-specific-workout';
 import { SavePlanExerciseForSpecificWorkout$Params } from '../fn/plan-exercise-controller/save-plan-exercise-for-specific-workout';
-import { setWorkoutPlan } from '../fn/plan-exercise-controller/set-workout-plan';
-import { SetWorkoutPlan$Params } from '../fn/plan-exercise-controller/set-workout-plan';
 
 @Injectable({ providedIn: 'root' })
 export class PlanExerciseControllerService extends BaseService {
@@ -74,31 +72,6 @@ export class PlanExerciseControllerService extends BaseService {
   savePlanExerciseForSpecificWorkout(params: SavePlanExerciseForSpecificWorkout$Params, context?: HttpContext): Observable<number> {
     return this.savePlanExerciseForSpecificWorkout$Response(params, context).pipe(
       map((r: StrictHttpResponse<number>): number => r.body)
-    );
-  }
-
-  /** Path part for operation `setWorkoutPlan()` */
-  static readonly SetWorkoutPlanPath = '/plan-exercise/set-plan';
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `setWorkoutPlan()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  setWorkoutPlan$Response(params?: SetWorkoutPlan$Params, context?: HttpContext): Observable<StrictHttpResponse<void>> {
-    return setWorkoutPlan(this.http, this.rootUrl, params, context);
-  }
-
-  /**
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `setWorkoutPlan$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  setWorkoutPlan(params?: SetWorkoutPlan$Params, context?: HttpContext): Observable<void> {
-    return this.setWorkoutPlan$Response(params, context).pipe(
-      map((r: StrictHttpResponse<void>): void => r.body)
     );
   }
 

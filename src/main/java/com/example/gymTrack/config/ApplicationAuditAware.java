@@ -1,6 +1,6 @@
 package com.example.gymTrack.config;
 
-import com.example.gymTrack.user.User;
+import com.example.gymTrack.domain.entity.User;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;

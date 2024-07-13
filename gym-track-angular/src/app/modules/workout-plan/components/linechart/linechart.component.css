@@ -2,5 +2,6 @@
   height: 100%;
   width: 100%;
   display: block;
-  background-color: #1B1B1B;
+  /*background-color: #1B1B1B;*/
+  color: white;
 }

@@ -14,7 +14,6 @@ import {WorkoutSessionResponse} from "../../../../services/models/workout-sessio
 })
 export class HomeComponent implements OnInit{
 
-  exerciseResponse: ExerciseResponse[] = [];
 
   setTraining = false;
 
@@ -30,8 +29,8 @@ export class HomeComponent implements OnInit{
 
   maxBlur = false;
 
+
   constructor(
-    private exerciseService: ExerciseControllerService,
     private router: Router,
     private planService: PlanControllerService,
     private workoutSessionService: WorkoutSessionControllerService
@@ -60,7 +59,8 @@ export class HomeComponent implements OnInit{
       this.workoutSessionService.saveWorkoutSession({
         body: id
       }).subscribe({
-        next: () => {
+        next: (res) => {
+          this.router.navigate(['workout-session', res as number]);
         }
       })
     }
@@ -86,14 +86,11 @@ export class HomeComponent implements OnInit{
 
   startTraining(id: number | undefined) {
     this.createSession(id);
-    this.router.navigate(['workout-session', id as number]);
   }
 
 
   onContainerClick() {
-    if(this.setTraining){
       this.setTraining =!this.setTraining;
-    }
   }
 
   chosenPlan(res: PlanResponse) {
@@ -102,12 +99,15 @@ export class HomeComponent implements OnInit{
   }
 
   private checkIsUnsaved() {
-    if(this.workoutSessionResponse){
-      this.isUnsaved = true;
-      this.maxBlur = true;
-    }
+    // if(this.workoutSessionResponse){
+    //   this.isUnsaved = true;
+    //   this.maxBlur = true;
+    // }
+    this.isUnsaved = !!this.workoutSessionResponse;
+    this.maxBlur = this.isUnsaved;
   }
 
+  // TODO: nie usuwa workoutLogs przez co nie można usunąc sesji która zawiera logs
   deleteWorkout() {
     this.workoutSessionService.deleteWorkoutSession({
       id: this.workoutSessionResponse?.id as number

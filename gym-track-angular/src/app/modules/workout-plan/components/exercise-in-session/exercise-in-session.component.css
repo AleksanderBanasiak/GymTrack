@@ -1,0 +1,267 @@
+.trainingContent{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.trainingSection1{
+  height: 100%;
+  min-width: 35%;
+  max-width: 35%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.trainingSection2{
+  height: 100%;
+  width: 70%;
+}
+.trainingSection3{
+  height: 100%;
+  width: max(300px, 22%);
+  position: relative;
+}
+.box{
+  background-color: #1B1B1B;
+  border-radius: 10px;
+  width: 98%;
+  margin: 1vh;
+  color: #edf0f1;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+  transform: scale(0.97);
+  animation-delay: 0.1s;
+  animation: grow 1s forwards;
+}
+.trainingInfo{
+  height: 15%;
+  display: flex;
+  flex-direction: row;
+
+}
+.progress{
+  height: 40%;
+}
+.mainBox{
+  height: 56.5%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /*background-color: #f11f1f;*/
+}
+.history{
+  margin-top: 1.8vh;
+  height: 39.4%;
+  display: flex;
+
+}
+.notes{
+  height: 75%;
+}
+.endTraining{
+  height: 22%;
+}
+.exerciseName{
+  /*border: 2px solid red;*/
+  width: 100%;
+  align-items: center;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  font-size: 5vh;
+  font-weight: 700;
+  color: #f11f1f;
+}
+.valBox{
+  border-radius: 10px;
+  width: 80%;
+  height: 76%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /*justify-content: center;*/
+}
+.setForm{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /*border: 2px solid blue;*/
+  width: 98%;
+  margin: 1vh;
+  padding: 1.4vh;
+  border-radius: 10px;
+  position: relative;
+
+}
+
+.setForm input{
+  border: 3px solid #f11f1f;
+  width: 100%;
+  background-color: #1B1B1B;
+  color: #f11f1f;
+  padding: 1vh;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 3vh;
+  outline: none;
+  transition: .4s ease-in-out;
+}
+.firstInput{
+  margin-left: 8%;
+}
+
+
+.indexExercise2{
+  position: absolute;
+  left: 1vh;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.setForm span{
+  /*border: 2px solid yellowgreen;*/
+  font-weight: 600;
+  font-size: 4vh;
+  padding: 0 1.3vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: .4s ease-in-out;
+}
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.setForm button{
+  border: 3px solid #f11f1f;
+  background-color: #1B1B1B;
+  color: #f11f1f;
+  font-weight: 700;
+  border-radius: 10px;
+  height: 100%;
+  font-size: 4vh;
+  aspect-ratio: 1/1;
+  margin-left: 2vh;
+  transition: .4s ease;
+}
+.setForm button:hover{
+  background-color: #f11f1f;
+  color: #1B1B1B;
+}
+.clicked {
+  background-color: #f11f1f;
+  color: #1B1B1B;
+}
+
+.setForm.clicked button{
+  background-color: #f11f1f;
+  color: #1B1B1B;
+}
+.inputBlock{
+  /*border: 1px solid blue;*/
+  position: relative;
+}
+.inputBlock label{
+  position: absolute;
+  top: -25%;
+  background-color: #1B1B1B;
+  color: #f11f1f;
+  font-weight: 700;
+  left: 2vh;
+}
+.setForm.clicked label{
+  background-color: transparent;
+  color: transparent;
+}
+.divText{
+  font-size: 2vh;
+  position: absolute;
+  width: 80%;
+  font-weight: 500;
+  margin: 1vh 0 0 2vh;
+}
+.endTraining button{
+  position: absolute;
+  top: 40%;
+  border: 3px solid #f11f1f;
+  color: #f11f1f;
+  height: 8vh;
+  left: 50%;
+  font-size: 1.5rem;
+  font-weight: 500;
+  transform: translateX(-50%);
+  width: 80%;
+  background-color: #1B1B1B;
+  border-radius: 10px;
+  transition: .4s ease-in-out;
+}
+.endTraining button:hover{
+  background-color: #f11f1f;
+  color: #1B1B1B;
+}
+.workoutName{
+  color: #f11f1f;
+  font-size: 3.5vh;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2vh 0 0 2vh;
+  line-height: 1.2;
+}
+.moreInfo{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 2vh 0 0 2vh;
+}
+.contentInfo{
+  margin: 1vh;
+  font-weight: 600;
+  font-size: 2.5vh;
+}
+.chartArea{
+  width: 100%;
+  height: 87%;
+  position: relative;
+  border-radius: 10px;
+}
+.chartSection{
+  width: 100%;
+  height: 96%;
+  display: flex;
+  flex-direction: column-reverse;
+  border-radius: 10px;
+
+}
+.historyMainContent{
+  width: 90%;
+  height: 80%;
+  margin-top: 5%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: row;
+  margin-left: 5%;
+}
+.historyMainBox{
+  min-width: 33.3%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.historyContent{
+  border-left: 2px solid #3d3838;
+  /*border: 2px solid yellowgreen;*/
+  padding: 1.5vh;
+  height: 90%;
+  width: 90%;
+}
+::-webkit-scrollbar {
+  height: 12px;
+}

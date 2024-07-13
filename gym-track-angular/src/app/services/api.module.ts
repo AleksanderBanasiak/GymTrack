@@ -5,9 +5,11 @@ import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
 import { WorkoutSessionControllerService } from './services/workout-session-controller.service';
+import { WorkoutLogsControllerService } from './services/workout-logs-controller.service';
 import { WeightControllerService } from './services/weight-controller.service';
 import { PlanControllerService } from './services/plan-controller.service';
 import { PlanExerciseControllerService } from './services/plan-exercise-controller.service';
+import { NotesControllerService } from './services/notes-controller.service';
 import { ExerciseControllerService } from './services/exercise-controller.service';
 import { AuthenticationControllerService } from './services/authentication-controller.service';
 import { UserControllerService } from './services/user-controller.service';
@@ -21,9 +23,11 @@ import { UserControllerService } from './services/user-controller.service';
   declarations: [],
   providers: [
     WorkoutSessionControllerService,
+    WorkoutLogsControllerService,
     WeightControllerService,
     PlanControllerService,
     PlanExerciseControllerService,
+    NotesControllerService,
     ExerciseControllerService,
     AuthenticationControllerService,
     UserControllerService,

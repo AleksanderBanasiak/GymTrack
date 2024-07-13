@@ -49,6 +49,37 @@
         }
       }
     },
+    "/workout-logs": {
+      "post": {
+        "tags": [
+          "workout-logs-controller"
+        ],
+        "operationId": "save",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkoutLogsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/weight": {
       "post": {
         "tags": [
@@ -85,7 +116,7 @@
         "tags": [
           "plan-controller"
         ],
-        "operationId": "save",
+        "operationId": "save_1",
         "requestBody": {
           "content": {
             "application/json": {
@@ -164,6 +195,58 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/PlanExerciseRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/notes": {
+      "get": {
+        "tags": [
+          "notes-controller"
+        ],
+        "operationId": "findAllNotes",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NotesResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "notes-controller"
+        ],
+        "operationId": "saveNotes",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotesRequest"
               }
             }
           },
@@ -275,15 +358,85 @@
         }
       }
     },
-    "/plan-exercise/set-plan": {
-      "patch": {
+    "/workout-session/{id}": {
+      "get": {
         "tags": [
-          "plan-exercise-controller"
+          "workout-session-controller"
         ],
-        "operationId": "setWorkoutPlan",
+        "operationId": "findSessionById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkoutSessionResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "workout-session-controller"
+        ],
+        "operationId": "deleteWorkoutSession",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "workout-session-controller"
+        ],
+        "operationId": "endSession",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
           }
         }
       }
@@ -301,6 +454,154 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/WorkoutSessionResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workout-logs/{id}": {
+      "get": {
+        "tags": [
+          "workout-logs-controller"
+        ],
+        "operationId": "findAllLogsBySessionId",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkoutLogsResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workout-logs/exercise/{id}": {
+      "get": {
+        "tags": [
+          "workout-logs-controller"
+        ],
+        "operationId": "findAllLogsByExerciseIdAndUserId",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkoutLogsResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workout-logs/exercise/{exercise-id}/session/{session-id}": {
+      "get": {
+        "tags": [
+          "workout-logs-controller"
+        ],
+        "operationId": "findAllLogsByExerciseIdAndUserIdGroupedBySessionId",
+        "parameters": [
+          {
+            "name": "exercise-id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "session-id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/WorkoutLogsResponse"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workout-logs/exercise/max/{id}": {
+      "get": {
+        "tags": [
+          "workout-logs-controller"
+        ],
+        "operationId": "findAllLogsMaxByExerciseIdAndUserId",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkoutLogsResponse"
+                  }
                 }
               }
             }
@@ -698,12 +999,12 @@
         }
       }
     },
-    "/workout-session/{id}": {
+    "/plan-exercise/{id}": {
       "delete": {
         "tags": [
-          "workout-session-controller"
+          "plan-exercise-controller"
         ],
-        "operationId": "deleteWorkoutSession",
+        "operationId": "deletePlanExercise",
         "parameters": [
           {
             "name": "id",
@@ -722,12 +1023,12 @@
         }
       }
     },
-    "/plan-exercise/{id}": {
+    "/notes/{id}": {
       "delete": {
         "tags": [
-          "plan-exercise-controller"
+          "notes-controller"
         ],
-        "operationId": "deletePlanExercise",
+        "operationId": "deleteNotes",
         "parameters": [
           {
             "name": "id",
@@ -773,6 +1074,40 @@
   },
   "components": {
     "schemas": {
+      "WorkoutLogsRequest": {
+        "required": [
+          "planExerciseId",
+          "reps",
+          "setNumber",
+          "weight",
+          "workoutSessionId"
+        ],
+        "type": "object",
+        "properties": {
+          "setNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "weight": {
+            "maximum": 700,
+            "exclusiveMaximum": false,
+            "type": "number",
+            "format": "double"
+          },
+          "reps": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "workoutSessionId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "planExerciseId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
       "WeightRequest": {
         "required": [
           "date",
@@ -794,87 +1129,28 @@
           }
         }
       },
-      "PlanExerciseResponse": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "exerciseName": {
-            "type": "string"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "CHEST",
-              "BACK",
-              "BICEPS",
-              "SHOULDERS",
-              "TRICEPS",
-              "FOREARM",
-              "ABS",
-              "GLUTES",
-              "CALF",
-              "THIGH",
-              "HAMSTRINGS"
-            ]
-          },
-          "sets": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
       "PlanRequest": {
         "required": [
           "name",
-          "planExerciseResponses"
+          "planExerciseIds"
         ],
         "type": "object",
         "properties": {
           "name": {
             "type": "string"
           },
-          "planExerciseResponses": {
+          "planExerciseIds": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PlanExerciseResponse"
+              "type": "integer",
+              "format": "int64"
             }
-          }
-        }
-      },
-      "ExerciseResponse": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "name": {
-            "type": "string"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "CHEST",
-              "BACK",
-              "BICEPS",
-              "SHOULDERS",
-              "TRICEPS",
-              "FOREARM",
-              "ABS",
-              "GLUTES",
-              "CALF",
-              "THIGH",
-              "HAMSTRINGS"
-            ]
           }
         }
       },
       "PlanExerciseRequest": {
         "required": [
-          "exercise"
+          "exerciseId"
         ],
         "type": "object",
         "properties": {
@@ -884,22 +1160,41 @@
             "type": "integer",
             "format": "int32"
           },
-          "exercise": {
-            "$ref": "#/components/schemas/ExerciseResponse"
+          "exerciseId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "NotesRequest": {
+        "required": [
+          "exerciseId",
+          "note"
+        ],
+        "type": "object",
+        "properties": {
+          "note": {
+            "maxLength": 255,
+            "minLength": 0,
+            "type": "string"
+          },
+          "exerciseId": {
+            "type": "integer",
+            "format": "int64"
           }
         }
       },
       "ExerciseRequest": {
         "required": [
-          "name",
-          "type"
+          "exerciseType",
+          "name"
         ],
         "type": "object",
         "properties": {
           "name": {
             "type": "string"
           },
-          "type": {
+          "exerciseType": {
             "type": "string",
             "enum": [
               "CHEST",
@@ -968,8 +1263,42 @@
             "type": "integer",
             "format": "int64"
           },
-          "planName": {
-            "type": "string"
+          "planId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "sessionDate": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
+      "WorkoutLogsResponse": {
+        "type": "object",
+        "properties": {
+          "setNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "weight": {
+            "type": "number",
+            "format": "double"
+          },
+          "reps": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "summaryWeight": {
+            "type": "number",
+            "format": "double"
+          },
+          "exerciseId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "sessionId": {
+            "type": "integer",
+            "format": "int64"
           },
           "sessionDate": {
             "type": "string",
@@ -1031,6 +1360,86 @@
                 "HAMSTRINGS"
               ]
             }
+          }
+        }
+      },
+      "PlanExerciseResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "exerciseName": {
+            "type": "string"
+          },
+          "exerciseId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "CHEST",
+              "BACK",
+              "BICEPS",
+              "SHOULDERS",
+              "TRICEPS",
+              "FOREARM",
+              "ABS",
+              "GLUTES",
+              "CALF",
+              "THIGH",
+              "HAMSTRINGS"
+            ]
+          },
+          "sets": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "NotesResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "note": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
+      "ExerciseResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "CHEST",
+              "BACK",
+              "BICEPS",
+              "SHOULDERS",
+              "TRICEPS",
+              "FOREARM",
+              "ABS",
+              "GLUTES",
+              "CALF",
+              "THIGH",
+              "HAMSTRINGS"
+            ]
           }
         }
       }

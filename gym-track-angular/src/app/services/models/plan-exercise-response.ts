@@ -1,6 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 export interface PlanExerciseResponse {
+  exerciseId?: number;
   exerciseName?: string;
   id?: number;
   sets?: number;

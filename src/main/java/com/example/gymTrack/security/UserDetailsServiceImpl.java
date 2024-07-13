@@ -1,6 +1,6 @@
 package com.example.gymTrack.security;
 
-import com.example.gymTrack.user.UserRepo;
+import com.example.gymTrack.repository.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

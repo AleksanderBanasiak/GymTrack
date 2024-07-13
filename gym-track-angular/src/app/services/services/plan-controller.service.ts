@@ -17,8 +17,8 @@ import { findPlanById } from '../fn/plan-controller/find-plan-by-id';
 import { FindPlanById$Params } from '../fn/plan-controller/find-plan-by-id';
 import { PlanExerciseResponse } from '../models/plan-exercise-response';
 import { PlanResponse } from '../models/plan-response';
-import { save } from '../fn/plan-controller/save';
-import { Save$Params } from '../fn/plan-controller/save';
+import { save1 } from '../fn/plan-controller/save-1';
+import { Save1$Params } from '../fn/plan-controller/save-1';
 
 @Injectable({ providedIn: 'root' })
 export class PlanControllerService extends BaseService {
@@ -26,27 +26,27 @@ export class PlanControllerService extends BaseService {
     super(config, http);
   }
 
-  /** Path part for operation `save()` */
-  static readonly SavePath = '/plan';
+  /** Path part for operation `save1()` */
+  static readonly Save1Path = '/plan';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `save()` instead.
+   * To access only the response body, use `save1()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  save$Response(params: Save$Params, context?: HttpContext): Observable<StrictHttpResponse<number>> {
-    return save(this.http, this.rootUrl, params, context);
+  save1$Response(params: Save1$Params, context?: HttpContext): Observable<StrictHttpResponse<number>> {
+    return save1(this.http, this.rootUrl, params, context);
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `save$Response()` instead.
+   * To access the full response (for headers, for example), `save1$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  save(params: Save$Params, context?: HttpContext): Observable<number> {
-    return this.save$Response(params, context).pipe(
+  save1(params: Save1$Params, context?: HttpContext): Observable<number> {
+    return this.save1$Response(params, context).pipe(
       map((r: StrictHttpResponse<number>): number => r.body)
     );
   }

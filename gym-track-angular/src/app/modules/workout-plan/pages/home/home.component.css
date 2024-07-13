@@ -8,6 +8,7 @@
   flex-wrap: wrap;
   background-color: #464646;
   transition: .2s ease-in-out;
+
 }
 .all{
   position: relative;
@@ -23,19 +24,19 @@
 
 .userSection{
   width: 100%;
-  /*margin-bottom: -30px;*/
 }
 .box{
   width: 40%;
   height: 20%;
   background-color: #1B1B1B;
-  margin: 15px;
+  margin: 12px;
   border-radius: 10px;
   color: #edf0f1;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
   transform: scale(0.97);
   animation-delay: 0.1s;
   animation: grow 1s forwards;
+
 }
 .allSection{
   width: 100%;
