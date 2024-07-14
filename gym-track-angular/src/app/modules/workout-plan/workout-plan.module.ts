@@ -13,6 +13,7 @@ import { LinechartComponent } from './components/linechart/linechart.component';
 import {HighchartsChartModule} from "highcharts-angular";
 import { WeightComponent } from './components/weight/weight.component';
 import { ExerciseInSessionComponent } from './components/exercise-in-session/exercise-in-session.component';
+import { NotesComponent } from './components/notes/notes.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { ExerciseInSessionComponent } from './components/exercise-in-session/exe
     WorkoutSessionComponent,
     LinechartComponent,
     WeightComponent,
-    ExerciseInSessionComponent
+    ExerciseInSessionComponent,
+    NotesComponent
   ],
     imports: [
         CommonModule,

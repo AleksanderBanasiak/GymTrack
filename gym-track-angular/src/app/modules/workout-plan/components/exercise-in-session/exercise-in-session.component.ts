@@ -196,7 +196,6 @@ export class ExerciseInSessionComponent implements OnInit, OnChanges{
       }).subscribe({
         next: (res) => {
           this.history = res;
-          console.log(this.history);
         }
       })
     }

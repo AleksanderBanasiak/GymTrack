@@ -1,0 +1,17 @@
+
+<div class="noteContent">
+  <div class="addNoteContainer">
+    <button (click)="addNote()" *ngIf="!isChecked" class="createButton">Create</button>
+    <button (click)="createNote()" *ngIf="isChecked" class="buttonCreate" >Create</button>
+    <div class="noteBox" *ngIf="isChecked">
+      <input type="text" [(ngModel)]="noteContent">
+    </div>
+  </div>
+  <div class="notes">
+  <div *ngFor="let note of notes" class="note">
+    <p>{{note.date | date:'dd MMMM yyyy'}}:</p>
+    <div class="notesText">{{note.note}}</div>
+    <button (click)="deleteNote(note.id)">x</button>
+  </div>
+  </div>
+</div>
