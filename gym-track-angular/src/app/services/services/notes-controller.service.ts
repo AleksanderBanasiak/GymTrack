@@ -13,6 +13,8 @@ import { deleteNotes } from '../fn/notes-controller/delete-notes';
 import { DeleteNotes$Params } from '../fn/notes-controller/delete-notes';
 import { findAllNotes } from '../fn/notes-controller/find-all-notes';
 import { FindAllNotes$Params } from '../fn/notes-controller/find-all-notes';
+import { findAllNotesForExercise } from '../fn/notes-controller/find-all-notes-for-exercise';
+import { FindAllNotesForExercise$Params } from '../fn/notes-controller/find-all-notes-for-exercise';
 import { NotesResponse } from '../models/notes-response';
 import { saveNotes } from '../fn/notes-controller/save-notes';
 import { SaveNotes$Params } from '../fn/notes-controller/save-notes';
@@ -70,6 +72,31 @@ export class NotesControllerService extends BaseService {
   saveNotes(params: SaveNotes$Params, context?: HttpContext): Observable<number> {
     return this.saveNotes$Response(params, context).pipe(
       map((r: StrictHttpResponse<number>): number => r.body)
+    );
+  }
+
+  /** Path part for operation `findAllNotesForExercise()` */
+  static readonly FindAllNotesForExercisePath = '/notes/{id}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `findAllNotesForExercise()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findAllNotesForExercise$Response(params: FindAllNotesForExercise$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<NotesResponse>>> {
+    return findAllNotesForExercise(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `findAllNotesForExercise$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findAllNotesForExercise(params: FindAllNotesForExercise$Params, context?: HttpContext): Observable<Array<NotesResponse>> {
+    return this.findAllNotesForExercise$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Array<NotesResponse>>): Array<NotesResponse> => r.body)
     );
   }
 

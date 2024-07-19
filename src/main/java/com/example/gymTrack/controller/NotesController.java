@@ -28,6 +28,10 @@ public class NotesController {
     public ResponseEntity<List<NotesResponse>> findAllNotes(Authentication authUser){
         return ResponseEntity.ok(notesService.findAllNotes(authUser));
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<List<NotesResponse>> findAllNotesForExercise(@PathVariable Long id,Authentication authUser){
+        return ResponseEntity.ok(notesService.findAllNotesForExercise(id, authUser));
+    }
 
     @DeleteMapping("/{id}")
     public void deleteNotes(@PathVariable Long id) {

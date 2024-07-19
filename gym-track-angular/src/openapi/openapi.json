@@ -18,6 +18,27 @@
   ],
   "paths": {
     "/workout-session": {
+      "get": {
+        "tags": [
+          "workout-session-controller"
+        ],
+        "operationId": "findAllSessions",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkoutSessionResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       "post": {
         "tags": [
           "workout-session-controller"
@@ -486,6 +507,86 @@
                 "schema": {
                   "type": "array",
                   "items": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/WorkoutLogsResponse"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workout-logs/records/{id}": {
+      "get": {
+        "tags": [
+          "workout-logs-controller"
+        ],
+        "operationId": "findAllRecordByExerciseId",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkoutLogsResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workout-logs/plan-exercise/{plan-exercise-id}/session/{session-id}": {
+      "get": {
+        "tags": [
+          "workout-logs-controller"
+        ],
+        "operationId": "findAllLogsBySessionIdAndPlanExerciseId",
+        "parameters": [
+          {
+            "name": "plan-exercise-id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "session-id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
                     "$ref": "#/components/schemas/WorkoutLogsResponse"
                   }
                 }
@@ -807,6 +908,63 @@
         }
       }
     },
+    "/plan-exercise/{plan-id}": {
+      "get": {
+        "tags": [
+          "plan-exercise-controller"
+        ],
+        "operationId": "findAllPlanExercisesByPlanId",
+        "parameters": [
+          {
+            "name": "plan-id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlanExerciseResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/plan-exercise/used-exercises": {
+      "get": {
+        "tags": [
+          "plan-exercise-controller"
+        ],
+        "operationId": "findAllUserUsedExercises",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ExerciseResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/plan-exercise/unsaved": {
       "get": {
         "tags": [
@@ -826,6 +984,62 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/notes/{id}": {
+      "get": {
+        "tags": [
+          "notes-controller"
+        ],
+        "operationId": "findAllNotesForExercise",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NotesResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "notes-controller"
+        ],
+        "operationId": "deleteNotes",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }
@@ -1005,30 +1219,6 @@
           "plan-exercise-controller"
         ],
         "operationId": "deletePlanExercise",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/notes/{id}": {
-      "delete": {
-        "tags": [
-          "notes-controller"
-        ],
-        "operationId": "deleteNotes",
         "parameters": [
           {
             "name": "id",
@@ -1267,6 +1457,9 @@
             "type": "integer",
             "format": "int64"
           },
+          "planName": {
+            "type": "string"
+          },
           "sessionDate": {
             "type": "string",
             "format": "date"
@@ -1399,22 +1592,6 @@
           }
         }
       },
-      "NotesResponse": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "note": {
-            "type": "string"
-          },
-          "date": {
-            "type": "string",
-            "format": "date"
-          }
-        }
-      },
       "ExerciseResponse": {
         "type": "object",
         "properties": {
@@ -1440,6 +1617,22 @@
               "THIGH",
               "HAMSTRINGS"
             ]
+          }
+        }
+      },
+      "NotesResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "note": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
           }
         }
       }

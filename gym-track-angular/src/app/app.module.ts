@@ -11,6 +11,7 @@ import {CodeInputModule} from "angular-code-input";
 import {FormsModule} from "@angular/forms";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpTokenInterceptor} from "./services/interceptor/http-token.interceptor";
+import {CalendarModule} from "@syncfusion/ej2-angular-calendars";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {HttpTokenInterceptor} from "./services/interceptor/http-token.intercepto
     HttpClientModule,
     CodeInputModule,
     FormsModule,
-    HighchartsChartModule
+    HighchartsChartModule,
+    CalendarModule
   ],
   providers: [
     HttpClient,

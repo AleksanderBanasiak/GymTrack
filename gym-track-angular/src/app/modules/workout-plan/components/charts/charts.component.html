@@ -1,0 +1,23 @@
+<div class="containerData">
+  <div class="mainContainer3">
+    <div class="section1">
+      <div class="weightText">Sets progress</div>
+      <div class="weightContent" >
+        <select [(ngModel)]="chosenExercise" [compareWith]="compareExercises" class="selectedType" (ngModelChange)="onChosenExerciseChange($event)" *ngIf="exercises.length > 0">
+          <option *ngFor="let exercise of exercises" [ngValue]="exercise">{{ exercise.name }}</option>
+        </select>
+        <div class="chartWeight">
+          <app-linechart [exercise]="chartLogs" ></app-linechart>
+        </div>
+      </div>
+    </div>
+    <div class="section2">
+      <div class="weightText">One rep max</div>
+      <div class="weightContent">
+        <div class="chartWeight">
+          <app-linechart [exerciseMax]="chartMaxLogs" [chartStyle]="chartStyle2"></app-linechart>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

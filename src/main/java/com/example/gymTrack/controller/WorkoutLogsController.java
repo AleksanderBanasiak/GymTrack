@@ -27,8 +27,18 @@ public class WorkoutLogsController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<List<WorkoutLogsResponse>> findAllLogsBySessionId(@PathVariable Long id){
+    public ResponseEntity<List<List<WorkoutLogsResponse>>> findAllLogsBySessionId(@PathVariable Long id){
         return ResponseEntity.ok(workoutLogsService.findAllLogsBySessionId(id));
+    }
+
+    @GetMapping("/plan-exercise/{plan-exercise-id}/session/{session-id}")
+    public ResponseEntity<List<WorkoutLogsResponse>> findAllLogsBySessionIdAndPlanExerciseId(@PathVariable("plan-exercise-id") Long planExerciseId, @PathVariable("session-id") Long sessionId){
+        return ResponseEntity.ok(workoutLogsService.findAllLogsBySessionIdAndPlanExerciseId(planExerciseId, sessionId));
+    }
+
+    @GetMapping("/records/{id}")
+    public ResponseEntity<List<WorkoutLogsResponse>> findAllRecordByExerciseId(@PathVariable Long id, Authentication authUser){
+        return ResponseEntity.ok(workoutLogsService.findAllRecordByExerciseId(id, authUser));
     }
 
     @GetMapping("/exercise/{id}")

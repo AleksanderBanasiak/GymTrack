@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("workout-session")
@@ -39,5 +41,12 @@ public class WorkoutSessionController {
     public ResponseEntity<Long> endSession(@PathVariable Long id){
         return ResponseEntity.ok(workoutSessionService.endSession(id));
     }
+
+    @GetMapping
+    public ResponseEntity<List<WorkoutSessionResponse>> findAllSessions(Authentication authUser){
+        return ResponseEntity.ok(workoutSessionService.findAllSessions(authUser));
+    }
+
+
 
 }

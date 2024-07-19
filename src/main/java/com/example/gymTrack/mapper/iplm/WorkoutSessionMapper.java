@@ -20,6 +20,7 @@ public class WorkoutSessionMapper implements Mapper<WorkoutSession, WorkoutSessi
                 .id(workoutSession.getId())
                 .sessionDate(workoutSession.getSessionDate())
                 .planId(workoutSession.getWorkoutPlan().getId())
+                .planName(workoutSession.getWorkoutPlan().getName())
                 .build();
     }
 }

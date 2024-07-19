@@ -36,7 +36,7 @@
   height: 15%;
   display: flex;
   flex-direction: row;
-
+  justify-content: space-between;
 }
 .progress{
   height: 40%;
@@ -47,13 +47,11 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /*background-color: #f11f1f;*/
 }
 .history{
   margin-top: 1.8vh;
   height: 39.4%;
   display: flex;
-
 }
 .notes{
   height: 75%;
@@ -62,7 +60,6 @@
   height: 22%;
 }
 .exerciseName{
-  /*border: 2px solid red;*/
   width: 100%;
   align-items: center;
   height: 20%;
@@ -81,21 +78,17 @@
   align-items: center;
   overflow-y: auto;
   overflow-x: hidden;
-  /*justify-content: center;*/
 }
 .setForm{
   display: flex;
   flex-direction: row;
   align-items: center;
-  /*border: 2px solid blue;*/
   width: 98%;
   margin: 1vh;
   padding: 1.4vh;
   border-radius: 10px;
   position: relative;
-
 }
-
 .setForm input{
   border: 3px solid #f11f1f;
   width: 100%;
@@ -111,17 +104,13 @@
 .firstInput{
   margin-left: 8%;
 }
-
-
 .indexExercise2{
   position: absolute;
   left: 1vh;
   top: 50%;
   transform: translateY(-50%);
 }
-
 .setForm span{
-  /*border: 2px solid yellowgreen;*/
   font-weight: 600;
   font-size: 4vh;
   padding: 0 1.3vh;
@@ -155,13 +144,11 @@ input[type=number]::-webkit-inner-spin-button {
   background-color: #f11f1f;
   color: #1B1B1B;
 }
-
 .setForm.clicked button{
   background-color: #f11f1f;
   color: #1B1B1B;
 }
 .inputBlock{
-  /*border: 1px solid blue;*/
   position: relative;
 }
 .inputBlock label{
@@ -170,6 +157,7 @@ input[type=number]::-webkit-inner-spin-button {
   background-color: #1B1B1B;
   color: #f11f1f;
   font-weight: 700;
+  font-size: 2vh;
   left: 2vh;
 }
 .setForm.clicked label{
@@ -190,7 +178,7 @@ input[type=number]::-webkit-inner-spin-button {
   color: #f11f1f;
   height: 8vh;
   left: 50%;
-  font-size: 1.5rem;
+  font-size: 2.5vh;
   font-weight: 500;
   transform: translateX(-50%);
   width: 80%;
@@ -210,7 +198,7 @@ input[type=number]::-webkit-inner-spin-button {
   align-items: center;
   justify-content: center;
   margin: 2vh 0 0 2vh;
-  line-height: 1.2;
+  line-height: .9;
 }
 .moreInfo{
   display: flex;
@@ -220,9 +208,10 @@ input[type=number]::-webkit-inner-spin-button {
   margin: 2vh 0 0 2vh;
 }
 .contentInfo{
-  margin: 1vh;
+  margin: 1vh 2vh 0 0;
   font-weight: 600;
   font-size: 2.5vh;
+  line-height: .9;
 }
 .chartArea{
   width: 100%;
@@ -236,7 +225,6 @@ input[type=number]::-webkit-inner-spin-button {
   display: flex;
   flex-direction: column-reverse;
   border-radius: 10px;
-
 }
 .historyMainContent{
   width: 90%;
@@ -247,6 +235,7 @@ input[type=number]::-webkit-inner-spin-button {
   display: flex;
   flex-direction: row;
   margin-left: 5%;
+  scroll-snap-type: x mandatory;
 }
 .notesContainer{
   height: 100%;
@@ -265,9 +254,8 @@ input[type=number]::-webkit-inner-spin-button {
   overflow: auto;
   margin-bottom: 2vh;
 }
-
-
 .historyMainBox{
+  scroll-snap-align: center;
   min-width: 33.3%;
   height: 100%;
   display: flex;
@@ -276,11 +264,133 @@ input[type=number]::-webkit-inner-spin-button {
 }
 .historyContent{
   border-left: 2px solid #3d3838;
-  /*border: 2px solid yellowgreen;*/
   padding: 1.5vh;
-  height: 90%;
+  height: 70%;
   width: 90%;
 }
 ::-webkit-scrollbar {
   height: 12px;
+}
+.addNoteChecked{
+  border: 2px solid #f11f1f;
+  width: 90%;
+  height: 20%;
+  margin: 13% 0 4% 0;
+  transition: 0.4s ease-in-out;
+  position: relative;
+  border-radius: 10px;
+}
+.addNoteUnchecked{
+  border: 2px solid #1B1B1B;
+  width: 90%;
+  height: 7%;
+  margin: 13% 0 4% 0;
+  position: relative;
+  transition: 0.3s ease-in-out;
+}
+.createButton{
+  position: absolute;
+  top: 0;
+  right: 1vh;
+  color: #f11f1f;
+  background-color: #1B1B1B;
+  border: 2px solid #f11f1f;
+  border-radius: 10px;
+  padding: 0 .5vh;
+  font-size: 2vh;
+  font-weight: 600;
+  transition: .3s ease-in-out;
+}
+.createButton:hover{
+  background-color: #f11f1f;
+  color: #1B1B1B;
+}
+.buttonCreate{
+  position: absolute;
+  bottom: .5vh;
+  right: 1vh;
+  color: #f11f1f;
+  background-color: #1B1B1B;
+  border: transparent;
+  padding: 0 .5vh;
+  font-size: 2vh;
+  font-weight: 600;
+  transition: .3s ease-in-out;
+}
+.buttonCreate:hover{
+  color: #edf0f1;
+}
+.noteBox textarea{
+  background-color: #1B1B1B;
+  color: #f11f1f;
+  outline: none;
+  border: none;
+  margin: 1vh;
+  font-size: 2vh;
+  font-weight: 600;
+  resize: none;
+}
+.note{
+  border-left: 2px solid #3d3838;
+  width: 90%;
+  height: auto;
+  padding: 0 0 0 5%;
+  margin-bottom: 10%;
+  position: relative;
+  font-size: 2vh;
+}
+.notesText{
+  margin-top: -10%;
+  width: 100%;
+}
+.note p{
+  color: #f11f1f;
+  font-weight: 600;
+}
+.note button{
+  position: absolute;
+  top: -10%;
+  right: 0;
+  background-color: transparent;
+  color: #edf0f1;
+  border: none;
+  transition: .4s ease-in-out;
+}
+.note button:hover{
+  color: #f11f1f;
+}
+.abortChanges{
+  position: absolute;
+  top: 0;
+  right: 1vh;
+  color: #f11f1f;
+  background-color: #1B1B1B;
+  border: transparent;
+  padding: 0 .5vh;
+  font-size: 2vh;
+  font-weight: 600;
+  transition: .3s ease-in-out;
+}
+.abortChanges:hover{
+  color: #edf0f1;
+}
+.message{
+  color: #1B1B1B;
+  position: absolute;
+  right: 9vh;
+  top: 4.5vh;
+  z-index: 20;
+  border: #f11f1f 2px solid;
+  border-radius: 10px;
+  background-color: #f11f1f;
+  font-weight: 600;
+  font-size: 2vh;
+  padding: 0 1vh;
+  transition: .3s ease-in-out;
+  -webkit-animation: 1s ease 0s normal forwards 1 fadein;
+  animation: 1s ease 0s normal forwards 1 fadein;
+}
+.message:hover{
+  background-color: #1B1B1B;
+  color: #f11f1f;
 }

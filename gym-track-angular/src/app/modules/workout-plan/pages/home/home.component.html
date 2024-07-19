@@ -2,14 +2,19 @@
 <div class="containerData"  [ngClass]="{ 'blur': setTraining && !isUnsaved, 'maxblur': maxBlur }" (click)="onContainerClick()">
   <div class="userSection">
     <div class="box user">
-      <div class="helloUser"> Hello, user</div>
+      <div class="helloUser"> Hello, {{userName}}</div>
       <button class="userProfile"> <i class="fa-solid fa-user"></i>Profile</button>
     </div>
   </div>
   <div class="allSection">
 
     <div class="section1">
-      <div class="box logs"><div class="divText">last month</div></div>
+      <div class="box logs">
+        <div class="divText">last month</div>
+
+
+
+      </div>
       <div class="box logs2"><div class="divText">progress</div></div>
     </div>
     <div class="section1">
@@ -82,7 +87,7 @@
         </div>
       </div>
     </div>
-    <div class="section2">
+    <div class="section2Home">
       <div class="box lastTraining"><div class="divText">last training</div></div>
       <div class="box startTraining">
         <div class="divText">next training</div>
@@ -130,11 +135,10 @@
   <div class="backToLastTraining" *ngIf="isUnsaved">
     <div class="divText">unsaved training</div>
     <div class="suppText">
-    <div class="lastTrainingText">Your last training session&nbsp; <strong style="color: #f11f1f"> {{workoutSessionResponse?.sessionDate}}</strong>
-     &nbsp;has not been saved</div>
+      <div class="lastTrainingText">Your last training session&nbsp; <strong style="color: #f11f1f"> {{workoutSessionResponse?.sessionDate}}</strong>
+       &nbsp;has not been saved:<strong style="color: #f11f1f"> {{plan?.name}}</strong>
+      </div>
     </div>
-<!--    TODO: teraz jest tylko id-->
-<!--    <div class="lastTrainingName">{{workoutSessionResponse?.planName}}</div>-->
     <div class="buttonContainer">
     <button class="trainingButton" (click)="deleteWorkout()">Delete</button>
     <button class="trainingButton" (click)="backToLastWorkout()">Back to workout</button>

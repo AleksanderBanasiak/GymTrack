@@ -45,9 +45,6 @@ export class TrainingPlansComponent implements OnInit{
     })
   }
 
-  // TODO: dodać usuwanie treningu
-
-
   displayAllExercises(id: number | undefined){
     if(id){
       this.planService.findAllExercisesByTrainingId({

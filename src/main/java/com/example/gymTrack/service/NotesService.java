@@ -40,4 +40,12 @@ public class NotesService {
     public void deleteNote(Long id) {
         notesRepo.deleteById(id);
     }
+
+    public List<NotesResponse> findAllNotesForExercise(Long exerciseId, Authentication authUser) {
+        User user = (User) authUser.getPrincipal();
+
+        return notesRepo.findByExerciseIdAndUserId(exerciseId,user.getId()).stream()
+                .map(notesMapper::toResponse)
+                .toList();
+    }
 }

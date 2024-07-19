@@ -6,8 +6,6 @@
   flex-direction: row;
   margin: 0;
   padding: 0;
-  /*justify-content: flex-start;*/
-  /* TODO: nie wiem które jest poprawne*/
   justify-content: start;
 }
 .home{

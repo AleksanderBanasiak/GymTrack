@@ -1,6 +1,8 @@
 import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {WeightControllerService} from "../../../../services/services/weight-controller.service";
 import {WeightResponse} from "../../../../services/models/weight-response";
+import {WeightRequest} from "../../../../services/models/weight-request";
+import {animate, state, style, transition, trigger} from "@angular/animations";
 
 
 export interface UserMonth {
@@ -11,7 +13,21 @@ export interface UserMonth {
 @Component({
   selector: 'app-weight',
   templateUrl: './weight.component.html',
-  styleUrls: ['./weight.component.css']
+  styleUrls: ['./weight.component.css'],
+  animations: [
+    trigger('slideInOut', [
+      state('in', style({
+        width: '100%',
+        opacity: 1
+      })),
+      state('out', style({
+        width: '0%',
+        opacity: 0,
+        overflow: 'hidden'
+      })),
+      transition('in <=> out', animate('0.6s ease-in-out')),
+    ])
+  ]
 })
 export class WeightComponent implements OnInit{
 
@@ -25,13 +41,15 @@ export class WeightComponent implements OnInit{
 
   weighResponseForMonth: WeightResponse[] =[];
 
-  chartStyle = "#1B1B1B";
   chartStyle2 = "#2a2929";
 
   month: string | undefined;
+  isClicked = false;
+  message: string | undefined;
 
 
-  isCliked = false;
+  selectedDate ="";
+  selectedWeight: number | undefined;
 
 
   constructor(
@@ -94,17 +112,42 @@ export class WeightComponent implements OnInit{
 
 
   onChosenDateChange(selectedDate: UserMonth) {
-    console.log(this.userMonths.length);
     if(this.userMonths.length > 0) {
       this.getWeightForSpecificMonth();
     }
   }
 
   createWeight() {
-    this.isCliked = !this.isCliked;
+    this.isClicked = !this.isClicked;
   }
 
   addWeight() {
+    if (this.selectedWeight === undefined) {
+      this.message = "Add weight first";
+      return;
+    }
+
+    if (this.selectedWeight <= 0 || this.selectedWeight >= 250) {
+      this.message = "Invalid data";
+      return;
+    }
+
+    if (this.selectedDate === "") {
+      this.message = "Select date first";
+      return;
+    }
+
+      const weightRequest: WeightRequest ={
+        date: this.selectedDate,
+        weight: this.selectedWeight
+      }
+      this.weightService.saveWeight({
+        body: weightRequest
+      }).subscribe({
+        next: () => {
+          window.location.reload();
+        }
+      })
 
   }
 }

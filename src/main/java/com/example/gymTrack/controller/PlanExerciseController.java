@@ -2,6 +2,7 @@ package com.example.gymTrack.controller;
 
 
 import com.example.gymTrack.domain.dto.request.PlanExerciseRequest;
+import com.example.gymTrack.domain.dto.response.ExerciseResponse;
 import com.example.gymTrack.domain.dto.response.PlanExerciseResponse;
 import com.example.gymTrack.service.PlanExerciseService;
 import jakarta.validation.Valid;
@@ -30,9 +31,20 @@ public class PlanExerciseController {
         return ResponseEntity.ok(planExerciseService.saveForWorkout(request,workoutId, authUser));
     }
 
+
+    @GetMapping("/used-exercises")
+    public ResponseEntity<List<ExerciseResponse>> findAllUserUsedExercises(Authentication authUser){
+        return ResponseEntity.ok(planExerciseService.findAllUserUsedExercises(authUser));
+    }
+
     @GetMapping("/unsaved")
     public ResponseEntity<List<PlanExerciseResponse>> getAllPlanExerciseWithoutPlan(Authentication authUser){
         return  ResponseEntity.ok(planExerciseService.getAllPlanExerciseWithoutPlan(authUser));
+    }
+
+    @GetMapping("/{plan-id}")
+    public ResponseEntity<List<PlanExerciseResponse>> findAllPlanExercisesByPlanId(@PathVariable("plan-id") Long planId){
+        return ResponseEntity.ok(planExerciseService.findAllPlanExercisesByPlanId(planId));
     }
 
     @DeleteMapping("/{id}")

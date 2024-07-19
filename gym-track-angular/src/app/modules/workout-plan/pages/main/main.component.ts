@@ -1,6 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
-import {MenuComponent} from "../../components/menu/menu.component";
-import {animate, state, style, transition, trigger} from "@angular/animations";
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-main',

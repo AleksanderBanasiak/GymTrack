@@ -1,6 +1,7 @@
 package com.example.gymTrack.handler;
 
 
+import com.example.gymTrack.exception.InvalidTokenException;
 import com.example.gymTrack.exception.OperationNotPermittedException;
 import jakarta.mail.MessagingException;
 import org.springframework.http.HttpStatus;
@@ -80,6 +81,13 @@ public class GlobalExceptionHandler {
     }
     @ExceptionHandler(OperationNotPermittedException.class)
     public ResponseEntity<ExceptionResponse> handleException(OperationNotPermittedException exc){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                ExceptionResponse.builder()
+                        .error(exc.getMessage())
+                        .build());
+    }
+    @ExceptionHandler(InvalidTokenException.class)
+    public ResponseEntity<ExceptionResponse> handleException(InvalidTokenException exc){
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 ExceptionResponse.builder()
                         .error(exc.getMessage())

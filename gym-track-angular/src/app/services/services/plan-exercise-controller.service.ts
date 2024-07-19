@@ -11,6 +11,11 @@ import { StrictHttpResponse } from '../strict-http-response';
 
 import { deletePlanExercise } from '../fn/plan-exercise-controller/delete-plan-exercise';
 import { DeletePlanExercise$Params } from '../fn/plan-exercise-controller/delete-plan-exercise';
+import { ExerciseResponse } from '../models/exercise-response';
+import { findAllPlanExercisesByPlanId } from '../fn/plan-exercise-controller/find-all-plan-exercises-by-plan-id';
+import { FindAllPlanExercisesByPlanId$Params } from '../fn/plan-exercise-controller/find-all-plan-exercises-by-plan-id';
+import { findAllUserUsedExercises } from '../fn/plan-exercise-controller/find-all-user-used-exercises';
+import { FindAllUserUsedExercises$Params } from '../fn/plan-exercise-controller/find-all-user-used-exercises';
 import { getAllPlanExerciseWithoutPlan } from '../fn/plan-exercise-controller/get-all-plan-exercise-without-plan';
 import { GetAllPlanExerciseWithoutPlan$Params } from '../fn/plan-exercise-controller/get-all-plan-exercise-without-plan';
 import { PlanExerciseResponse } from '../models/plan-exercise-response';
@@ -72,6 +77,56 @@ export class PlanExerciseControllerService extends BaseService {
   savePlanExerciseForSpecificWorkout(params: SavePlanExerciseForSpecificWorkout$Params, context?: HttpContext): Observable<number> {
     return this.savePlanExerciseForSpecificWorkout$Response(params, context).pipe(
       map((r: StrictHttpResponse<number>): number => r.body)
+    );
+  }
+
+  /** Path part for operation `findAllPlanExercisesByPlanId()` */
+  static readonly FindAllPlanExercisesByPlanIdPath = '/plan-exercise/{plan-id}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `findAllPlanExercisesByPlanId()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findAllPlanExercisesByPlanId$Response(params: FindAllPlanExercisesByPlanId$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<PlanExerciseResponse>>> {
+    return findAllPlanExercisesByPlanId(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `findAllPlanExercisesByPlanId$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findAllPlanExercisesByPlanId(params: FindAllPlanExercisesByPlanId$Params, context?: HttpContext): Observable<Array<PlanExerciseResponse>> {
+    return this.findAllPlanExercisesByPlanId$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Array<PlanExerciseResponse>>): Array<PlanExerciseResponse> => r.body)
+    );
+  }
+
+  /** Path part for operation `findAllUserUsedExercises()` */
+  static readonly FindAllUserUsedExercisesPath = '/plan-exercise/used-exercises';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `findAllUserUsedExercises()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findAllUserUsedExercises$Response(params?: FindAllUserUsedExercises$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<ExerciseResponse>>> {
+    return findAllUserUsedExercises(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `findAllUserUsedExercises$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findAllUserUsedExercises(params?: FindAllUserUsedExercises$Params, context?: HttpContext): Observable<Array<ExerciseResponse>> {
+    return this.findAllUserUsedExercises$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Array<ExerciseResponse>>): Array<ExerciseResponse> => r.body)
     );
   }
 

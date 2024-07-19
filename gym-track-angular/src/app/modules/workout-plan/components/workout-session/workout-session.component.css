@@ -11,27 +11,35 @@
   color: white;
   align-items: center;
 }
-
 .allExercisesSection{
   width: 98%;
   height: 10%;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  align-items: center;
   background-color: #1B1B1B;
   border-radius: 10px;
+}
+.exerciseSection2{
+  width: 98%;
+  height: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
   overflow-x: auto;
   overflow-y: hidden;
 }
 .exerciseContent{
   border-right: 2px solid #3d3838;
+  border-left: 2px solid #3d3838;
+  height: 100%;
   min-width: 20%;
   align-items: center;
   display: flex;
   justify-content: center;
   font-weight: 600;
   font-size: 3vh;
-
 }
 .sessionContent{
   width: 98%;

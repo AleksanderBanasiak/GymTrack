@@ -11,27 +11,16 @@ import {Component, Injectable, OnInit} from '@angular/core';
 })
 export class MenuComponent implements OnInit{
 
-
-
-  isMenuClosed: boolean = false;
-
-
-
   isSidebarClosed: boolean = true  ;
 
   toggleSidebar() {
     this.isSidebarClosed = !this.isSidebarClosed;
   }
-  toggleMenu() {
-    this.isMenuClosed = !this.isMenuClosed;
-  }
-
 
   logout(){
     localStorage.removeItem('token');
     window.location.reload();
   }
-
 
   ngOnInit(): void {
     const linkColor = document.querySelectorAll('.navv');

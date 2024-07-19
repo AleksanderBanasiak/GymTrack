@@ -15,8 +15,12 @@ import { findAllLogsByExerciseIdAndUserIdGroupedBySessionId } from '../fn/workou
 import { FindAllLogsByExerciseIdAndUserIdGroupedBySessionId$Params } from '../fn/workout-logs-controller/find-all-logs-by-exercise-id-and-user-id-grouped-by-session-id';
 import { findAllLogsBySessionId } from '../fn/workout-logs-controller/find-all-logs-by-session-id';
 import { FindAllLogsBySessionId$Params } from '../fn/workout-logs-controller/find-all-logs-by-session-id';
+import { findAllLogsBySessionIdAndPlanExerciseId } from '../fn/workout-logs-controller/find-all-logs-by-session-id-and-plan-exercise-id';
+import { FindAllLogsBySessionIdAndPlanExerciseId$Params } from '../fn/workout-logs-controller/find-all-logs-by-session-id-and-plan-exercise-id';
 import { findAllLogsMaxByExerciseIdAndUserId } from '../fn/workout-logs-controller/find-all-logs-max-by-exercise-id-and-user-id';
 import { FindAllLogsMaxByExerciseIdAndUserId$Params } from '../fn/workout-logs-controller/find-all-logs-max-by-exercise-id-and-user-id';
+import { findAllRecordByExerciseId } from '../fn/workout-logs-controller/find-all-record-by-exercise-id';
+import { FindAllRecordByExerciseId$Params } from '../fn/workout-logs-controller/find-all-record-by-exercise-id';
 import { save } from '../fn/workout-logs-controller/save';
 import { Save$Params } from '../fn/workout-logs-controller/save';
 import { WorkoutLogsResponse } from '../models/workout-logs-response';
@@ -61,7 +65,7 @@ export class WorkoutLogsControllerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  findAllLogsBySessionId$Response(params: FindAllLogsBySessionId$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<WorkoutLogsResponse>>> {
+  findAllLogsBySessionId$Response(params: FindAllLogsBySessionId$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<Array<WorkoutLogsResponse>>>> {
     return findAllLogsBySessionId(this.http, this.rootUrl, params, context);
   }
 
@@ -71,8 +75,58 @@ export class WorkoutLogsControllerService extends BaseService {
    *
    * This method doesn't expect any request body.
    */
-  findAllLogsBySessionId(params: FindAllLogsBySessionId$Params, context?: HttpContext): Observable<Array<WorkoutLogsResponse>> {
+  findAllLogsBySessionId(params: FindAllLogsBySessionId$Params, context?: HttpContext): Observable<Array<Array<WorkoutLogsResponse>>> {
     return this.findAllLogsBySessionId$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Array<Array<WorkoutLogsResponse>>>): Array<Array<WorkoutLogsResponse>> => r.body)
+    );
+  }
+
+  /** Path part for operation `findAllRecordByExerciseId()` */
+  static readonly FindAllRecordByExerciseIdPath = '/workout-logs/records/{id}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `findAllRecordByExerciseId()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findAllRecordByExerciseId$Response(params: FindAllRecordByExerciseId$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<WorkoutLogsResponse>>> {
+    return findAllRecordByExerciseId(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `findAllRecordByExerciseId$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findAllRecordByExerciseId(params: FindAllRecordByExerciseId$Params, context?: HttpContext): Observable<Array<WorkoutLogsResponse>> {
+    return this.findAllRecordByExerciseId$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Array<WorkoutLogsResponse>>): Array<WorkoutLogsResponse> => r.body)
+    );
+  }
+
+  /** Path part for operation `findAllLogsBySessionIdAndPlanExerciseId()` */
+  static readonly FindAllLogsBySessionIdAndPlanExerciseIdPath = '/workout-logs/plan-exercise/{plan-exercise-id}/session/{session-id}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `findAllLogsBySessionIdAndPlanExerciseId()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findAllLogsBySessionIdAndPlanExerciseId$Response(params: FindAllLogsBySessionIdAndPlanExerciseId$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<WorkoutLogsResponse>>> {
+    return findAllLogsBySessionIdAndPlanExerciseId(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `findAllLogsBySessionIdAndPlanExerciseId$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findAllLogsBySessionIdAndPlanExerciseId(params: FindAllLogsBySessionIdAndPlanExerciseId$Params, context?: HttpContext): Observable<Array<WorkoutLogsResponse>> {
+    return this.findAllLogsBySessionIdAndPlanExerciseId$Response(params, context).pipe(
       map((r: StrictHttpResponse<Array<WorkoutLogsResponse>>): Array<WorkoutLogsResponse> => r.body)
     );
   }

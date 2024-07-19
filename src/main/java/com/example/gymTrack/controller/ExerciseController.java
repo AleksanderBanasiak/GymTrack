@@ -35,6 +35,7 @@ public class ExerciseController {
         return ResponseEntity.ok(exerciseService.findAllUserExercises(authUser));
     }
 
+
     @GetMapping("/my-exercises/{type}")
     public ResponseEntity<List<ExerciseResponse>> findAllUserExercisesByType(Authentication authUser,@PathVariable("type") ExerciseType type){
         return ResponseEntity.ok(exerciseService.findAllUserExercisesByType(authUser, type));

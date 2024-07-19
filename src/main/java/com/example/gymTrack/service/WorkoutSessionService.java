@@ -12,6 +12,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -55,5 +56,12 @@ public class WorkoutSessionService {
         WorkoutSession workoutSession = workoutSessionRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("Session not found"));
         workoutSession.setEnded(true);
         return workoutSessionRepo.save(workoutSession).getId();
+    }
+
+    public List<WorkoutSessionResponse> findAllSessions(Authentication authUser) {
+        User user = (User) authUser.getPrincipal();
+        return workoutSessionRepo.findAllByUserId(user.getId()).stream()
+                .map(workoutSessionMapper::toResponse)
+                .toList();
     }
 }

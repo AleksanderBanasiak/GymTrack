@@ -12,7 +12,7 @@ export interface FindAllLogsBySessionId$Params {
   id: number;
 }
 
-export function findAllLogsBySessionId(http: HttpClient, rootUrl: string, params: FindAllLogsBySessionId$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<WorkoutLogsResponse>>> {
+export function findAllLogsBySessionId(http: HttpClient, rootUrl: string, params: FindAllLogsBySessionId$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<Array<WorkoutLogsResponse>>>> {
   const rb = new RequestBuilder(rootUrl, findAllLogsBySessionId.PATH, 'get');
   if (params) {
     rb.path('id', params.id, {});
@@ -23,7 +23,7 @@ export function findAllLogsBySessionId(http: HttpClient, rootUrl: string, params
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return r as StrictHttpResponse<Array<WorkoutLogsResponse>>;
+      return r as StrictHttpResponse<Array<Array<WorkoutLogsResponse>>>;
     })
   );
 }

@@ -1,19 +1,21 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 
-import { WorkoutPlanRoutingModule } from './workout-plan-routing.module';
-import { MainComponent } from './pages/main/main.component';
-import { MenuComponent } from './components/menu/menu.component';
-import { HomeComponent } from './pages/home/home.component';
-import { TrainingPlansComponent } from './components/training-plans/training-plans.component';
-import { AddTrainingComponent } from './components/add-training/add-training.component';
+import {WorkoutPlanRoutingModule} from './workout-plan-routing.module';
+import {MainComponent} from './pages/main/main.component';
+import {MenuComponent} from './components/menu/menu.component';
+import {HomeComponent} from './pages/home/home.component';
+import {TrainingPlansComponent} from './components/training-plans/training-plans.component';
+import {AddTrainingComponent} from './components/add-training/add-training.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { WorkoutSessionComponent } from './components/workout-session/workout-session.component';
-import { LinechartComponent } from './components/linechart/linechart.component';
+import {WorkoutSessionComponent} from './components/workout-session/workout-session.component';
+import {LinechartComponent} from './components/linechart/linechart.component';
 import {HighchartsChartModule} from "highcharts-angular";
-import { WeightComponent } from './components/weight/weight.component';
-import { ExerciseInSessionComponent } from './components/exercise-in-session/exercise-in-session.component';
-import { NotesComponent } from './components/notes/notes.component';
+import {WeightComponent} from './components/weight/weight.component';
+import {ExerciseInSessionComponent} from './components/exercise-in-session/exercise-in-session.component';
+import {ChartsComponent} from './components/charts/charts.component';
+import {TrainingLogsComponent} from './components/training-logs/training-logs.component';
+import {RecordsComponent} from './components/records/records.component';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import { NotesComponent } from './components/notes/notes.component';
     LinechartComponent,
     WeightComponent,
     ExerciseInSessionComponent,
-    NotesComponent
+    ChartsComponent,
+    TrainingLogsComponent,
+    RecordsComponent
   ],
     imports: [
         CommonModule,

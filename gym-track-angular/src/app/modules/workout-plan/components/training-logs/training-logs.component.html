@@ -1,0 +1,41 @@
+<div class="containerData">
+  <div class="mainContainer2">
+    <div class="trainingsSection">
+      <div class="trainingText">Workout logs</div>
+      <button class="newTraining" (click)="editTraining()"><i class="fa-solid fa-pen-to-square"></i></button>
+      <div class="trainingContent" *ngIf="history.length > 0">
+        <div class="logsInfo">
+          <div class="workoutName">
+            {{session?.planName}}
+          </div>
+          <p>{{history[0][0].sessionDate | date:'dd MMMM yyyy'}}</p>
+        </div>
+        <div class="logsMainBox" *ngFor="let logs of history; let i = index">
+          <div class="exerciseLogName reveal" *ngIf="planExerciseResponse[i]" [ngStyle]="{'animation-delay': (getTotalIndex(i, 0) * 0.05) + 's'}">
+            {{planExerciseResponse[i].exerciseName}}
+          </div>
+          <div class="logsContent">
+            <div *ngFor="let log of logs; let j = index" [ngStyle]="{'animation-delay': (getTotalIndex(i, j + 1) * 0.05) + 's'}" class="reveal">
+              {{ log.setNumber }}. {{ log.reps }} x {{ log.weight }} = {{ log.summaryWeight }} kg
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="exerciseSection">
+      <div class="edit"><i class="fas fa-ellipsis-v" ></i></div>
+      <div class="exerciseText">Last workouts</div>
+      <div class="trainingContent">
+        <div class="exercise" *ngFor="let session of workouts; let i = index" (click)="displayLogs(session.id)">
+          <div class="indexExercise">{{i+1}}</div>
+          <div class="exerciseName">
+            {{session.planName}}
+          </div>
+          <div class="exerciseGroup">
+            {{session.sessionDate | date:'dd MMMM yyyy'}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

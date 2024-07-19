@@ -2,55 +2,43 @@
   <div class="mainContainer3">
     <div class="section1">
       <div class="weightText">Your weight in {{month}}</div>
-
-
-
-      <div class="weightContent">
-        <div class="chartWeight">
-          <app-linechart [weightResponse]="weighResponseForMonth"  ></app-linechart>
+        <div class="weightContent" >
+          <select [(ngModel)]="chosenDate" class="selectedType" (ngModelChange)="onChosenDateChange($event)" *ngIf="weighResponseForMonth.length > 0">
+            <option *ngFor="let date of userMonths" [ngValue]="date"  >{{ date.month}}/{{ date.year }}</option>
+          </select>
+          <div class="chartWeight">
+            <app-linechart [weightResponse]="weighResponseForMonth"  ></app-linechart>
+          </div>
         </div>
-      </div>
-
-
-        <select [(ngModel)]="chosenDate" class="selectedType" (ngModelChange)="onChosenDateChange($event)" >
-          <option *ngFor="let date of userMonths" [ngValue]="date"  >{{ date.month}}/{{ date.year }}</option>
-        </select>
-
-
     </div>
   <div class="section2">
     <div class="weightText">Your weight overall</div>
-
-    <div class="addWeight" *ngIf="!isCliked">
-    <button class="createWeight" (click)="createWeight()">Add</button>
+      <div class="message" *ngIf="message">{{message}}</div>
+    <div class="addWeight" >
+      <button class="createWeight" (click)="createWeight()">Add</button>
     </div>
-
-    <div class="addWeight" *ngIf="isCliked">
-      <button class="createWeight" (click)="addWeight()">Add</button>
+    <div class="addWeight"  [@slideInOut]="isClicked ? 'in' : 'out'">
+      <button class="createWeight" style="background-color: #1B1B1B" (click)="addWeight()">Add</button>
       <div class="addWeightContent">
-
+        <div class="weightBox">
+          <div class="weightKg">
+            <div class="inputGroup3">
+              <input type="text" autocomplete="off" required [(ngModel)]="selectedWeight">
+              <label>Kg</label>
+            </div>
+          </div>
         <div class="weightKg">
-      <input type="date">
-      <div class="weightKg">
-        <div class ="inputGroup3">
-          <input type="text" autocomplete="off" required>
-          <label>Kg</label>
+          <input type="date" required [(ngModel)]="selectedDate">
+        </div>
         </div>
       </div>
-
-        </div>
-
-
-      </div>
-
     </div>
-      <div class="weightContent">
+    <div class="weightContent">
         <div class="chartWeight">
-        <app-linechart [weightResponse]="weightResponse" [chartStyle]="chartStyle2" ></app-linechart>
+        <app-linechart [weightResponse]="weightResponse" [chartStyle]="chartStyle2"></app-linechart>
         </div>
       </div>
-</div>
-
+  </div>
 </div>
 </div>
 

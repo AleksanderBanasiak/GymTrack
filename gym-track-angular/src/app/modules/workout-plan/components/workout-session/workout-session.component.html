@@ -1,21 +1,12 @@
-
-
 <div class="containerData">
-
   <div class="allExercisesSection">
-    <div class="exerciseContent" *ngFor="let exercise of trainingExercises" (click)="selectedExercise(exercise)">
-      {{exercise.exerciseName}}
-
+    <div class="exerciseSection2">
+      <div class="exerciseContent" *ngFor="let exercise of trainingExercises" (click)="selectedExercise(exercise)">
+        {{exercise.exerciseName}}
+      </div>
     </div>
-
   </div>
-
-
-
   <div class="sessionContent">
-
-  <app-exercise-in-session [planExercise]="chosenPlanExercise" [sessionId]="sessionId"></app-exercise-in-session>
-
+    <app-exercise-in-session [planExercise]="chosenPlanExercise" [sessionId]="sessionId"></app-exercise-in-session>
   </div>
-
 </div>

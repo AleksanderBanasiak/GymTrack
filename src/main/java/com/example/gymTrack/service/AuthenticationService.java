@@ -5,6 +5,7 @@ import com.example.gymTrack.domain.dto.request.AuthRequest;
 import com.example.gymTrack.domain.dto.response.AuthResponse;
 import com.example.gymTrack.domain.dto.request.RegistrationRequest;
 import com.example.gymTrack.domain.entity.Role;
+import com.example.gymTrack.exception.InvalidTokenException;
 import com.example.gymTrack.repository.RoleRepo;
 import com.example.gymTrack.security.JwtService;
 import com.example.gymTrack.domain.entity.Token;
@@ -108,8 +109,7 @@ public class AuthenticationService {
     }
 
     public void activate(String token) throws MessagingException {
-        Token savedToken = tokenRepo.findByToken(token).orElseThrow(() -> new RuntimeException("Invalid token"));
-        // todo zrobic exception z tokenem
+        Token savedToken = tokenRepo.findByToken(token).orElseThrow(() -> new InvalidTokenException("Invalid token"));
         if(LocalDateTime.now().isAfter(savedToken.getExpiresAt())){
             sendValidationEmailToUser(savedToken.getUser());
             throw new RuntimeException("Activation token has expired");

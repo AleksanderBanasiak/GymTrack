@@ -15,6 +15,7 @@ public class WorkoutSessionResponse {
 
     private Long id;
     private Long planId;
+    private String planName;
     private LocalDate sessionDate;
 
 }

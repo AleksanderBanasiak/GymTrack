@@ -1,17 +1,4 @@
 
-
-
-
-
-.exerciseSection{
-  background-color: #2a2929;
-  border-radius: 10px;
-  height: 95vh;
-  width: 40%;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
-  animation-delay: 0.8s;
-  animation: grow 1s forwards;
-}
 .newTraining{
   position: absolute;
   right: 2vh;

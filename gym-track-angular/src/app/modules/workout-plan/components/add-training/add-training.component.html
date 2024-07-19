@@ -14,10 +14,10 @@
 
       <div class="headContent">
 
-          <select [(ngModel)]="selectedType" (change)="findAllExercises()" class="selectedType">
+          <select [(ngModel)]="selectedType" (change)="findAllExercises()">
             <option *ngFor="let type of exerciseTypes" [ngValue]="type" class="selectedTypeOption">{{ type }}</option>
           </select>
-          <select [(ngModel)]="selectedSet" class="selectedType">
+          <select [(ngModel)]="selectedSet" >
             <option *ngFor="let sets of [0,1,2,3,4,5,6,7,8,9,10]" class="selectedTypeOption">
               {{ sets }}</option>
           </select>

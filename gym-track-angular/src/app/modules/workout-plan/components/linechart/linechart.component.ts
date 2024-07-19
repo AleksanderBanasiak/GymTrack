@@ -110,7 +110,13 @@ export class LinechartComponent implements OnChanges{
   private getLineChartMax() {
     const categories = this.exerciseMax.map(weight => weight.sessionDate);
     const data = this.exerciseMax.map(weight => weight.weight);
-    this.chartBuilder(categories, data, '#1B1B1B');
+
+    let backgroundColor = '#1B1B1B';
+    if(this.chartStyle){
+      backgroundColor = this.chartStyle;
+    }
+
+    this.chartBuilder(categories, data, backgroundColor);
 
   }
 

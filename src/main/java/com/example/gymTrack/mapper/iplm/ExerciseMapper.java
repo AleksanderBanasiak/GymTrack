@@ -24,14 +24,7 @@ public class ExerciseMapper implements Mapper<Exercise, ExerciseResponse, Exerci
         return modelMapper.map(exercise, ExerciseResponse.class);
     }
 
-// TODO: tak nie może być!
-    public Exercise mapExerciseResponseToExercise(ExerciseResponse exercise) {
-        return Exercise.builder()
-                .id(exercise.getId())
-                .name(exercise.getName())
-                .exerciseType(exercise.getType())
-                .build();
-    }
+
 
 
 }

@@ -8,6 +8,9 @@ import {WorkoutSessionControllerService} from "../../../../services/services/wor
 import {Router} from "@angular/router";
 import {PlanControllerService} from "../../../../services/services/plan-controller.service";
 import {PlanResponse} from "../../../../services/models/plan-response";
+import {NotesRequest} from "../../../../services/models/notes-request";
+import {NotesControllerService} from "../../../../services/services/notes-controller.service";
+import {NotesResponse} from "../../../../services/models/notes-response";
 
 @Component({
   selector: 'app-exercise-in-session',
@@ -28,32 +31,44 @@ export class ExerciseInSessionComponent implements OnInit, OnChanges{
   chartMaxLogs: WorkoutLogsResponse[] = [];
   history: WorkoutLogsResponse[][] = [];
 
+  isChecked: boolean = false;
+  noteContent: string = '';
+  notes: NotesResponse[] =[];
+  message: string | undefined;
 
   constructor(private fb: FormBuilder,
               private workoutLogsService: WorkoutLogsControllerService,
               private workoutSessionService: WorkoutSessionControllerService,
               private planService: PlanControllerService,
+              private notesService: NotesControllerService,
               private router: Router
   ) {
     this.setsForm.push(this.createSetForm());
   }
 
   ngOnInit(): void {
-    this.getAllLogsBySessionId();
     this.findSessionById(this.sessionId as number);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    const savedExercise = localStorage.getItem('chosenPlanExercise');
+    if (savedExercise) {
+      this.planExercise = JSON.parse(savedExercise);
+    }
+
+    const savedSessionId = localStorage.getItem('sessionId');
+    if (savedSessionId) {
+      this.sessionId = JSON.parse(savedSessionId);
+    }
+
     if (changes['planExercise'] && this.planExercise?.sets) {
       this.getAllLogsBySessionId();
       this.findLogsByExerciseId(this.planExercise.exerciseId as number);
       this.findMaxesByExerciseId(this.planExercise.exerciseId as number);
       this.findHistory(this.planExercise.exerciseId as number, this.sessionId as number);
-
+      this.getAllNotes();
     }
   }
-
-
 
   createSetForm(): FormGroup {
     return this.fb.group({
@@ -76,6 +91,11 @@ export class ExerciseInSessionComponent implements OnInit, OnChanges{
   }
 
   private saveLogs(setNumber: number, form: FormGroup){
+    
+    if (form.get('weight')?.value <= 0 || form.get('weight')?.value >= 550 || form.get('reps')?.value <= 0 || form.get('reps')?.value >= 200) {
+      this.message = "Invalid data";
+      return;
+    }
 
     const workoutLogsRequest: WorkoutLogsRequest ={
       reps: form.get('reps')?.value as number,
@@ -92,11 +112,10 @@ export class ExerciseInSessionComponent implements OnInit, OnChanges{
       }
     })
   }
-
-
   private getAllLogsBySessionId(){
-    this.workoutLogsService.findAllLogsBySessionId({
-      id: this.sessionId as number
+    this.workoutLogsService.findAllLogsBySessionIdAndPlanExerciseId({
+      "session-id": this.sessionId as number,
+      "plan-exercise-id": this.planExercise?.id as number
     }).subscribe({
       next: (res) => {
         this.workoutLogsResponse = res;
@@ -114,7 +133,6 @@ export class ExerciseInSessionComponent implements OnInit, OnChanges{
       }
     })
   }
-
 
   private initializeFormsWithLogs(logs: WorkoutLogsResponse[]): void {
     this.setsForm = [];
@@ -147,7 +165,6 @@ export class ExerciseInSessionComponent implements OnInit, OnChanges{
     }
   }
 
-
   endTraining() {
     this.workoutSessionService.endSession({
       id: this.sessionId as number
@@ -164,11 +181,9 @@ export class ExerciseInSessionComponent implements OnInit, OnChanges{
     }).subscribe({
       next: (res) => {
         this.planResponse = res;
-        // console.log(this.planResponse);
       }
     })
   }
-
 
   private findLogsByExerciseId(id: number){
     this.workoutLogsService.findAllLogsByExerciseIdAndUserId({
@@ -200,5 +215,45 @@ export class ExerciseInSessionComponent implements OnInit, OnChanges{
       })
     }
 
+  private getAllNotes(){
+    this.notesService.findAllNotesForExercise({
+      id: this.planExercise?.exerciseId as number
+    }).subscribe({
+      next: (res) => {
+        this.notes = res;
+      }
+    })
+  }
 
+  deleteNote(i: number | undefined) {
+    if(i){
+      this.notesService.deleteNotes({
+        id: i
+      }).subscribe({
+        next: () => {
+          window.location.reload();
+        }
+      })
+    }
+  }
+
+  addNote() {
+    this.isChecked = !this.isChecked;
+  }
+
+  createNote() {
+    if(this.noteContent.length > 0){
+      const noteRequest: NotesRequest = {
+        exerciseId: this.planExercise?.exerciseId as number,
+        note: this.noteContent
+      }
+      this.notesService.saveNotes({
+        body: noteRequest
+      }).subscribe({
+        next: () => {
+          window.location.reload();
+        }
+      })
+    }
+  }
 }
