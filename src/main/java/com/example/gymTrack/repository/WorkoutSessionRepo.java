@@ -1,7 +1,6 @@
 package com.example.gymTrack.repository;
 
 
-import com.example.gymTrack.domain.dto.response.WorkoutSessionResponse;
 import com.example.gymTrack.domain.entity.WorkoutSession;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -23,4 +22,18 @@ public interface WorkoutSessionRepo extends JpaRepository<WorkoutSession, Long> 
         SELECT workout from WorkoutSession workout where workout.user.id = :userId ORDER BY workout.sessionDate DESC
         """)
     List<WorkoutSession> findAllByUserId(Long userId);
+
+
+    @Query("SELECT workout FROM WorkoutSession workout WHERE workout.user.id = :userId AND EXTRACT(YEAR FROM workout.sessionDate) = :year AND EXTRACT(MONTH FROM workout.sessionDate) = :month")
+    List<WorkoutSession> findAllSessionsByMonth(Long month, Long year, Long userId);
+
+    @Query("""
+    SELECT workout FROM WorkoutSession workout WHERE workout.user.id = :userId ORDER BY workout.id DESC LIMIT 1
+    """)
+    Optional<WorkoutSession> findLastByUserId(Long userId);
+
+    @Query("""
+    SELECT count(*) FROM WorkoutSession workout WHERE workout.user.id = :userId
+    """)
+    int findCountSessionByUserId(Long userId);
 }

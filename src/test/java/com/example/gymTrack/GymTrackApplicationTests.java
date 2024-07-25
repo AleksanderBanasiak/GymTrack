@@ -10,4 +10,5 @@ class GymTrackApplicationTests {
 	void contextLoads() {
 	}
 
+//	TODO: dodać testy
 }

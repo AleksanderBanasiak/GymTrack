@@ -4,10 +4,7 @@ import {WorkoutSessionResponse} from "../../../../services/models/workout-sessio
 import {Router} from "@angular/router";
 import {WorkoutLogsControllerService} from "../../../../services/services/workout-logs-controller.service";
 import {WorkoutLogsResponse} from "../../../../services/models/workout-logs-response";
-import {ExerciseControllerService} from "../../../../services/services/exercise-controller.service";
 import {ExerciseResponse} from "../../../../services/models/exercise-response";
-import {Observable} from "rxjs";
-import {map} from "rxjs/operators";
 import {PlanExerciseControllerService} from "../../../../services/services/plan-exercise-controller.service";
 import {PlanExerciseResponse} from "../../../../services/models/plan-exercise-response";
 

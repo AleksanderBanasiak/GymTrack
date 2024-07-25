@@ -1,4 +1,3 @@
-
 .newTraining{
   position: absolute;
   right: 2vh;
@@ -13,7 +12,6 @@
   text-align: center;
   transition: .4s ease-in-out;
 }
-
 .trainingContent{
   border-radius: 10px;
   background-color: #2a2929;
@@ -35,7 +33,7 @@
 }
 .form__group {
   position: absolute;
-  margin-top: 10px;
+  margin-top: 1vh;
   width: 50%;
 }
 .form__field {
@@ -94,7 +92,6 @@
   height: 10vh;
   width: 100%;
 }
-
 .exerciseGroup{
   color: #edf0f1;
   position: absolute;
@@ -236,8 +233,6 @@
   width: 100%;
   -webkit-animation: .3s ease 0s normal forwards 1 fadein;
   animation: .3s ease 0s normal forwards 1 fadein;
-
-  /*border: 2px solid pink;*/
 }
 .addExercise input{
   background-color: #3d3838;

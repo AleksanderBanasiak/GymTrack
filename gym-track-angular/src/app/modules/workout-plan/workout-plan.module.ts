@@ -16,6 +16,7 @@ import {ExerciseInSessionComponent} from './components/exercise-in-session/exerc
 import {ChartsComponent} from './components/charts/charts.component';
 import {TrainingLogsComponent} from './components/training-logs/training-logs.component';
 import {RecordsComponent} from './components/records/records.component';
+import {DatePickerComponent} from './components/date-picker/date-picker.component';
 
 
 @NgModule({
@@ -31,15 +32,16 @@ import {RecordsComponent} from './components/records/records.component';
     ExerciseInSessionComponent,
     ChartsComponent,
     TrainingLogsComponent,
-    RecordsComponent
+    RecordsComponent,
+    DatePickerComponent,
   ],
-    imports: [
-        CommonModule,
-        WorkoutPlanRoutingModule,
-        FormsModule,
-        NgOptimizedImage,
-        HighchartsChartModule,
-        ReactiveFormsModule
-    ]
+  imports: [
+    CommonModule,
+    WorkoutPlanRoutingModule,
+    FormsModule,
+    NgOptimizedImage,
+    HighchartsChartModule,
+    ReactiveFormsModule,
+  ]
 })
 export class WorkoutPlanModule { }

@@ -75,9 +75,7 @@ export class WorkoutSessionComponent implements OnInit, OnChanges{
         })
       }
     })
-
   }
-
 
   selectedExercise(exercise: PlanExerciseResponse) {
     window.location.reload();

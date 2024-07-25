@@ -2,13 +2,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 70vh;
+  width: 50%;
 }
-
 .activate-message, .activate-error {
   text-align: center;
 }
-
 .activate-error {
   color: #EF0107;
 }
@@ -29,10 +28,8 @@
   font-weight: 600;
   color: #24252A;
   border: 2px solid #EF0107;
-
 }
 .code{
-  background-color: #24252A;
   color: #EF0107;
   display: flex;
   justify-content: center;

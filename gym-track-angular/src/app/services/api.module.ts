@@ -10,9 +10,9 @@ import { WeightControllerService } from './services/weight-controller.service';
 import { PlanControllerService } from './services/plan-controller.service';
 import { PlanExerciseControllerService } from './services/plan-exercise-controller.service';
 import { NotesControllerService } from './services/notes-controller.service';
+import { FavoriteExerciseControllerService } from './services/favorite-exercise-controller.service';
 import { ExerciseControllerService } from './services/exercise-controller.service';
 import { AuthenticationControllerService } from './services/authentication-controller.service';
-import { UserControllerService } from './services/user-controller.service';
 
 /**
  * Module that provides all services and configuration.
@@ -28,9 +28,9 @@ import { UserControllerService } from './services/user-controller.service';
     PlanControllerService,
     PlanExerciseControllerService,
     NotesControllerService,
+    FavoriteExerciseControllerService,
     ExerciseControllerService,
     AuthenticationControllerService,
-    UserControllerService,
     ApiConfiguration
   ],
 })

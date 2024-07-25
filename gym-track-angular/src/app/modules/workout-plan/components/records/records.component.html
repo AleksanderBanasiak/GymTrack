@@ -4,42 +4,44 @@
             <div class="trainingText">Personal records for {{ capitalizeFirstLetter(chosenExerciseType) }}</div>
             <div class="trainingContent">
                 <div class="recordContent">
-                  <div class="exerciseRecord" *ngFor="let exercise of exercises">
-                    <div class="exerciseRecordName">{{ exercise.name }}</div>
-                    <div class="exerciseDetails" *ngIf="exercise.id !== undefined && exerciseRecords[exercise.id]">
-                      <div *ngFor="let recordList of exerciseRecords[exercise.id]; let i = index" class="data">
-                        <div *ngIf="i === 0" class="recordBox">
-                          <strong>One rep max</strong>
-                          <div class="recordData">
-                            <i class="fa-solid fa-medal"></i>
-                            <div class="recordInfo">{{ recordList.weight }} kg</div>
+                  <ng-container    *ngFor="let exercise of exercises" >
+                      <ng-container  *ngIf="exercise.id !== undefined && exerciseRecords[exercise.id] && exerciseRecords[exercise.id].length">
+                          <div class="exerciseRecord">
+                            <div class="exerciseRecordName">{{ exercise.name }}</div>
+                            <div class="exerciseDetails" *ngIf="exercise.id !== undefined && exerciseRecords[exercise.id]">
+                              <div *ngFor="let recordList of exerciseRecords[exercise.id]; let i = index" class="data">
+                                <div *ngIf="i === 0" class="recordBox">
+                                  <strong>One rep max</strong>
+                                  <div class="recordData">
+                                    <i class="fa-solid fa-medal"></i>
+                                    <div class="recordInfo">{{ recordList.weight }} kg</div>
+                                  </div>
+                                  <div class="recordDate">{{ recordList.sessionDate | date:'dd MMMM yyyy'}}</div>
+                                </div>
+                                <div *ngIf="i === 1" class="recordBox">
+                                  <strong>Best set</strong>
+                                  <div class="recordData">
+                                    <i class="fa-solid fa-fire-flame-curved"></i>
+                                    <div class="recordInfo">{{ recordList.reps }} x {{ recordList.weight }} kg</div>
+                                  </div>
+                                  <div class="recordDate">{{ recordList.sessionDate | date:'dd MMMM yyyy'}}</div>
+                                </div>
+                                <div *ngIf="i === 2" class="recordBox">
+                                  <strong>Best volume</strong>
+                                  <div class="recordData">
+                                    <i class="fa-solid fa-weight-hanging"></i>
+                                    <div class="recordInfo">{{ recordList.summaryWeight }} kg</div>
+                                  </div>
+                                  <div class="recordDate">{{ recordList.sessionDate | date:'dd MMMM yyyy'}}</div>
+                                </div>
+                              </div>
+                              <div *ngIf="exercise.id !== undefined  && exerciseRecords[exercise.id].length === 0" class="noData">
+                                No data to display
+                              </div>
+                            </div>
                           </div>
-                          <div class="recordDate">{{ recordList.sessionDate | date:'dd MMMM yyyy'}}</div>
-                        </div>
-                        <div *ngIf="i === 1" class="recordBox">
-                          <strong>Best set</strong>
-                          <div class="recordData">
-                            <i class="fa-solid fa-fire-flame-curved"></i>
-                            <div class="recordInfo">{{ recordList.reps }} x {{ recordList.weight }} kg</div>
-                          </div>
-                          <div class="recordDate">{{ recordList.sessionDate | date:'dd MMMM yyyy'}}</div>
-                        </div>
-                        <div *ngIf="i === 2" class="recordBox">
-                          <strong>Best volume</strong>
-                          <div class="recordData">
-                            <i class="fa-solid fa-weight-hanging"></i>
-                            <div class="recordInfo">{{ recordList.summaryWeight }} kg</div>
-                          </div>
-                          <div class="recordDate">{{ recordList.sessionDate | date:'dd MMMM yyyy'}}</div>
-                        </div>
-                      </div>
-                      <div *ngIf="exercise.id !== undefined  && exerciseRecords[exercise.id].length === 0" class="noData">
-                        No data to display
-                      </div>
-
-                    </div>
-
-                  </div>
+                      </ng-container>
+                  </ng-container>
                 </div>
             </div>
         </div>

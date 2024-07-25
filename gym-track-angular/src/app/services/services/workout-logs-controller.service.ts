@@ -21,8 +21,11 @@ import { findAllLogsMaxByExerciseIdAndUserId } from '../fn/workout-logs-controll
 import { FindAllLogsMaxByExerciseIdAndUserId$Params } from '../fn/workout-logs-controller/find-all-logs-max-by-exercise-id-and-user-id';
 import { findAllRecordByExerciseId } from '../fn/workout-logs-controller/find-all-record-by-exercise-id';
 import { FindAllRecordByExerciseId$Params } from '../fn/workout-logs-controller/find-all-record-by-exercise-id';
+import { findSummaryLogs } from '../fn/workout-logs-controller/find-summary-logs';
+import { FindSummaryLogs$Params } from '../fn/workout-logs-controller/find-summary-logs';
 import { save } from '../fn/workout-logs-controller/save';
 import { Save$Params } from '../fn/workout-logs-controller/save';
+import { SummaryResponse } from '../models/summary-response';
 import { WorkoutLogsResponse } from '../models/workout-logs-response';
 
 @Injectable({ providedIn: 'root' })
@@ -78,6 +81,31 @@ export class WorkoutLogsControllerService extends BaseService {
   findAllLogsBySessionId(params: FindAllLogsBySessionId$Params, context?: HttpContext): Observable<Array<Array<WorkoutLogsResponse>>> {
     return this.findAllLogsBySessionId$Response(params, context).pipe(
       map((r: StrictHttpResponse<Array<Array<WorkoutLogsResponse>>>): Array<Array<WorkoutLogsResponse>> => r.body)
+    );
+  }
+
+  /** Path part for operation `findSummaryLogs()` */
+  static readonly FindSummaryLogsPath = '/workout-logs/summary';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `findSummaryLogs()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findSummaryLogs$Response(params?: FindSummaryLogs$Params, context?: HttpContext): Observable<StrictHttpResponse<SummaryResponse>> {
+    return findSummaryLogs(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `findSummaryLogs$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findSummaryLogs(params?: FindSummaryLogs$Params, context?: HttpContext): Observable<SummaryResponse> {
+    return this.findSummaryLogs$Response(params, context).pipe(
+      map((r: StrictHttpResponse<SummaryResponse>): SummaryResponse => r.body)
     );
   }
 

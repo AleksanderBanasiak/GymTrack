@@ -1,137 +1,173 @@
 <div class="all">
 <div class="containerData"  [ngClass]="{ 'blur': setTraining && !isUnsaved, 'maxblur': maxBlur }" (click)="onContainerClick()">
-  <div class="userSection">
-    <div class="box user">
-      <div class="helloUser"> Hello, {{userName}}</div>
-      <button class="userProfile"> <i class="fa-solid fa-user"></i>Profile</button>
-    </div>
-  </div>
   <div class="allSection">
-
     <div class="section1">
       <div class="box logs">
-        <div class="divText">last month</div>
-
-
-
+        <app-date-picker></app-date-picker>
       </div>
-      <div class="box logs2"><div class="divText">progress</div></div>
-    </div>
-    <div class="section1">
-      <div class="box records">
-        <div class="divText">records</div>
-      <div class="contentSection">
-          <div class="recordContent">
-            <div class="recordBox">
-              <img src="assets/imgs/bench-press.png" alt="Gym Image">
-              90kg
-            </div>
-            <div class="recordText">
-              Bench
-            </div>
-          </div>
-        <div class="recordContent">
-            <div class="recordBox">
-              <img src="assets/imgs/gym.png" alt="Gym Image">
-              220kg
-            </div>
-            <div class="recordText">
-              Deadlift
-            </div>
-          </div>
-        <div class="recordContent">
-            <div class="recordBox">
-              <img src="assets/imgs/squat-rack.png" alt="Gym Image">
-              120kg
-            </div>
-            <div class="recordText">
-              Squat
-            </div>
-          </div>
-      </div>
-      </div>
-      <div class="box rest"><div class="divText">summary</div>
+      <div class="box logs2">
+        <div class="divText">{{exercise?.name}} records</div>
+        <div class="goIn">
+          <a href="/records">
+            <i class="fa-solid fa-circle-chevron-right"></i>
+          </a>
+        </div>
         <div class="contentSection">
           <div class="recordContent">
-            <div class="recordBox">
-              124t
+          <div class="exerciseDetails" *ngIf="exercise?.id !== undefined">
+            <div *ngFor="let recordList of records; let i = index" class="data">
+              <div *ngIf="i === 0" class="recordBox">
+                <strong>One rep max</strong>
+                <div class="recordData">
+                  <i class="fa-solid fa-medal"></i>
+                  <div class="recordInfo">{{ recordList.weight }} kg</div>
+                </div>
+                <div class="recordDate">{{ recordList.sessionDate | date:'dd MMMM yyyy'}}</div>
+              </div>
+              <div *ngIf="i === 1" class="recordBox">
+                <strong>Best set</strong>
+                <div class="recordData">
+                  <i class="fa-solid fa-fire-flame-curved"></i>
+                  <div class="recordInfo">{{ recordList.reps }} x {{ recordList.weight }} kg</div>
+                </div>
+                <div class="recordDate">{{ recordList.sessionDate | date:'dd MMMM yyyy'}}</div>
+              </div>
+              <div *ngIf="i === 2" class="recordBox">
+                <strong>Best volume</strong>
+                <div class="recordData">
+                  <i class="fa-solid fa-weight-hanging"></i>
+                  <div class="recordInfo">{{ recordList.summaryWeight }} kg</div>
+                </div>
+                <div class="recordDate">{{ recordList.sessionDate | date:'dd MMMM yyyy'}}</div>
+              </div>
             </div>
-            <div class="recordText">
-              Weight
-            </div>
+              <div *ngIf="records[0] === undefined" class="noData">
+                No data to display
+              </div>
           </div>
-          <div class="recordContent">
-            <div class="recordBox">
-              2212
-            </div>
-            <div class="recordText">
-              Sets
-            </div>
           </div>
+        </div>
+      </div>
+    </div>
+    <div class="section3Home">
+      <div class="box records">
+        <div class="divText">summary</div>
+        <div class="contentSection2">
           <div class="recordContent">
-            <div class="recordBox">
-              9864
-            </div>
-            <div class="recordText">
-              Reps
+            <div class="exerciseDetails" >
+              <div class="data">
+                <div class="recordBox">
+                  <strong>Sessions</strong>
+                  <div class="recordData">
+                    <i class="fa-solid fa-trophy"></i>
+                    <div class="recordInfo">{{ summaryRes?.sessions }}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="data">
+                <div class="recordBox">
+                  <strong>Sets</strong>
+                  <div class="recordData">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                    <div class="recordInfo">{{summaryRes?.sets}}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="data">
+                <div class="recordBox">
+                  <strong>Reps</strong>
+                  <div class="recordData">
+                    <i class="fa-solid fa-bolt"></i>
+                    <div class="recordInfo">{{ summaryRes?.reps }}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="data">
+                <div class="recordBox">
+                  <strong>Volume</strong>
+                  <div class="recordData">
+                    <i class="fa-solid fa-weight-hanging"></i>
+                    <div class="recordInfo">{{ summaryRes?.weight }} kg</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-
+      </div>
+      <div class="box rest2">
+        <div class="divText">{{exercise?.name}} progress</div>
+        <div class="goIn">
+          <a href="/charts">
+            <i class="fa-solid fa-circle-chevron-right"></i>
+          </a>
+        </div>
+        <div class="weightContentInHome">
+          <app-linechart [exercise]="chartLogs" ></app-linechart>
+        </div>
       </div>
       <div class="box rest2">
         <div class="divText">your weight</div>
-
+        <div class="goIn">
+          <a href="/weight">
+          <i class="fa-solid fa-circle-chevron-right"></i>
+          </a>
+        </div>
         <div class="weightContentInHome">
-          <app-linechart></app-linechart>
+          <app-linechart [weightResponse]="weightResponse"></app-linechart>
         </div>
       </div>
     </div>
     <div class="section2Home">
-      <div class="box lastTraining"><div class="divText">last training</div></div>
+      <div class="box lastTraining"><div class="divText">last training</div>
+        <div class="goIn">
+          <a href="/logs">
+            <i class="fa-solid fa-circle-chevron-right"></i>
+          </a>
+        </div>
+        <div class="lastTrainingContainer">
+        <div class="lastTrainingContent" *ngIf="history.length > 0">
+          <div class="logsInfo">
+            <div class="workoutName">
+              {{session?.planName}}
+            </div>
+            <p>{{history[0][0].sessionDate | date:'dd MMMM yyyy'}}</p>
+          </div>
+          <div class="logsMainBox" *ngFor="let logs of history; let i = index">
+            <div class="exerciseLogName reveal" *ngIf="planExerciseResponse[i]" [ngStyle]="{'animation-delay': (getTotalIndex(i, 0) * 0.05) + 's'}">
+              {{planExerciseResponse[i].exerciseName}}
+            </div>
+            <div class="logsContent">
+              <div *ngFor="let log of logs; let j = index" [ngStyle]="{'animation-delay': (getTotalIndex(i, j + 1) * 0.05) + 's'}" class="reveal">
+                {{ log.setNumber }}. {{ log.reps }} x {{ log.weight }} = {{ log.summaryWeight }} kg
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
       <div class="box startTraining">
         <div class="divText">next training</div>
         <button (click)="chooseTraining($event)" >Start training</button>
-
-
-
-
       </div>
     </div>
-
-
-
-
   </div>
-
-
-
-
-
-
-
   </div>
-
   <div class="startTrainingSection " *ngIf="setTraining && !isUnsaved" >
     <div class="box lastTraining borderBox"><div class="divText">choose training</div>
       <div class="startTrainingContent">
         <div class="trainingContent"
-
              [ngClass]="{'exerciseInTraining': res !== this.selectedTraining,
          'clicked':  res === this.selectedTraining,
          }"
-
              *ngFor="let res of planResponse" (click)="chosenPlan(res)">{{res.name}}</div>
       </div>
     </div>
     <div class="box startTraining borderBox">
       <div class="divText">start training</div>
       <button (click)="startTraining(planId)">Start training</button>
-
-
     </div>
   </div>
-
   <div class="backToLastTraining" *ngIf="isUnsaved">
     <div class="divText">unsaved training</div>
     <div class="suppText">

@@ -1,8 +1,3 @@
-.recordsContainer{
-  border: 2px solid pink;
-  width: 80%;
-  height: 80%;
-}
 .exerciseName{
   margin-left: 9vh;
   position: absolute;
@@ -28,6 +23,7 @@
   margin-bottom: 2vh;
   border-radius: 10px;
   background-color: #3d3838;
+  display: block;
 }
 .recordContent{
   width: 100%;
@@ -49,18 +45,6 @@
   width: 100%;
   height: 75%;
 }
-.recordBox {
-  position: relative;
-  border: 4px solid #f11f1f;
-  border-radius: 10px;
-  height: 90%;
-  width: 80%;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  color: #1B1B1B;
-}
 .recordData{
   width: 100%;
   height: 78%;
@@ -71,18 +55,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.recordBox strong{
-  font-weight: 600;
-  font-size: 2vh;
-  border: 2px solid #f11f1f;
-  background-color: #f11f1f;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-top-right-radius: 5px;
-  border-top-left-radius: 5px;
 }
 .fa-solid.fa-medal, .fa-solid.fa-fire-flame-curved, .fa-solid.fa-weight-hanging {
   position: absolute;
@@ -102,20 +74,6 @@
   align-items: center;
   justify-content: center;
 }
-.recordInfo{
-  z-index: 2;
-  position: absolute;
-  top: 50%;
-  right: 50%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform: translate(50%, -50%);
-  font-size: 3vh;
-  color: #edf0f1;
-  font-weight: 600;
-}
 .noData{
   width: 100%;
   display: flex;
@@ -123,4 +81,8 @@
   align-items: center;
   font-weight: 600;
   font-size: 3vh;
+}
+.allRecords{
+  border: 2px solid red;
+  width: 100%;
 }

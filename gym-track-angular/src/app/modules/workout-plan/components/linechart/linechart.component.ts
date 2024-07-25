@@ -181,7 +181,4 @@ export class LinechartComponent implements OnChanges{
   private emptyChart(){
 
   }
-
-
-
 }

@@ -98,7 +98,14 @@ public interface WorkoutLogsRepo extends JpaRepository<WorkoutLogs, Long> {
     List<WorkoutLogs> findLogsByExerciseBestSets(Long exerciseId, Long userId);
 
     @Query("""
-    SELECT COUNT(log) > 0 FROM WorkoutLogs log WHERE log.planExercise.exercise.id = :id
+    SELECT COUNT(log) > 0 FROM WorkoutLogs log WHERE log.planExercise.exercise.id = :id AND log.workoutSession.user.id = :userId
     """)
-    boolean findByExerciseId(Long id);
+    boolean findByExerciseId(Long id, Long userId);
+
+
+    @Query("""
+    SELECT logs FROM WorkoutLogs logs WHERE logs.workoutSession.user.id = :userId
+    """)
+    List<WorkoutLogs> findAllLogsByUserId(Long userId);
+
 }

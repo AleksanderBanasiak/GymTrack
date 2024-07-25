@@ -91,7 +91,7 @@ export class ExerciseInSessionComponent implements OnInit, OnChanges{
   }
 
   private saveLogs(setNumber: number, form: FormGroup){
-    
+
     if (form.get('weight')?.value <= 0 || form.get('weight')?.value >= 550 || form.get('reps')?.value <= 0 || form.get('reps')?.value >= 200) {
       this.message = "Invalid data";
       return;

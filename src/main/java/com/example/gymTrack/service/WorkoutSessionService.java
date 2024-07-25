@@ -64,4 +64,21 @@ public class WorkoutSessionService {
                 .map(workoutSessionMapper::toResponse)
                 .toList();
     }
+
+    public List<WorkoutSessionResponse> findAllSessionsByMonth(Long month, Long yearId, Authentication authUser) {
+        User user = (User) authUser.getPrincipal();
+
+        return workoutSessionRepo.findAllSessionsByMonth(month, yearId, user.getId()).stream()
+                .map(workoutSessionMapper::toResponse)
+                .toList();
+    }
+
+    public WorkoutSessionResponse findLastSession(Authentication authUser) {
+        User user = (User) authUser.getPrincipal();
+
+        Optional<WorkoutSession> lastByUserId = workoutSessionRepo.findLastByUserId(user.getId());
+
+        return lastByUserId.map(workoutSessionMapper::toResponse)
+                .orElse(null);
+    }
 }

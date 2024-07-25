@@ -16,5 +16,5 @@ public class GymTrackApplication {
 		SpringApplication.run(GymTrackApplication.class, args);
 	}
 
-
+//TODO: dodać ćwiczenia
 }

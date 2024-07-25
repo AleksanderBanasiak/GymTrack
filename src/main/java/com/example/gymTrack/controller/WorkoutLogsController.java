@@ -2,6 +2,7 @@ package com.example.gymTrack.controller;
 
 
 import com.example.gymTrack.domain.dto.request.WorkoutLogsRequest;
+import com.example.gymTrack.domain.dto.response.SummaryResponse;
 import com.example.gymTrack.domain.dto.response.WorkoutLogsResponse;
 import com.example.gymTrack.domain.entity.WorkoutLogs;
 import com.example.gymTrack.service.WorkoutLogsService;
@@ -56,6 +57,11 @@ public class WorkoutLogsController {
         return ResponseEntity.ok(workoutLogsService.findAllLogsByExerciseIdAndUserIdGroupedBySessionId(exerciseId, sessionId, authUser));
     }
 
+
+    @GetMapping("/summary")
+    public ResponseEntity<SummaryResponse> findSummaryLogs(Authentication authUser){
+        return ResponseEntity.ok(workoutLogsService.findSummaryLogs(authUser));
+    }
 
 
 

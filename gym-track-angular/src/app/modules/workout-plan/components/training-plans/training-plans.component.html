@@ -4,7 +4,6 @@
     <div class="trainingText">Workout plans</div>
     <button class="newTraining" (click)="addTraining()"><i class="fa-solid fa-plus"></i></button>
     <div class="trainingContent">
-
       <div class="training" *ngFor="let training of planResponse" (click)="displayAllExercises(training.id)" >
         <div class="firstGroup" >
           <div class="trainingName">{{training.name}}</div>
@@ -15,9 +14,6 @@
         </div>
         <a class="editTraining" (click)="editTraining(training.id)"><i class="fa-solid fa-pen-to-square"></i></a>
       </div>
-
-
-
     </div>
   </div>
   <div class="exerciseSection">
@@ -37,9 +33,6 @@
         </div>
       </div>
     </div>
-
   </div>
-
-
 </div>
 </div>

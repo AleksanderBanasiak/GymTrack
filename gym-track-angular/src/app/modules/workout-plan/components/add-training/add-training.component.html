@@ -2,18 +2,15 @@
   <div class="mainContainer2">
     <div class="trainingsSection">
       <div class="trainingText">
-
       <div class="form__group field">
         <input [(ngModel)]="trainingName" maxlength="24" type="text" class="form__field" placeholder="Workout plan name" id='name' autocomplete="off" required />
         <label for="name" class="form__label" >Workout plan name</label>
       </div>
       </div>
-      <button class="newTraining" (click)="createTraining()">Create</button>
+      <button class="newTraining2" (click)="createTraining()">Create</button>
       <div class="message" *ngIf="message">{{message}}</div>
       <div class="trainingContent">
-
       <div class="headContent">
-
           <select [(ngModel)]="selectedType" (change)="findAllExercises()">
             <option *ngFor="let type of exerciseTypes" [ngValue]="type" class="selectedTypeOption">{{ type }}</option>
           </select>
@@ -21,12 +18,9 @@
             <option *ngFor="let sets of [0,1,2,3,4,5,6,7,8,9,10]" class="selectedTypeOption">
               {{ sets }}</option>
           </select>
-
-
           <button (click)="addExercise()" class="buttonCreate">
             Add to plan
           </button>
-
       </div>
         <div class="sectionOfExercises">
         <div class="exerciseInTraining">
@@ -49,12 +43,10 @@
         </div>
       </div>
       </div>
-
     </div>
     <div class="exerciseSection">
       <div class="exerciseText">Exercises in your plan</div>
       <div class="trainingContent2">
-
         <div class="exercise" *ngFor="let exercise of unsavedExercises; let i = index">
           <div class="indexExercise">{{i +1}}</div>
           <div class="exerciseName">
@@ -68,14 +60,7 @@
           </div>
           <i class="fa-solid fa-x" (click)="deletePlanExercise(exercise.id)"></i>
         </div>
-
-
-
       </div>
-
-
     </div>
-
-
   </div>
 </div>

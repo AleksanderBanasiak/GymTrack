@@ -3,6 +3,9 @@ import {PlanExerciseControllerService} from "../../../../services/services/plan-
 import {ExerciseResponse} from "../../../../services/models/exercise-response";
 import {WorkoutLogsControllerService} from "../../../../services/services/workout-logs-controller.service";
 import {WorkoutLogsResponse} from "../../../../services/models/workout-logs-response";
+import {FavoriteExerciseControllerService} from "../../../../services/services/favorite-exercise-controller.service";
+import {FavoriteExerciseResponse} from "../../../../services/models/favorite-exercise-response";
+import {FavoriteExerciseRequest} from "../../../../services/models/favorite-exercise-request";
 
 @Component({
   selector: 'app-charts',
@@ -17,10 +20,14 @@ export class ChartsComponent implements OnInit{
   chartLogs: WorkoutLogsResponse[] = [];
   chartMaxLogs: WorkoutLogsResponse[] = [];
   chartStyle2 = "#2a2929";
+  favExercise: FavoriteExerciseResponse[] = [];
+
+  isFav: boolean = true;
 
   constructor(
     private planExerciseService: PlanExerciseControllerService,
-    private workoutLogsService: WorkoutLogsControllerService
+    private workoutLogsService: WorkoutLogsControllerService,
+    private favoriteExerciseService: FavoriteExerciseControllerService
   ) {
   }
 
@@ -42,6 +49,7 @@ export class ChartsComponent implements OnInit{
           }
           this.findLogsByExerciseId(this.chosenExercise?.id as number);
           this.findMaxesByExerciseId(this.chosenExercise?.id as number);
+          this.findFavExercise();
         }
       }
     })
@@ -76,4 +84,45 @@ export class ChartsComponent implements OnInit{
     return e1 && e2 ? e1.id === e2.id : e1 === e2;
   }
 
+
+  findFavExercise(){
+    this.favoriteExerciseService.findFavouriteExerciseByUserId().subscribe({
+      next: (res) => {
+        this.favExercise = res;
+        this.checkIsFavorite();
+      }
+    })
+  }
+
+  private checkIsFavorite(){
+    this.isFav = this.favExercise[0]?.exerciseId === this.chosenExercise?.id;
+  }
+
+  addToFav() {
+    this.removeFav();
+    const favExerciseReq: FavoriteExerciseRequest = {
+      exerciseId: this.chosenExercise?.id as number
+    }
+    this.favoriteExerciseService.save2({
+      body: favExerciseReq
+    }).subscribe({
+        next: () => {
+            this.findLogsByExerciseId(this.chosenExercise?.id as number);
+            this.findMaxesByExerciseId(this.chosenExercise?.id as number);
+            this.findFavExercise();
+        }
+    })
+  }
+
+  removeFav() {
+    this.favoriteExerciseService.deleteFavoriteExercise({
+        id: this.favExercise[0]?.id as number
+    }).subscribe({
+        next: () => {
+            this.findLogsByExerciseId(this.chosenExercise?.id as number);
+            this.findMaxesByExerciseId(this.chosenExercise?.id as number);
+            this.findFavExercise();
+        }
+    })
+  }
 }

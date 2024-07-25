@@ -1,10 +1,10 @@
 package com.example.gymTrack.service;
 
 import com.example.gymTrack.domain.dto.request.WorkoutLogsRequest;
+import com.example.gymTrack.domain.dto.response.SummaryResponse;
 import com.example.gymTrack.domain.dto.response.WorkoutLogsResponse;
 import com.example.gymTrack.domain.entity.User;
 import com.example.gymTrack.domain.entity.WorkoutLogs;
-import com.example.gymTrack.domain.entity.WorkoutSession;
 import com.example.gymTrack.mapper.iplm.WorkoutLogsMapper;
 import com.example.gymTrack.repository.WorkoutLogsRepo;
 import com.example.gymTrack.repository.WorkoutSessionRepo;
@@ -93,7 +93,7 @@ public class WorkoutLogsService {
     public List<WorkoutLogsResponse> findAllRecordByExerciseId(Long id, Authentication authUser) {
         User user = (User) authUser.getPrincipal();
 
-        if(!workoutLogsRepo.findByExerciseId(id)) {
+        if(!workoutLogsRepo.findByExerciseId(id, user.getId())) {
             return new ArrayList<>();
         }
 
@@ -129,5 +129,23 @@ public class WorkoutLogsService {
         result.add(combinedLog);
 
         return result;
+    }
+
+    public SummaryResponse findSummaryLogs(Authentication authUser) {
+        User user = (User) authUser.getPrincipal();
+
+        List<WorkoutLogs> logs = workoutLogsRepo.findAllLogsByUserId(user.getId());
+
+
+        return SummaryResponse.builder()
+                .sessions(workoutSessionRepo.findCountSessionByUserId(user.getId()))
+                .sets(logs.size())
+                .reps(logs.stream()
+                        .mapToInt(WorkoutLogs::getReps)
+                        .sum())
+                .weight(logs.stream()
+                        .mapToDouble(WorkoutLogs::getSummaryWeight)
+                        .sum())
+                .build();
     }
 }

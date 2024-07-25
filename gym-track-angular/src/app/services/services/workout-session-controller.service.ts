@@ -15,6 +15,10 @@ import { endSession } from '../fn/workout-session-controller/end-session';
 import { EndSession$Params } from '../fn/workout-session-controller/end-session';
 import { findAllSessions } from '../fn/workout-session-controller/find-all-sessions';
 import { FindAllSessions$Params } from '../fn/workout-session-controller/find-all-sessions';
+import { findAllSessionsByMonth } from '../fn/workout-session-controller/find-all-sessions-by-month';
+import { FindAllSessionsByMonth$Params } from '../fn/workout-session-controller/find-all-sessions-by-month';
+import { findLastSession } from '../fn/workout-session-controller/find-last-session';
+import { FindLastSession$Params } from '../fn/workout-session-controller/find-last-session';
 import { findLastUnsavedWorkoutSessionByUserId } from '../fn/workout-session-controller/find-last-unsaved-workout-session-by-user-id';
 import { FindLastUnsavedWorkoutSessionByUserId$Params } from '../fn/workout-session-controller/find-last-unsaved-workout-session-by-user-id';
 import { findSessionById } from '../fn/workout-session-controller/find-session-by-id';
@@ -154,6 +158,31 @@ export class WorkoutSessionControllerService extends BaseService {
     );
   }
 
+  /** Path part for operation `findAllSessionsByMonth()` */
+  static readonly FindAllSessionsByMonthPath = '/workout-session/{month-id}/{year-id}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `findAllSessionsByMonth()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findAllSessionsByMonth$Response(params: FindAllSessionsByMonth$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<WorkoutSessionResponse>>> {
+    return findAllSessionsByMonth(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `findAllSessionsByMonth$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findAllSessionsByMonth(params: FindAllSessionsByMonth$Params, context?: HttpContext): Observable<Array<WorkoutSessionResponse>> {
+    return this.findAllSessionsByMonth$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Array<WorkoutSessionResponse>>): Array<WorkoutSessionResponse> => r.body)
+    );
+  }
+
   /** Path part for operation `findLastUnsavedWorkoutSessionByUserId()` */
   static readonly FindLastUnsavedWorkoutSessionByUserIdPath = '/workout-session/unsaved';
 
@@ -175,6 +204,31 @@ export class WorkoutSessionControllerService extends BaseService {
    */
   findLastUnsavedWorkoutSessionByUserId(params?: FindLastUnsavedWorkoutSessionByUserId$Params, context?: HttpContext): Observable<WorkoutSessionResponse> {
     return this.findLastUnsavedWorkoutSessionByUserId$Response(params, context).pipe(
+      map((r: StrictHttpResponse<WorkoutSessionResponse>): WorkoutSessionResponse => r.body)
+    );
+  }
+
+  /** Path part for operation `findLastSession()` */
+  static readonly FindLastSessionPath = '/workout-session/last';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `findLastSession()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findLastSession$Response(params?: FindLastSession$Params, context?: HttpContext): Observable<StrictHttpResponse<WorkoutSessionResponse>> {
+    return findLastSession(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `findLastSession$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findLastSession(params?: FindLastSession$Params, context?: HttpContext): Observable<WorkoutSessionResponse> {
+    return this.findLastSession$Response(params, context).pipe(
       map((r: StrictHttpResponse<WorkoutSessionResponse>): WorkoutSessionResponse => r.body)
     );
   }

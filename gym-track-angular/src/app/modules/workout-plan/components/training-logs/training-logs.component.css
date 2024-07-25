@@ -1,5 +1,4 @@
 .trainingContent{
-  /*border: 2px solid pink;*/
   width: 90%;
   height: 85%;
   position: relative;
@@ -27,62 +26,11 @@
 }
 .logsMainBox{
   color: #edf0f1;
-
-
-}
-.logsContent{
 }
 .workoutName{
   margin-right: 1vh;
   font-weight: 600;
   font-size: 4vh;
 }
-.logsInfo{
-  color: #edf0f1;
-  height: 10%;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-}
-.logsInfo p{
-  margin: 1vh;
-  font-weight: 500;
-  font-size: 3vh;
-}
-.logsMainBox{
-  border-left: 3px solid #3d3838;
-  width: 100%;
-  min-height: 16%;
-  height: auto;
-  margin-bottom: 2vh;
-}
-.exerciseLogName{
-  font-weight: 600;
-  font-size: 3vh;
-  margin-left: 1vh;
-}
-.logsContent{
-  font-weight: 600;
-  font-size: 2.5vh;
-  margin-left: 1.2vh;
-}
-
-
-
-
-
-.reveal {
-  color: #0000;
-  background: linear-gradient(#edf0f1, #edf0f1) no-repeat;
-  background-size: 0 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  animation: t .7s both;
-}
-
-@keyframes t {
-  to { background-size: 100% 100%; }
-}
-
 
 

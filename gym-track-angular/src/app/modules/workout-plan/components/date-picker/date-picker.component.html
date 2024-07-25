@@ -1,0 +1,27 @@
+<div class="datepicker">
+  <div class="datepicker-top">
+    <div class="goIn2 goInIcon" (click)="goToPreviousMonth()"><i class="fa-solid fa-circle-chevron-left"></i></div>
+    <span class="month-name">Activity in {{ monthName }}</span>
+    <div class="goIn3 goInIcon" (click)="goToNextMonth()"><i class="fa-solid fa-circle-chevron-right"></i></div>
+  </div>
+  <div class="datepicker-calendar">
+    <span class="day">Mo</span>
+    <span class="day">Tu</span>
+    <span class="day">We</span>
+    <span class="day">Th</span>
+    <span class="day">Fr</span>
+    <span class="day">Sa</span>
+    <span class="day">Su</span>
+    <ng-container *ngFor="let day of daysInMonth; let i = index">
+      <ng-container *ngIf="day !== null">
+        <button class="date"
+                [ngClass]="{'current-day': isCurrentDay(day), 'highlighted-day': highlightedDays.includes(day)}">
+          {{ day }}
+        </button>
+      </ng-container>
+      <ng-container *ngIf="day === null">
+        <span class="date empty"></span>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>

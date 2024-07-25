@@ -3,6 +3,10 @@
     <div class="section1">
       <div class="weightText">Sets progress</div>
       <div class="weightContent" >
+        <div class="favExercise">
+        <i class="fa-regular fa-star" *ngIf="!isFav" (click)="addToFav()"></i>
+        <i class="fa-solid fa-star" *ngIf="isFav" (click)="removeFav()"></i>
+        </div>
         <select [(ngModel)]="chosenExercise" [compareWith]="compareExercises" class="selectedType" (ngModelChange)="onChosenExerciseChange($event)" *ngIf="exercises.length > 0">
           <option *ngFor="let exercise of exercises" [ngValue]="exercise">{{ exercise.name }}</option>
         </select>

@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+.datepicker {
+  width: 100%;
+  border-radius: 10px;
+  padding: 1rem;
+  background-color: #1B1B1B;
+  color: #edf0f1;
+  height: 100%;
+}
+.datepicker-top {
+  margin-bottom: 2vh;
+}
+.month-name {
+  font-weight: 600;
+  font-size: 3.5vh;
+}
+.datepicker-calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-row-gap: 5%;
+}
+.day, .date {
+  justify-self: center;
+}
+.day {
+  font-size: 3vh;
+  font-weight: 500;
+  justify-self: center;
+  color: #f11f1f;
+}
+.date {
+  padding: 0;
+  width: 7vh;
+  height: 7vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  font-weight: 600;
+  border: 2px solid transparent;
+  background-color: transparent;
+  cursor: pointer;
+  color: #edf0f1;
+}
+.faded {
+  color: #525561;
+}
+.current-day {
+  color: #f11f1f;
+  border-color: #f11f1f;
+}
+.date.highlighted-day {
+  background-color: #f11f1f;
+  color: #1B1B1B;
+}
+.goIn2{
+  position: absolute;
+  top: 3vh;
+  right: 7.5vh;
+  color: #edf0f1;
+}
+.goIn3{
+  position: absolute;
+  top: 3vh;
+  right: 2.5vh;
+  color: #edf0f1;
+}
+.goInIcon i{
+  color: #edf0f1;
+  transition: 0.4s ease-in-out;
+  font-size: 3vh;
+}
+.goInIcon i:hover{
+  color: #f11f1f;
+}

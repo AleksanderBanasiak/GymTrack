@@ -40,8 +40,6 @@ export class AddTrainingComponent implements OnInit{
   selectedCreatedExercise = false;
   newExerciseName: string | undefined;
 
-
-
   constructor(
     private exerciseService: ExerciseControllerService,
     private planExerciseService: PlanExerciseControllerService,
@@ -55,6 +53,7 @@ export class AddTrainingComponent implements OnInit{
     const trainingId = this.activatedRoute.snapshot.params['trainingId'];
     if(trainingId){
       this.editTraining(trainingId);
+      this.findAllExercises();
     }else {
       this.findAllExercises();
       this.findAllAddedExercises();
@@ -89,14 +88,6 @@ export class AddTrainingComponent implements OnInit{
     }
   }
 
-  // setWorkout(){
-  //   this.planExerciseService.setWorkoutPlan().subscribe({
-  //     next: () => {
-  //       this.router.navigate(['training-plans']);
-  //     }
-  //   })
-  // }
-
   onExerciseClick(exercise: ExerciseResponse) {
     this.selectedExercise = exercise;
   }
@@ -107,7 +98,6 @@ export class AddTrainingComponent implements OnInit{
     }).subscribe({
       next: (training) => {
         this.trainingName = training.name;
-
         this.planService.findAllExercisesByTrainingId({
           plan_id: id
         }).subscribe({
@@ -147,7 +137,6 @@ export class AddTrainingComponent implements OnInit{
       });
     }
   }
-
 
   addExercise() {
     if( this.selectedExercise && this.selectedSet > 0 && this.selectedExercise.id ){

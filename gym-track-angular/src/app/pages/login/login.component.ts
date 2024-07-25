@@ -77,10 +77,6 @@ import {TokenService} from "../../services/token/token.service";
 })
 export class LoginComponent implements OnInit{
 
-
-
-
-
   authRequest: AuthRequest = {email: '', password: ''};
   errorMsg: Array<string> = [];
 
@@ -90,7 +86,6 @@ export class LoginComponent implements OnInit{
     private tokenService: TokenService
   ) {
   }
-
 
   login() {
     this.errorMsg = [];
@@ -123,9 +118,6 @@ export class LoginComponent implements OnInit{
   toggleAnimation() {
     this.isActive = !this.isActive;
     setTimeout(() => { this.router.navigate(['register']); }, 600);
-
   }
-
-
 
 }

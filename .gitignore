@@ -1,44 +1,121 @@
-HELP.md
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+out/
+
+# Maven
 target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
 
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/META-INF/services/**
 
+# Log files
+*.log
 
-# compiled output
-/dist
-/tmp
-/out-tsc
-/coverage
+# Temporary files
+tmp/
+*.tmp
+*.temp
+*.swp
 
-# dependencies
-/node_modules
+# Compiled files
+*.class
+*.jar
+*.war
+*.ear
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
+# Spring Boot specific
+*.jar
+*.war
 
-### IntelliJ IDEA ###
-.idea
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Angular
+/dist/
+/build/
+/.angular/
+.angular-cli.json
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# NPM
+package-lock.json
+yarn.lock
+
+# Coverage reports
+coverage/
+
+# Production
+/build
+
+# Dependency directories
+node_modules/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+tmp/
+*.tmp
+*.swp
+*.bak
+*.old
+
+# Temporary files created by JetBrains IDEs
+.idea/
 *.iws
 *.iml
 *.ipr
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
+# Compiled output
+/dist
+/tmp
+/out-tsc
 
-### VS Code ###
-.vscode/
+# Dependency directories
+/node_modules
+/bower_components
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional stylelint cache
+.stylelintcache
+
+# Optional npm log file
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Compiled files
+*.class
+*.jar
+*.war
+*.ear
+
+# Spring Boot application.properties
+application-*.properties
+bootstrap-*.yml

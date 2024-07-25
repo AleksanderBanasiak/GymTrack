@@ -59,8 +59,6 @@ export class RecordsComponent implements OnInit{
     window.location.reload();
   }
 
-  // TODO: nie potrzebnie metoda jest wykowyana tyle razy ile jest exercise a powinna tylko raz
-
   findRecordForExercise(){
     this.exercises.forEach((exercise) => {
       if (exercise.id != null) {
@@ -68,7 +66,6 @@ export class RecordsComponent implements OnInit{
           .subscribe({
             next: (res) => {
               this.exerciseRecords[exercise.id as number] = res;
-              console.log(this.exerciseRecords);
             },
             error: (err) => {
               console.error(`Error for exercise ${exercise.id}:`, err);

@@ -47,6 +47,20 @@ public class WorkoutSessionController {
         return ResponseEntity.ok(workoutSessionService.findAllSessions(authUser));
     }
 
+    @GetMapping("/last")
+    public ResponseEntity< WorkoutSessionResponse> findLastSession(Authentication authUser){
+        WorkoutSessionResponse response = workoutSessionService.findLastSession(authUser);
 
+        if (response != null) {
+            return ResponseEntity.ok(response);
+        } else {
+            return ResponseEntity.noContent().build();
+        }
+    }
+
+    @GetMapping("/{month-id}/{year-id}")
+    public ResponseEntity<List<WorkoutSessionResponse>> findAllSessionsByMonth(@PathVariable("month-id") Long monthId, @PathVariable("year-id") Long yearId, Authentication authUser){
+        return ResponseEntity.ok(workoutSessionService.findAllSessionsByMonth(monthId, yearId, authUser));
+    }
 
 }
