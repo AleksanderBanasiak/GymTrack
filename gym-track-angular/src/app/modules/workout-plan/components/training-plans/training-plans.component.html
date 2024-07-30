@@ -10,7 +10,7 @@
           <div class="trainingExercises">Exercises: {{training.exercises}}</div>
           <div class="trainingExercises">Sets: {{training.sets}}</div>
         </div>
-        <div class="trainingGroup">Muscle groups: {{training.muscleGroups ? training.muscleGroups.join(', ').toLowerCase() : ''}}
+        <div class="trainingGroup">Muscle groups: {{ training.muscleGroups ? formatMuscleGroups(training.muscleGroups) : '' }}
         </div>
         <a class="editTraining" (click)="editTraining(training.id)"><i class="fa-solid fa-pen-to-square"></i></a>
       </div>
@@ -26,7 +26,7 @@
           {{exercise.exerciseName}}
         </div>
         <div class="exerciseGroup">
-          Group: {{exercise.type}}
+          Group: {{getFormattedType(exercise.type)}}
         </div>
         <div class="exerciseSets">
           Sets: {{exercise.sets}}

@@ -40,7 +40,7 @@ create table if not exists exercises
     modified_date timestamp(6),
     exercise_type smallint
     constraint exercises_exercise_type_check
-    check ((exercise_type >= 0) AND (exercise_type <= 10)),
+    check ((exercise_type >= 0) AND (exercise_type <= 15)),
     is_default    boolean      not null,
     name          varchar(255),
     user_id       bigint

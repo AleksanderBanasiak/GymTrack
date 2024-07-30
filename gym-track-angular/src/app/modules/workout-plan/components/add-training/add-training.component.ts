@@ -22,7 +22,7 @@ export class AddTrainingComponent implements OnInit{
   userExerciseResponse: ExerciseResponse[] = [];
 
   exerciseTypes: ExerciseResponse['type'][] = [
-    'CHEST', 'BACK', 'BICEPS', 'SHOULDERS', 'TRICEPS', 'FOREARM', 'ABS', 'GLUTES', 'CALF', 'THIGH', 'HAMSTRINGS'
+    'CHEST' , 'SHOULDERS' , 'BICEPS' , 'TRICEPS' , 'FOREARM', 'TRAPS' , 'LATS' , 'MIDDLE_BACK' , 'LOW_BACK' , 'ABS' , 'QUADRICEPS' , 'GLUTES' , 'ABDUCTORS' , 'ADDUCTORS' , 'HAMSTRINGS' , 'CALF'
   ];
 
   selectedType: ExerciseResponse['type'] = this.exerciseTypes[0];
@@ -232,4 +232,7 @@ export class AddTrainingComponent implements OnInit{
       })
     }
 
+  getFormattedType(type: "CHEST" | "SHOULDERS" | "BICEPS" | "TRICEPS" | "FOREARM" | "TRAPS" | "LATS" | "MIDDLE_BACK" | "LOW_BACK" | "ABS" | "QUADRICEPS" | "GLUTES" | "ABDUCTORS" | "ADDUCTORS" | "HAMSTRINGS" | "CALF" | undefined) {
+    return type ? type.replace(/_/g, ' ') : '';
+  }
 }

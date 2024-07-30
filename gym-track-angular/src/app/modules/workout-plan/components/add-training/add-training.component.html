@@ -12,7 +12,7 @@
       <div class="trainingContent">
       <div class="headContent">
           <select [(ngModel)]="selectedType" (change)="findAllExercises()">
-            <option *ngFor="let type of exerciseTypes" [ngValue]="type" class="selectedTypeOption">{{ type }}</option>
+            <option *ngFor="let type of exerciseTypes" [ngValue]="type" class="selectedTypeOption">{{ getFormattedType(type) }}</option>
           </select>
           <select [(ngModel)]="selectedSet" >
             <option *ngFor="let sets of [0,1,2,3,4,5,6,7,8,9,10]" class="selectedTypeOption">
@@ -53,7 +53,7 @@
             {{exercise.exerciseName}}
           </div>
           <div class="exerciseGroup">
-            Group: {{exercise.type}}
+            Group: {{getFormattedType(exercise.type)}}
           </div>
           <div class="exerciseSets">
             Sets: {{exercise.sets}}

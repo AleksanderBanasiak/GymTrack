@@ -30,7 +30,6 @@
         <div class="exerciseName">
           {{planExercise.exerciseName}}
         </div>
-        <div class="message" *ngIf="message">{{message}}</div>
         <div class="valBox">
           <div *ngFor="let setForm of setsForm; let i = index" [formGroup]="setForm" class="setForm" [ngClass]="{'clicked': setForm.get('clicked')?.value}">
             <span class="indexExercise2">{{ i + 1 }}.</span>
@@ -48,7 +47,7 @@
               <label>Total</label>
               <input type="number" formControlName="total" [attr.disabled]="setForm.get('clicked')?.value ? true : null">
             </div>
-            <button type="button" (click)="onSubmit(setForm, i)"><i class="fa-solid fa-check"></i></button>
+            <button type="button" (click)="onSubmit(setForm, i)" ><i class="fa-solid fa-check"></i></button>
           </div>
         </div>
       </div>
@@ -57,7 +56,8 @@
         <div class="historyMainContent" *ngIf="history.length > 0">
           <div class="historyMainBox" *ngFor="let sessionHistory of history; let i = index">
             <div class="historyContent">
-              <p>{{sessionHistory[0].sessionDate}}</p>
+              <p style="color: #f11f1f; font-weight: 500">{{sessionHistory[0].sessionDate  | date:'dd MMMM yyyy'}}</p>
+              <p>Summary: {{sessionVolume(i)}}kg</p>
               <div *ngFor="let log of sessionHistory">
                 {{ log.setNumber }}. {{ log.reps }} x {{ log.weight }} = {{ log.summaryWeight }} kg
               </div>

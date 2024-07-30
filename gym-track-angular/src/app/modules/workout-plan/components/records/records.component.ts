@@ -13,7 +13,7 @@ export class RecordsComponent implements OnInit{
 
 
   exerciseTypes: ExerciseResponse['type'][] = [
-    'CHEST', 'BACK', 'BICEPS', 'SHOULDERS', 'TRICEPS', 'FOREARM', 'ABS', 'GLUTES', 'CALF', 'THIGH', 'HAMSTRINGS'
+    'CHEST' , 'SHOULDERS' , 'BICEPS' , 'TRICEPS' , 'FOREARM', 'TRAPS' , 'LATS' , 'MIDDLE_BACK' , 'LOW_BACK' , 'ABS' , 'QUADRICEPS' , 'GLUTES' , 'ABDUCTORS' , 'ADDUCTORS' , 'HAMSTRINGS' , 'CALF'
   ];
 
   chosenExerciseType: ExerciseResponse['type'] = 'CHEST';
@@ -49,12 +49,19 @@ export class RecordsComponent implements OnInit{
       }
   }
 
-  capitalizeFirstLetter(text: any): string {
-    if (!text) return text;
-    return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+
+  getFormattedType(type?: string): string {
+    if (!type) return '';
+    return type
+      .replace(/_/g, ' ')
+      .toLowerCase()
+      .replace(/^\w/, (c) => c.toUpperCase());
   }
 
-  displayRecords(types: "CHEST" | "BACK" | "BICEPS" | "SHOULDERS" | "TRICEPS" | "FOREARM" | "ABS" | "GLUTES" | "CALF" | "THIGH" | "HAMSTRINGS" | undefined) {
+
+
+
+  displayRecords(types: "CHEST" | "SHOULDERS" | "BICEPS" | "TRICEPS" | "FOREARM" |"TRAPS" | "LATS" | "MIDDLE_BACK" | "LOW_BACK" | "ABS" | "QUADRICEPS" | "GLUTES" | "ABDUCTORS" | "ADDUCTORS" | "HAMSTRINGS" | "CALF" | undefined) {
     localStorage.setItem('type', JSON.stringify(types));
     window.location.reload();
   }
@@ -74,5 +81,7 @@ export class RecordsComponent implements OnInit{
       }
     });
   }
+
+
 
 }

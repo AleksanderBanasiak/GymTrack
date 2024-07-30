@@ -252,4 +252,12 @@ export class HomeComponent implements OnInit{
       }
     })
   }
+
+  getWeightInTons(weight: number | undefined): number {
+    let weightInTons =0;
+    if(weight){
+      weightInTons = Math.round(weight /1000);
+    }
+    return weightInTons;
+  }
 }

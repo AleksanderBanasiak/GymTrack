@@ -30,11 +30,11 @@ export class ExerciseInSessionComponent implements OnInit, OnChanges{
   chartLogs: WorkoutLogsResponse[] = [];
   chartMaxLogs: WorkoutLogsResponse[] = [];
   history: WorkoutLogsResponse[][] = [];
+  lastLogsForExercise: WorkoutLogsResponse[] = [];
 
   isChecked: boolean = false;
   noteContent: string = '';
   notes: NotesResponse[] =[];
-  message: string | undefined;
 
   constructor(private fb: FormBuilder,
               private workoutLogsService: WorkoutLogsControllerService,
@@ -48,6 +48,11 @@ export class ExerciseInSessionComponent implements OnInit, OnChanges{
 
   ngOnInit(): void {
     this.findSessionById(this.sessionId as number);
+
+    const savedSessionId = localStorage.getItem('sessionId');
+    if (savedSessionId) {
+      this.sessionId = JSON.parse(savedSessionId);
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -56,13 +61,8 @@ export class ExerciseInSessionComponent implements OnInit, OnChanges{
       this.planExercise = JSON.parse(savedExercise);
     }
 
-    const savedSessionId = localStorage.getItem('sessionId');
-    if (savedSessionId) {
-      this.sessionId = JSON.parse(savedSessionId);
-    }
-
     if (changes['planExercise'] && this.planExercise?.sets) {
-      this.getAllLogsBySessionId();
+      this.findLastLogsForExercise(this.planExercise.exerciseId as number);
       this.findLogsByExerciseId(this.planExercise.exerciseId as number);
       this.findMaxesByExerciseId(this.planExercise.exerciseId as number);
       this.findHistory(this.planExercise.exerciseId as number, this.sessionId as number);
@@ -86,14 +86,12 @@ export class ExerciseInSessionComponent implements OnInit, OnChanges{
   }
 
   onSubmit(setForm: FormGroup, setNumber: number) {
-    setForm.get('clicked')?.setValue(true);
-    this.saveLogs(setNumber +1, setForm)
+      this.saveLogs(setNumber +1, setForm);
   }
 
   private saveLogs(setNumber: number, form: FormGroup){
-
-    if (form.get('weight')?.value <= 0 || form.get('weight')?.value >= 550 || form.get('reps')?.value <= 0 || form.get('reps')?.value >= 200) {
-      this.message = "Invalid data";
+    if (form.get('weight')?.value <= 0 || form.get('weight')?.value >= 550 || form.get('reps')?.value <= 0 || form.get('reps')?.value >= 200 || form.get('clicked')?.value == true) {
+      window.location.reload();
       return;
     }
 
@@ -108,17 +106,22 @@ export class ExerciseInSessionComponent implements OnInit, OnChanges{
       body: workoutLogsRequest
     }).subscribe({
       next: () => {
+        form.get('clicked')?.setValue(true);
         window.location.reload();
       }
     })
   }
   private getAllLogsBySessionId(){
+
+
     this.workoutLogsService.findAllLogsBySessionIdAndPlanExerciseId({
       "session-id": this.sessionId as number,
       "plan-exercise-id": this.planExercise?.id as number
     }).subscribe({
       next: (res) => {
         this.workoutLogsResponse = res;
+
+        // TODO: probelm jest taki że metoda jest wywoływane tylko po ngCHanges a nie init
         this.initializeFormsWithLogs(res);
     }
     })
@@ -146,23 +149,39 @@ export class ExerciseInSessionComponent implements OnInit, OnChanges{
 
     if (this.planExercise?.sets) {
       for (let i = 1; i <= this.planExercise.sets; i++) {
+        let reps = 0;
+        let weight = 0;
+
         if (setsMap.has(i)) {
           const log = setsMap.get(i);
-          const reps = log?.reps as number;
-          const weight = log?.weight as number;
-
-          this.setsForm.push(this.fb.group({
-
-            reps: [log?.reps, Validators.required],
-            weight: [log?.weight, Validators.required],
-            total: [{ value: reps * weight, disabled: true }],
-            clicked: [true]
-          }));
-        } else {
-          this.setsForm.push(this.createSetForm());
+          reps = log?.reps as number;
+          weight = log?.weight as number;
+        } else if (this.lastLogsForExercise.length > 0) {
+          const lastLog = this.lastLogsForExercise[i - 1] || this.lastLogsForExercise[this.lastLogsForExercise.length - 1];
+          reps = lastLog.reps as number;
+          weight = lastLog.weight as number;
         }
+
+        this.setsForm.push(this.fb.group({
+          reps: [reps, Validators.required],
+          weight: [weight, Validators.required],
+          total: [{ value: reps * weight, disabled: true }],
+          clicked: [setsMap.has(i)]
+        }));
       }
     }
+  }
+
+
+  private findLastLogsForExercise(id: number){
+    this.workoutLogsService.findLastLogsByExerciseIdAndUserId({
+      id: id
+    }).subscribe({
+      next: (res) => {
+        this.lastLogsForExercise = res;
+        this.getAllLogsBySessionId();
+      }
+    })
   }
 
   endTraining() {
@@ -170,6 +189,8 @@ export class ExerciseInSessionComponent implements OnInit, OnChanges{
       id: this.sessionId as number
     }).subscribe({
       next: () => {
+        localStorage.removeItem('sessionId');
+        localStorage.removeItem('chosenPlanExercise');
         this.router.navigate(['']);
       }
     })
@@ -214,6 +235,16 @@ export class ExerciseInSessionComponent implements OnInit, OnChanges{
         }
       })
     }
+
+  sessionVolume(index: number): number{
+    let volume = 0;
+
+    this.history[index].forEach(item => {
+      volume += item.summaryWeight as number
+    })
+      return volume;
+    }
+
 
   private getAllNotes(){
     this.notesService.findAllNotesForExercise({

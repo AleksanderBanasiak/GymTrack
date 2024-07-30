@@ -22,7 +22,24 @@ services:
     ports:
       - 1080:1080
       - 1025:1025
-
+  gt-api:
+    container_name: gt-api
+    image: gt/gt-api:1.0.4
+    ports:
+      - 8088:8088
+    networks:
+      - spring_demo
+    depends_on:
+      - postgres
+  gt-ui:
+    container_name: gt-ui
+    image: gt/gt-ui:1.0.5
+    ports:
+      - 8080:80
+    networks:
+      - spring_demo
+    depends_on:
+      - gt-api
 
 networks:
   spring_demo:

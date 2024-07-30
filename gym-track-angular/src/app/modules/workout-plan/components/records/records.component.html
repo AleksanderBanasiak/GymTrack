@@ -1,7 +1,7 @@
 <div class="containerData">
     <div class="mainContainer2">
         <div class="trainingsSection">
-            <div class="trainingText">Personal records for {{ capitalizeFirstLetter(chosenExerciseType) }}</div>
+            <div class="trainingText">Personal records for {{ getFormattedType(chosenExerciseType) }}</div>
             <div class="trainingContent">
                 <div class="recordContent">
                   <ng-container    *ngFor="let exercise of exercises" >
@@ -51,7 +51,7 @@
             <div class="trainingContent" >
                 <div class="exercise" *ngFor="let types of exerciseTypes; let i = index" (click)="displayRecords(types)">
                     <div class="indexExercise">{{i+1}}</div>
-                    <div class="exerciseName">{{ capitalizeFirstLetter(types) }}</div>
+                  <div class="exerciseName">{{ types ? getFormattedType(types) : '' }}</div>
                 </div>
             </div>
         </div>

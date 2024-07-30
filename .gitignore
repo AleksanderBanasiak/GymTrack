@@ -4,6 +4,8 @@
 *.iws
 out/
 
+docker/
+
 # Maven
 target/
 pom.xml.tag

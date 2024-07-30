@@ -17,6 +17,7 @@ import {ChartsComponent} from './components/charts/charts.component';
 import {TrainingLogsComponent} from './components/training-logs/training-logs.component';
 import {RecordsComponent} from './components/records/records.component';
 import {DatePickerComponent} from './components/date-picker/date-picker.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import {DatePickerComponent} from './components/date-picker/date-picker.componen
     TrainingLogsComponent,
     RecordsComponent,
     DatePickerComponent,
+    ContactComponent,
   ],
   imports: [
     CommonModule,

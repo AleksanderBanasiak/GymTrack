@@ -76,5 +76,12 @@ export class TrainingPlansComponent implements OnInit{
     }
   }
 
+  getFormattedType(type: "CHEST" | "SHOULDERS" | "BICEPS" | "TRICEPS" | "FOREARM" | "TRAPS" | "LATS" | "MIDDLE_BACK" | "LOW_BACK" | "ABS" | "QUADRICEPS" | "GLUTES" | "ABDUCTORS" | "ADDUCTORS" | "HAMSTRINGS" | "CALF" | undefined) {
+    return type ? type.replace(/_/g, ' ') : '';
+  }
 
+
+  formatMuscleGroups(muscleGroups: string[]): string {
+    return muscleGroups.map(group => group.replace(/_/g, ' ')).join(', ').toLowerCase();
+  }
 }

@@ -3,7 +3,7 @@
 export interface PlanResponse {
   exercises?: number;
   id?: number;
-  muscleGroups?: Array<'CHEST' | 'BACK' | 'BICEPS' | 'SHOULDERS' | 'TRICEPS' | 'FOREARM' | 'ABS' | 'GLUTES' | 'CALF' | 'THIGH' | 'HAMSTRINGS'>;
+  muscleGroups?: Array<'CHEST' | 'SHOULDERS' | 'BICEPS' | 'TRICEPS' | 'FOREARM' | 'TRAPS' | 'LATS' | 'MIDDLE_BACK' | 'LOW_BACK' | 'ABS' | 'QUADRICEPS' | 'GLUTES' | 'ABDUCTORS' | 'ADDUCTORS' | 'HAMSTRINGS' | 'CALF'>;
   name?: string;
   sets?: number;
 }

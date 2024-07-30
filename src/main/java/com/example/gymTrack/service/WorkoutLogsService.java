@@ -35,7 +35,11 @@ public class WorkoutLogsService {
                 .toList();
 
         Map<Long, List<WorkoutLogsResponse>> groupedByExerciseId = workoutLogs.stream()
-                .collect(Collectors.groupingBy(WorkoutLogsResponse::getExerciseId));
+                .collect(Collectors.groupingBy(
+                        WorkoutLogsResponse::getExerciseId,
+                        LinkedHashMap::new,
+                        Collectors.toList()
+                ));
 
         return groupedByExerciseId.values().stream()
                 .map(list -> list.stream()
@@ -147,5 +151,24 @@ public class WorkoutLogsService {
                         .mapToDouble(WorkoutLogs::getSummaryWeight)
                         .sum())
                 .build();
+    }
+
+    public List<WorkoutLogsResponse> findLastLogsByExerciseIdAndUserId(Long exerciseId, Authentication authUser) {
+        User user = (User) authUser.getPrincipal();
+
+        List<WorkoutLogs> workoutLogs = workoutLogsRepo.findLastLogsByExerciseIdAndUserId(exerciseId, user.getId());
+
+        Optional<Long> latestSessionId = workoutLogs.stream()
+                .max(Comparator.comparing(log -> log.getWorkoutSession().getId()))
+                .map(log -> log.getWorkoutSession().getId());
+
+        return latestSessionId.map(id ->
+                        workoutLogs.stream()
+                                .filter(log -> log.getWorkoutSession().getId().equals(id))
+                                .sorted(Comparator.comparing(WorkoutLogs::getSetNumber)) // Sortowanie według setNumber
+                                .collect(Collectors.toList()))
+                .orElseGet(List::of).stream()
+                .map(workoutLogsMapper::toResponse)
+                .collect(Collectors.toList());
     }
 }

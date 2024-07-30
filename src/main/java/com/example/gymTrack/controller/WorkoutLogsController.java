@@ -57,12 +57,15 @@ public class WorkoutLogsController {
         return ResponseEntity.ok(workoutLogsService.findAllLogsByExerciseIdAndUserIdGroupedBySessionId(exerciseId, sessionId, authUser));
     }
 
-
     @GetMapping("/summary")
     public ResponseEntity<SummaryResponse> findSummaryLogs(Authentication authUser){
         return ResponseEntity.ok(workoutLogsService.findSummaryLogs(authUser));
     }
 
+    @GetMapping("/last/{id}")
+    public ResponseEntity<List<WorkoutLogsResponse>> findLastLogsByExerciseIdAndUserId(@PathVariable Long id, Authentication authUser){
+        return ResponseEntity.ok(workoutLogsService.findLastLogsByExerciseIdAndUserId(id, authUser));
+    }
 
 
 

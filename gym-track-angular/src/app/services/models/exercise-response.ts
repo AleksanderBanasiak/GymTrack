@@ -3,5 +3,5 @@
 export interface ExerciseResponse {
   id?: number;
   name?: string;
-  type?: 'CHEST' | 'BACK' | 'BICEPS' | 'SHOULDERS' | 'TRICEPS' | 'FOREARM' | 'ABS' | 'GLUTES' | 'CALF' | 'THIGH' | 'HAMSTRINGS';
+  type?: 'CHEST' | 'SHOULDERS' | 'BICEPS' | 'TRICEPS' | 'FOREARM' | 'TRAPS' | 'LATS' | 'MIDDLE_BACK' | 'LOW_BACK' | 'ABS' | 'QUADRICEPS' | 'GLUTES' | 'ABDUCTORS' | 'ADDUCTORS' | 'HAMSTRINGS' | 'CALF';
 }

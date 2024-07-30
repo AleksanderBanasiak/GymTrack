@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:8080/api",
+      "url": "http://localhost:8088/api",
       "description": "Local ENV"
     }
   ],
@@ -731,6 +731,40 @@
         }
       }
     },
+    "/workout-logs/last/{id}": {
+      "get": {
+        "tags": [
+          "workout-logs-controller"
+        ],
+        "operationId": "findLastLogsByExerciseIdAndUserId",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkoutLogsResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/workout-logs/exercise/{id}": {
       "get": {
         "tags": [
@@ -1205,16 +1239,21 @@
               "type": "string",
               "enum": [
                 "CHEST",
-                "BACK",
-                "BICEPS",
                 "SHOULDERS",
+                "BICEPS",
                 "TRICEPS",
                 "FOREARM",
+                "TRAPS",
+                "LATS",
+                "MIDDLE_BACK",
+                "LOW_BACK",
                 "ABS",
+                "QUADRICEPS",
                 "GLUTES",
-                "CALF",
-                "THIGH",
-                "HAMSTRINGS"
+                "ABDUCTORS",
+                "ADDUCTORS",
+                "HAMSTRINGS",
+                "CALF"
               ]
             }
           }
@@ -1274,16 +1313,21 @@
               "type": "string",
               "enum": [
                 "CHEST",
-                "BACK",
-                "BICEPS",
                 "SHOULDERS",
+                "BICEPS",
                 "TRICEPS",
                 "FOREARM",
+                "TRAPS",
+                "LATS",
+                "MIDDLE_BACK",
+                "LOW_BACK",
                 "ABS",
+                "QUADRICEPS",
                 "GLUTES",
-                "CALF",
-                "THIGH",
-                "HAMSTRINGS"
+                "ABDUCTORS",
+                "ADDUCTORS",
+                "HAMSTRINGS",
+                "CALF"
               ]
             }
           }
@@ -1539,16 +1583,21 @@
             "type": "string",
             "enum": [
               "CHEST",
-              "BACK",
-              "BICEPS",
               "SHOULDERS",
+              "BICEPS",
               "TRICEPS",
               "FOREARM",
+              "TRAPS",
+              "LATS",
+              "MIDDLE_BACK",
+              "LOW_BACK",
               "ABS",
+              "QUADRICEPS",
               "GLUTES",
-              "CALF",
-              "THIGH",
-              "HAMSTRINGS"
+              "ABDUCTORS",
+              "ADDUCTORS",
+              "HAMSTRINGS",
+              "CALF"
             ]
           }
         }
@@ -1713,16 +1762,21 @@
               "type": "string",
               "enum": [
                 "CHEST",
-                "BACK",
-                "BICEPS",
                 "SHOULDERS",
+                "BICEPS",
                 "TRICEPS",
                 "FOREARM",
+                "TRAPS",
+                "LATS",
+                "MIDDLE_BACK",
+                "LOW_BACK",
                 "ABS",
+                "QUADRICEPS",
                 "GLUTES",
-                "CALF",
-                "THIGH",
-                "HAMSTRINGS"
+                "ABDUCTORS",
+                "ADDUCTORS",
+                "HAMSTRINGS",
+                "CALF"
               ]
             }
           }
@@ -1746,16 +1800,21 @@
             "type": "string",
             "enum": [
               "CHEST",
-              "BACK",
-              "BICEPS",
               "SHOULDERS",
+              "BICEPS",
               "TRICEPS",
               "FOREARM",
+              "TRAPS",
+              "LATS",
+              "MIDDLE_BACK",
+              "LOW_BACK",
               "ABS",
+              "QUADRICEPS",
               "GLUTES",
-              "CALF",
-              "THIGH",
-              "HAMSTRINGS"
+              "ABDUCTORS",
+              "ADDUCTORS",
+              "HAMSTRINGS",
+              "CALF"
             ]
           },
           "sets": {
@@ -1778,16 +1837,21 @@
             "type": "string",
             "enum": [
               "CHEST",
-              "BACK",
-              "BICEPS",
               "SHOULDERS",
+              "BICEPS",
               "TRICEPS",
               "FOREARM",
+              "TRAPS",
+              "LATS",
+              "MIDDLE_BACK",
+              "LOW_BACK",
               "ABS",
+              "QUADRICEPS",
               "GLUTES",
-              "CALF",
-              "THIGH",
-              "HAMSTRINGS"
+              "ABDUCTORS",
+              "ADDUCTORS",
+              "HAMSTRINGS",
+              "CALF"
             ]
           }
         }

@@ -108,4 +108,14 @@ public interface WorkoutLogsRepo extends JpaRepository<WorkoutLogs, Long> {
     """)
     List<WorkoutLogs> findAllLogsByUserId(Long userId);
 
+
+
+    @Query("""
+    SELECT logs FROM WorkoutLogs logs
+    WHERE logs.planExercise.exercise.id = :exerciseId
+    AND logs.planExercise.user.id = :userId
+    AND logs.workoutSession.ended = true
+    ORDER BY logs.workoutSession.id DESC
+""")
+    List<WorkoutLogs> findLastLogsByExerciseIdAndUserId(Long exerciseId, Long userId);
 }

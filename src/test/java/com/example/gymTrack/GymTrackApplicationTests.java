@@ -11,4 +11,5 @@ class GymTrackApplicationTests {
 	}
 
 //	TODO: dodać testy
+//	TODO: dodac przekierowanie na google play w angularze
 }

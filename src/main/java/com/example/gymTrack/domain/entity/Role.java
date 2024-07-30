@@ -2,6 +2,7 @@ package com.example.gymTrack.domain.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -25,6 +26,7 @@ public class Role {
     private Long id;
 
     @Column(unique = true)
+    @NotNull
     private String name;
 
     @ManyToMany(mappedBy = "roles")

@@ -69,7 +69,7 @@
   font-size: 2vh;
   border: 2px solid #f11f1f;
   background-color: #f11f1f;
-  width: 100%;
+  width: 103%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -85,4 +85,16 @@
 .allRecords{
   border: 2px solid red;
   width: 100%;
+}
+.trainingText{
+  color: #edf0f1;
+  font-weight: 600;
+  font-size: 2.2rem;
+  position: absolute;
+  left: 4vh;
+  top: 1vh;
+  transition: .3s ease-in-out;
+}
+.trainingText:hover{
+  color: #f11f1f;
 }

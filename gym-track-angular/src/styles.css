@@ -7,6 +7,8 @@
   font-size: 70px;
   font-weight: 700;
   display: flex;
+  margin-top: 4vh;
+  align-items: center;
 }
 .obj1{
   color: #1B1B1B;
@@ -322,7 +324,7 @@
   margin-left: 1rem;
   height: 30%;
   font-weight: 500;
-  font-size: 1.5vh;
+  font-size: 2vh;
 }
 .editTraining{
   border: 2px solid red;
@@ -431,6 +433,10 @@
   font-size: 2rem;
   font-weight: 600;
   margin: 2vh 0 0 3vh;
+  transition: .3s ease-in-out;
+}
+.weightText:hover{
+  color: #f11f1f;
 }
 .chartWeight {
   width: 90%;
@@ -505,6 +511,10 @@
   position: absolute;
   left: 4vh;
   top: 1vh;
+  transition: .3s ease-in-out;
+}
+.trainingText:hover{
+  color: #f11f1f;
 }
 .newTraining{
   position: absolute;
@@ -577,6 +587,7 @@
   min-height: 16%;
   height: auto;
   margin-bottom: 2vh;
+  margin-top: 1vh;
 }
 .exerciseLogName{
   font-weight: 600;
@@ -605,7 +616,7 @@
   font-size: 2vh;
   border: 2px solid #f11f1f;
   background-color: #f11f1f;
-  width: 100%;
+  width: 103%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -638,4 +649,9 @@
 }
 .goIn a:hover{
   color: #f11f1f;
+}
+.icon{
+  height: 10vh;
+  width: 10vh;
+  margin-right: 2vh;
 }

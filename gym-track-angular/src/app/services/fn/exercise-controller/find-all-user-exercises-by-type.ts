@@ -9,7 +9,7 @@ import { RequestBuilder } from '../../request-builder';
 import { ExerciseResponse } from '../../models/exercise-response';
 
 export interface FindAllUserExercisesByType$Params {
-  type: 'CHEST' | 'BACK' | 'BICEPS' | 'SHOULDERS' | 'TRICEPS' | 'FOREARM' | 'ABS' | 'GLUTES' | 'CALF' | 'THIGH' | 'HAMSTRINGS';
+  type: 'CHEST' | 'SHOULDERS' | 'BICEPS' | 'TRICEPS' | 'FOREARM' | 'TRAPS' | 'LATS' | 'MIDDLE_BACK' | 'LOW_BACK' | 'ABS' | 'QUADRICEPS' | 'GLUTES' | 'ABDUCTORS' | 'ADDUCTORS' | 'HAMSTRINGS' | 'CALF';
 }
 
 export function findAllUserExercisesByType(http: HttpClient, rootUrl: string, params: FindAllUserExercisesByType$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<ExerciseResponse>>> {

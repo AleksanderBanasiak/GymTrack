@@ -1,6 +1,7 @@
 package com.example.gymTrack.domain.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -17,6 +18,8 @@ public class Token {
     @Id
     @GeneratedValue
     private Long id;
+
+    @NotNull
     @Column(unique = true)
     private String token;
     private LocalDateTime createdAt;

@@ -65,7 +65,7 @@
   height: 20%;
   display: flex;
   justify-content: center;
-  font-size: 5vh;
+  font-size: 4.7vh;
   font-weight: 700;
   color: #f11f1f;
 }
@@ -260,17 +260,21 @@ input[type=number]::-webkit-inner-spin-button {
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  overflow-y: auto;
 }
 .historyContent{
   border-left: 2px solid #3d3838;
   padding: 1.5vh;
-  height: 70%;
+  height: 90%;
   width: 90%;
 }
 ::-webkit-scrollbar {
   height: 12px;
 }
+.historyContent p{
+  margin-bottom: 1vh;
+}
+
 .addNoteChecked{
   border: 2px solid #f11f1f;
   width: 90%;

@@ -15,8 +15,8 @@ public class ExerciseMapper implements Mapper<Exercise, ExerciseResponse, Exerci
     private final ModelMapper modelMapper;
 
     @Override
-    public Exercise toEntity(ExerciseRequest exerciseRequest3) {
-        return modelMapper.map(exerciseRequest3, Exercise.class);
+    public Exercise toEntity(ExerciseRequest exerciseRequest) {
+        return modelMapper.map(exerciseRequest, Exercise.class);
     }
 
     @Override

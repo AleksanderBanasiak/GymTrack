@@ -21,6 +21,8 @@ import { findAllLogsMaxByExerciseIdAndUserId } from '../fn/workout-logs-controll
 import { FindAllLogsMaxByExerciseIdAndUserId$Params } from '../fn/workout-logs-controller/find-all-logs-max-by-exercise-id-and-user-id';
 import { findAllRecordByExerciseId } from '../fn/workout-logs-controller/find-all-record-by-exercise-id';
 import { FindAllRecordByExerciseId$Params } from '../fn/workout-logs-controller/find-all-record-by-exercise-id';
+import { findLastLogsByExerciseIdAndUserId } from '../fn/workout-logs-controller/find-last-logs-by-exercise-id-and-user-id';
+import { FindLastLogsByExerciseIdAndUserId$Params } from '../fn/workout-logs-controller/find-last-logs-by-exercise-id-and-user-id';
 import { findSummaryLogs } from '../fn/workout-logs-controller/find-summary-logs';
 import { FindSummaryLogs$Params } from '../fn/workout-logs-controller/find-summary-logs';
 import { save } from '../fn/workout-logs-controller/save';
@@ -155,6 +157,31 @@ export class WorkoutLogsControllerService extends BaseService {
    */
   findAllLogsBySessionIdAndPlanExerciseId(params: FindAllLogsBySessionIdAndPlanExerciseId$Params, context?: HttpContext): Observable<Array<WorkoutLogsResponse>> {
     return this.findAllLogsBySessionIdAndPlanExerciseId$Response(params, context).pipe(
+      map((r: StrictHttpResponse<Array<WorkoutLogsResponse>>): Array<WorkoutLogsResponse> => r.body)
+    );
+  }
+
+  /** Path part for operation `findLastLogsByExerciseIdAndUserId()` */
+  static readonly FindLastLogsByExerciseIdAndUserIdPath = '/workout-logs/last/{id}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `findLastLogsByExerciseIdAndUserId()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findLastLogsByExerciseIdAndUserId$Response(params: FindLastLogsByExerciseIdAndUserId$Params, context?: HttpContext): Observable<StrictHttpResponse<Array<WorkoutLogsResponse>>> {
+    return findLastLogsByExerciseIdAndUserId(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `findLastLogsByExerciseIdAndUserId$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findLastLogsByExerciseIdAndUserId(params: FindLastLogsByExerciseIdAndUserId$Params, context?: HttpContext): Observable<Array<WorkoutLogsResponse>> {
+    return this.findLastLogsByExerciseIdAndUserId$Response(params, context).pipe(
       map((r: StrictHttpResponse<Array<WorkoutLogsResponse>>): Array<WorkoutLogsResponse> => r.body)
     );
   }

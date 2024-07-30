@@ -10,6 +10,7 @@ import {WeightComponent} from "./components/weight/weight.component";
 import {ChartsComponent} from "./components/charts/charts.component";
 import {TrainingLogsComponent} from "./components/training-logs/training-logs.component";
 import {RecordsComponent} from "./components/records/records.component";
+import {ContactComponent} from "./components/contact/contact.component";
 
 const routes: Routes = [
   {
@@ -60,6 +61,11 @@ const routes: Routes = [
       {
         path: 'records',
         component: RecordsComponent,
+        canActivate: [authGuard]
+      },
+      {
+        path: 'contact',
+        component: ContactComponent,
         canActivate: [authGuard]
       }
     ]
