@@ -9,8 +9,7 @@
 
 
 The application is secured with Spring Security along with JSON Web Token. 
-
-The application allows users to create custom exercises targeting specific
+Application allows users to create custom exercises targeting specific
 muscle groups and add them to their personalized workout plans. During workouts,
 users can log the weight and the number of repetitions for each exercise set.
 Additionally, the app tracks your body weight progress, displays personal records
